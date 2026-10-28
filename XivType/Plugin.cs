@@ -310,14 +310,7 @@ public sealed class Plugin : IDalamudPlugin
                 Interface.SavePluginConfig(config);
             }
             ImGui.TextDisabled("Escape stops typing while the game is focused.");
-            if (backgroundTyping) ImGui.TextDisabled("Input goes directly to the activity, even when another app has focus.");
-            var preventAfk = config.PreventAfk;
-            if (ImGui.Checkbox("Send activity key during background typing (experimental)", ref preventAfk))
-            {
-                config.PreventAfk = preventAfk;
-                Interface.SavePluginConfig(config);
-            }
-            ImGui.TextWrapped("Sends Shift only to FFXIV every 5 seconds after confirmed typing. Pauses during input prohibition. Full-duty AFK protection is unverified.");
+            if (backgroundTyping) ImGui.TextDisabled("Keystrokes are posted only to FFXIV, even when another app has focus.");
             var typingDelay = config.TypingDelayMs;
             var clearDelay = config.ClearDelayMs;
             var keyHold = config.KeyHoldMs;

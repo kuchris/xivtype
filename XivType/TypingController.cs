@@ -12,7 +12,6 @@ namespace XivType;
 internal sealed unsafe class TypingController(DiagnosticStore diagnostics, Configuration config)
 {
     private readonly ConcurrentQueue<string> requests = new();
-    private readonly ActivityKeepAlive activity = new(new TargetedActivityInput());
     private readonly InputActivityProbe activityProbe = new(diagnostics);
     private bool running;
     private bool continuous;
@@ -33,6 +32,8 @@ internal sealed unsafe class TypingController(DiagnosticStore diagnostics, Confi
     private long nextAction;
     private long nextReport;
     private long nextIdleLog;
+    private long nextActivation;
+    private int activationAttempts;
     private string lastReport = "";
     private uint scoreBefore;
     private int accepted;
@@ -47,7 +48,6 @@ internal sealed unsafe class TypingController(DiagnosticStore diagnostics, Confi
 
     public void Start(bool repeat, bool singleCharacter = false)
     {
-        activity.Reset();
         running = true;
         continuous = repeat;
         probe = singleCharacter;
@@ -58,6 +58,8 @@ internal sealed unsafe class TypingController(DiagnosticStore diagnostics, Confi
         ownsInput = false;
         editRetries = 0;
         submitRetries = 0;
+        activationAttempts = 0;
+        nextActivation = 0;
         inputWasBlocked = false;
         nextAction = Environment.TickCount64 + 500;
         Status = singleCharacter ? "Testing one character." : "Waiting for a visible English prompt.";
@@ -66,7 +68,6 @@ internal sealed unsafe class TypingController(DiagnosticStore diagnostics, Confi
 
     public void Stop(string reason)
     {
-        activity.Cancel();
         NativeInput.Release();
         running = false;
         pending = false;
@@ -81,6 +82,7 @@ internal sealed unsafe class TypingController(DiagnosticStore diagnostics, Confi
     public void Update(long now)
     {
         NativeInput.KeyHoldMs = Math.Max(config.KeyHoldMs, adaptiveHoldMs);
+        NativeInput.Posted = config.BackgroundTyping;
         while (diagnostics.TryGetCommand(out var externalCommand)) requests.Enqueue(externalCommand);
         while (requests.TryDequeue(out var command))
         {
@@ -100,24 +102,15 @@ internal sealed unsafe class TypingController(DiagnosticStore diagnostics, Confi
         KnownDistances = state.Words.Count(w => w.Distance.HasValue);
         var permission = GameInput.Permission;
         if (running) Tick(now, state, permission);
-        var pulsesBefore = activity.Acknowledged;
-        activity.Update(now, config.PreventAfk && config.BackgroundTyping, running,
-            GameInput.Permission.Allowed && !(NativeInput.IsGameForeground() && Plugin.KeyboardCaptured),
-            (ushort)Plugin.Client.TerritoryType);
-        if (activity.Acknowledged != pulsesBefore)
-            Plugin.Log.Information("XivType targeted activity key acknowledged {Count}; natural input idle {Before:0.00}s -> {After:0.00}s",
-                activity.Acknowledged, activity.LastInputBefore, activity.LastInputAfter);
-        if (running && config.PreventAfk && config.BackgroundTyping && activity.Unavailable)
-            Stop("Stopped: the game did not acknowledge its targeted activity key. AFK protection is unavailable.");
         if (Plugin.Client.TerritoryType == 1359 && now >= nextIdleLog)
         {
             // The duty inactivity check ignored acknowledged activity keys on 2026-10-28; log every candidate signal.
             nextIdleLog = now + 5000;
             var timers = InputTimerModule.Instance();
-            Plugin.Log.Information("XivType idle timeline: running={Running}; foreground={Foreground}; minimized={Minimized}; systemIdle={SystemIdle:0.0}s; afk={Afk:0.0}; content={Content:0.0}; input={Input:0.0}; submissions={Submissions}; activityKeys={Keys}",
+            Plugin.Log.Information("XivType idle timeline: running={Running}; foreground={Foreground}; minimized={Minimized}; systemIdle={SystemIdle:0.0}s; afk={Afk:0.0}; content={Content:0.0}; input={Input:0.0}; submissions={Submissions}",
                 running, NativeInput.IsGameForeground(), NativeInput.IsGameMinimized(), NativeInput.SystemIdleSeconds(),
                 timers != null ? timers->AfkTimer : float.NaN, timers != null ? timers->ContentInputTimer : float.NaN,
-                timers != null ? timers->InputTimer : float.NaN, submissions, activity.Acknowledged);
+                timers != null ? timers->InputTimer : float.NaN, submissions);
         }
         if (now < nextReport) return;
         nextReport = now + 100;
@@ -131,8 +124,6 @@ internal sealed unsafe class TypingController(DiagnosticStore diagnostics, Confi
             EnemyJammerActive = Plugin.EnemyLock.Blocked, EnemyJammerAction = Plugin.EnemyLock.ActionId,
             Plugin.EnemyCastLabels,
             GameInput.EditOperations, GameInput.SubmitOperations,
-            config.PreventAfk, AfkKeysSent = activity.Sent, AfkKeysAcknowledged = activity.Acknowledged, AfkStatus = activity.Status,
-            activity.LastInputBefore, activity.LastInputAfter,
             InputTimers = ActivityKeepAlive.Snapshot(InputTimerModule.Instance()),
             running, continuous, probe, Status, target, targetNode, expected, pending, submitted, clearing, ownsInput,
             config.TypingDelayMs, config.ClearDelayMs, config.KeyHoldMs,
@@ -199,7 +190,6 @@ internal sealed unsafe class TypingController(DiagnosticStore diagnostics, Confi
                 pending = false;
                 ownsInput = true;
                 accepted++;
-                if (!RecordActivity(now, permission)) return;
                 if (probe)
                 {
                     Stop($"Character accepted by game: '{state.Input}'.");
@@ -215,8 +205,7 @@ internal sealed unsafe class TypingController(DiagnosticStore diagnostics, Confi
                 {
                     adaptiveHoldMs = Math.Min(80, Math.Max(60, NativeInput.KeyHoldMs + 15));
                     NativeInput.KeyHoldMs = adaptiveHoldMs;
-                    var sent = config.BackgroundTyping ? (clearing ? GameInput.Backspace() : GameInput.TypeCharacter(expected[^1])) :
-                        clearing ? NativeInput.Backspace(adaptiveHoldMs) :
+                    var sent = clearing ? NativeInput.Backspace(adaptiveHoldMs) :
                             NativeInput.SendCharacter(Process.GetCurrentProcess().MainWindowHandle, expected[^1]);
                     if (sent)
                     {
@@ -237,7 +226,6 @@ internal sealed unsafe class TypingController(DiagnosticStore diagnostics, Confi
             if (state.Input.Length == 0 && (state.Score > scoreBefore || !state.Words.Any(w => w.NodeId == targetNode && w.Text == target)))
             {
                 submissions++;
-                if (!RecordActivity(now, permission)) return;
                 Plugin.Log.Information("XivType submission acknowledged: {Target}; score {Before}->{After}", target, scoreBefore, state.Score);
                 submitted = false;
                 ownsInput = false;
@@ -269,7 +257,28 @@ internal sealed unsafe class TypingController(DiagnosticStore diagnostics, Confi
             }
             else return;
         }
-        if (now < nextAction || (!config.BackgroundTyping && !NativeInput.Ready(now))) return;
+        if (now < nextAction || !NativeInput.Ready(now)) return;
+        if (config.BackgroundTyping)
+        {
+            var focus = GameInput.Focus;
+            if (focus == GameInput.TextFocus.Other)
+            {
+                Status = "Paused - another FFXIV text field (such as chat) has focus.";
+                return;
+            }
+            if (focus == GameInput.TextFocus.None)
+            {
+                if (activationAttempts >= 3) { Stop("The activity input did not activate after pressing Enter."); return; }
+                if (now < nextActivation) return;
+                if (!NativeInput.Submit(Process.GetCurrentProcess().MainWindowHandle)) return;
+                activationAttempts++;
+                nextActivation = now + 500;
+                Status = "Activating the activity input with Enter.";
+                Plugin.Log.Information("XivType activating the activity input with Enter (attempt {Attempt}).", activationAttempts);
+                return;
+            }
+            activationAttempts = 0;
+        }
         if (clearing)
         {
             if (state.Input.Length == 0)
@@ -281,7 +290,7 @@ internal sealed unsafe class TypingController(DiagnosticStore diagnostics, Confi
             else
             {
                 var next = state.Input[..^1];
-                if (!(config.BackgroundTyping ? GameInput.Backspace() : NativeInput.Backspace()))
+                if (!NativeInput.Backspace())
                 {
                     Stop("Could not clear the expired prompt input.");
                     return;
@@ -325,9 +334,9 @@ internal sealed unsafe class TypingController(DiagnosticStore diagnostics, Confi
         if (state.Input.Length < target.Length)
         {
             var ch = target[state.Input.Length];
-            if (!(config.BackgroundTyping ? GameInput.TypeCharacter(ch) : NativeInput.SendCharacter(hwnd, ch)))
+            if (!NativeInput.SendCharacter(hwnd, ch))
             {
-                Stop(config.BackgroundTyping ? $"Game input route unavailable: {GameInput.Describe()}" :
+                Stop(config.BackgroundTyping ? $"Could not post a keystroke to the game: {GameInput.Describe()}" :
                     $"Windows rejected character input (error {Marshal.GetLastWin32Error()}).");
                 return;
             }
@@ -352,18 +361,10 @@ internal sealed unsafe class TypingController(DiagnosticStore diagnostics, Confi
         }
     }
 
-    private bool SendSubmit(string text) => config.BackgroundTyping ? GameInput.Submit(text) :
-        NativeInput.Submit(Process.GetCurrentProcess().MainWindowHandle);
-
-    private bool RecordActivity(long now, InputPermission permission)
-    {
-        if (permission.Allowed) activity.RecordAcknowledgement(now);
-        return true;
-    }
+    private static bool SendSubmit(string text) => NativeInput.Submit(Process.GetCurrentProcess().MainWindowHandle);
 
     internal void Dispose()
     {
-        activity.Cancel();
         activityProbe.Dispose();
     }
 
@@ -409,6 +410,8 @@ internal static partial class NativeInput
     private static long releaseAt;
     private static long nextKeyAt;
     internal static int KeyHoldMs { get; set; } = 35;
+    // Background mode posts the same held key sequence to FFXIV's own window instead of SendInput.
+    internal static bool Posted { get; set; }
     internal static long SystemKeyEvents { get; private set; }
     internal static bool Ready(long now) => heldScan == 0 && now >= nextKeyAt;
     [LibraryImport("user32.dll")]
@@ -441,6 +444,9 @@ internal static partial class NativeInput
     [LibraryImport("user32.dll")]
     internal static partial short GetAsyncKeyState(int key);
     [LibraryImport("user32.dll", SetLastError = true)]
+    [return: MarshalAs(UnmanagedType.Bool)]
+    private static partial bool PostMessageW(nint window, uint message, nuint key, nint parameter);
+    [LibraryImport("user32.dll", SetLastError = true)]
     private static unsafe partial uint SendInput(uint count, NativeEvent* events, int size);
     [LibraryImport("user32.dll")]
     private static partial nint GetKeyboardLayout(uint threadId);
@@ -460,6 +466,15 @@ internal static partial class NativeInput
 
     private static unsafe bool Key(ushort scan, bool extended, bool up)
     {
+        if (Posted)
+        {
+            using var process = Process.GetCurrentProcess();
+            var window = process.MainWindowHandle;
+            var key = MapVirtualKeyExW(scan | (extended ? 0xE000u : 0), 3, GetKeyboardLayout(0));
+            var parameter = unchecked((nint)(1u | (uint)scan << 16 | (extended ? 1u << 24 : 0) | (up ? 0xC0000000u : 0)));
+            var posted = window != 0 && key != 0 && PostMessageW(window, up ? 0x101u : 0x100u, key, parameter);
+            return posted;
+        }
         var item = new NativeEvent { Type = 1, Scan = scan, Flags = 8u | (extended ? 1u : 0u) | (up ? 2u : 0u) };
         var sent = SendInput(1, &item, sizeof(NativeEvent)) == 1;
         if (sent) SystemKeyEvents++;
@@ -484,7 +499,8 @@ internal static partial class NativeInput
 
     private static bool Press(ushort scan, bool extended, bool shift, int? holdMs = null)
     {
-        if (!IsGameForeground() || !Ready(Environment.TickCount64) || !GameInput.Permission.Allowed) return false;
+        if (!(Posted ? GameInput.CanPost() : IsGameForeground()) || !Ready(Environment.TickCount64) || !GameInput.Permission.Allowed) return false;
+        if (Posted) { if (scan == 0x1C) GameInput.CountSubmit(); else GameInput.CountEdit(); }
         if (shift && !Key(0x2A, false, false)) return false;
         heldShift = shift;
         if (!Key(scan, extended, false)) { Release(); return false; }
@@ -510,17 +526,12 @@ internal static partial class NativeInput
         var mapped = VkKeyScanExW(value, layout);
         if (mapped == -1 || (mapped & 0x0600) != 0) return false;
         var scan = MapVirtualKeyExW((uint)(mapped & 0xFF), 4, layout);
-        return scan != 0 && Press((ushort)(scan & 0xFF), (scan & 0xFF00) != 0, (mapped & 0x0100) != 0);
+        // Posted Shift never changed letter case live and a capital first letter was then ignored;
+        // acknowledgements are case-insensitive, so posted letters go without Shift.
+        var shift = (mapped & 0x0100) != 0 && !(Posted && char.IsLetter(value));
+        return scan != 0 && Press((ushort)(scan & 0xFF), (scan & 0xFF00) != 0, shift);
     }
 
-    internal static bool VirtualKey(char value, out ushort key, out uint scan)
-    {
-        var layout = GetKeyboardLayout(0);
-        var mapped = VkKeyScanExW(value, layout);
-        key = (ushort)(mapped & 0xFF);
-        scan = mapped == -1 ? 0 : MapVirtualKeyExW(key, 0, layout) & 0xFF;
-        return mapped != -1 && (mapped & 0x0600) == 0 && scan != 0;
-    }
     internal static bool Submit(nint window) => window != 0 && Press(0x1C, false, false);
     internal static bool Backspace(int? holdMs = null) => Press(0x0E, false, false, holdMs ?? 20);
 }

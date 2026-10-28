@@ -10,7 +10,6 @@ internal sealed class Configuration : IPluginConfiguration
     public int ClearDelayMs { get; set; } = 0;
     public int KeyHoldMs { get; set; } = 35;
     public bool BackgroundTyping { get; set; } = true;
-    public bool PreventAfk { get; set; } = true;
     public TargetPriority Priority { get; set; } = TargetPriority.ShortestPrompt;
 
     public void Sanitize()

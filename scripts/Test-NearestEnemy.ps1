@@ -1,4 +1,4 @@
-param([int]$WaitSeconds = 120, [int]$SampleSeconds = 20, [switch]$TypeOnce)
+param([int]$WaitSeconds = 120, [int]$SampleSeconds = 20, [switch]$TypeOnce, [string]$OutputPath = 'docs\nearest-enemy-live.json')
 # Passive check of screen-position prompt/actor binding. Only -TypeOnce sends input (one prompt).
 $ErrorActionPreference = 'Stop'
 $diagnosticPath = Join-Path $env:APPDATA 'XIVLauncher\pluginConfigs\XivType\diagnostics'

@@ -30,7 +30,8 @@ The old timer-reset approach **failed live AFK protection** and has been removed
 ## Scope and behavior
 
 - Currently restricted to the English client and the observed activity territory `1359`.
-- Multiple enemy prompts can be valid at the same time. Selection prioritizes the shortest prompt matching existing input, which can differ from the enemy you are watching.
+- Multiple enemy prompts can be valid at the same time. **Target priority** chooses among prompts matching existing input: **Shortest prompt** (default) or **Nearest enemy**, measured in world distance from your character. Either can differ from the enemy you are watching.
+- Nearest enemy binds each prompt to the targetable enemy whose projected screen position lies directly below its label. Enemies lined up at the same screen X, or one enemy under two labels, stay unbound; unbound prompts sort after bound ones, then by length.
 - The input field may normalize case; acknowledgement comparisons ignore case.
 - Noise-masked prompts remain eligible when their active container and replacement image tiles are visible, even though the label itself is hidden. Hidden labels on inactive containers are excluded.
 - A prohibited-input marker pauses both input routes. While permission is false or the lock countdown is positive, the plugin sends no text edits, clearing, Enter or retries. Existing partial input is preserved and acknowledgement timers pause. It resumes 150 ms after permission returns and the countdown reaches zero.

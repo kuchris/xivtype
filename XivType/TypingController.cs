@@ -564,8 +564,13 @@ internal static partial class NativeInput
         return sent;
     }
 
+    private static long frame;
+
+    // Called once per framework frame; a key pressed in frame N is released in frame N+1 at the earliest,
+    // so a 0 ms hold means exactly one frame at any frame rate.
     internal static void Update(long now)
     {
+        frame++;
         if (heldScan != 0 && now >= releaseAt) Release();
     }
 
@@ -574,7 +579,7 @@ internal static partial class NativeInput
         var released = heldScan != 0 || heldShift;
         if (heldScan != 0) Key(heldScan, heldExtended, true);
         if (heldShift) Key(0x2A, false, true);
-        if (heldScan != 0) { lastReleasedScan = heldScan; lastReleasedAt = Environment.TickCount64; }
+        if (heldScan != 0) { lastReleasedScan = heldScan; lastReleasedFrame = frame; }
         heldScan = 0;
         heldShift = false;
         // A distinct key-up frame is needed for repeated letters such as the two g's in nidhogg. Posted
@@ -584,10 +589,11 @@ internal static partial class NativeInput
     }
 
     private static ushort lastReleasedScan;
-    private static long lastReleasedAt;
+    private static long lastReleasedFrame = -1;
 
+    // The same key needs one frame with it up between presses or the game sees a single press.
     internal static bool ReadyForScan(ushort scan, long now) =>
-        Ready(now) && !(Posted && scan == lastReleasedScan && now < lastReleasedAt + 10);
+        Ready(now) && !(Posted && scan == lastReleasedScan && frame == lastReleasedFrame);
 
     internal static bool ReadyFor(char value, long now)
     {
@@ -645,5 +651,5 @@ internal static partial class NativeInput
     }
 
     internal static bool Submit(nint window) => window != 0 && Press(0x1C, false, false);
-    internal static bool Backspace(int? holdMs = null) => Press(0x0E, false, false, holdMs ?? 20);
+    internal static bool Backspace(int? holdMs = null) => Press(0x0E, false, false, holdMs ?? (Posted ? KeyHoldMs : 20));
 }

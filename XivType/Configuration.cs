@@ -16,7 +16,7 @@ internal sealed class Configuration : IPluginConfiguration
     {
         TypingDelayMs = Math.Clamp(TypingDelayMs, 0, 250);
         ClearDelayMs = Math.Clamp(ClearDelayMs, 0, 250);
-        KeyHoldMs = Math.Clamp(KeyHoldMs, 10, 80);
+        KeyHoldMs = Math.Clamp(KeyHoldMs, 0, 80);
         if (!Enum.IsDefined(Priority)) Priority = TargetPriority.ShortestPrompt;
     }
 }

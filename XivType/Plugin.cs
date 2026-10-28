@@ -327,7 +327,7 @@ public sealed class Plugin : IDalamudPlugin
                 config.ClearDelayMs = clearDelay;
                 Interface.SavePluginConfig(config);
             }
-            if (ImGui.SliderInt("Key hold", ref keyHold, 10, 80, "%d ms"))
+            if (ImGui.SliderInt("Key hold", ref keyHold, 0, 80, "%d ms"))
             {
                 config.KeyHoldMs = keyHold;
                 Interface.SavePluginConfig(config);

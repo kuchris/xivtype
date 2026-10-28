@@ -66,11 +66,7 @@ public sealed class Plugin : IDalamudPlugin
         typing = new TypingController(diagnostics, config);
         loop = new RunLoop(typing);
         typing.UserStopped += () => loop.Stop("Loop stopped with typing.");
-        typing.OtherCommand += command =>
-        {
-            if (command.StartsWith("loop", StringComparison.OrdinalIgnoreCase) || command.StartsWith("chat", StringComparison.OrdinalIgnoreCase))
-                OnCommand("/xivtype", command);
-        };
+        typing.OtherCommand += command => { if (command.StartsWith("loop", StringComparison.OrdinalIgnoreCase)) OnCommand("/xivtype", command); };
         EntryRecorder.Register();
         Commands.AddHandler("/xivtype", new CommandInfo(OnCommand)
         {
@@ -97,13 +93,6 @@ public sealed class Plugin : IDalamudPlugin
         else if (args.Equals("once", StringComparison.OrdinalIgnoreCase)) typing.Request("once");
         else if (args.Equals("status", StringComparison.OrdinalIgnoreCase)) Chat.Print($"[XivType] {typing.Status}");
         else if (args.Equals("record", StringComparison.OrdinalIgnoreCase)) EntryRecorder.Start(1800);
-        else if (args.Equals("chat state", StringComparison.OrdinalIgnoreCase)) Log.Information("XivType chat state: {State}", ActivityChat.Describe());
-        else if (args.Equals("chat on", StringComparison.OrdinalIgnoreCase) || args.Equals("chat off", StringComparison.OrdinalIgnoreCase))
-        {
-            config.ShowChatInActivity = args.EndsWith("on", StringComparison.OrdinalIgnoreCase);
-            Interface.SavePluginConfig(config);
-            Chat.Print($"[XivType] Chat during the activity: {(config.ShowChatInActivity ? "shown" : "hidden by the game")}.");
-        }
         else if (args.StartsWith("loop", StringComparison.OrdinalIgnoreCase))
         {
             var count = args[4..].Trim();
@@ -169,7 +158,6 @@ public sealed class Plugin : IDalamudPlugin
             }
             typing.Update(now);
             loop.Update(now);
-            ActivityChat.Update(now, config.ShowChatInActivity);
             if (config.Diagnostics && Client.TerritoryType == 1359 && now >= nextWordArrayCapture)
             {
                 nextWordArrayCapture = now + 5000;
@@ -429,12 +417,6 @@ public sealed class Plugin : IDalamudPlugin
                 Interface.SavePluginConfig(config);
             }
             ImGui.TextDisabled("Escape stops typing while the game is focused.");
-            var showChat = config.ShowChatInActivity;
-            if (ImGui.Checkbox("Show chat during the activity (read-only)", ref showChat))
-            {
-                config.ShowChatInActivity = showChat;
-                Interface.SavePluginConfig(config);
-            }
             DrawFrameRate();
             if (backgroundTyping) ImGui.TextDisabled("Keystrokes are posted only to FFXIV, even when another app has focus.");
             var typingDelay = config.TypingDelayMs;

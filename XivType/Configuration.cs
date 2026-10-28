@@ -13,7 +13,6 @@ internal sealed class Configuration : IPluginConfiguration
     public TargetPriority Priority { get; set; } = TargetPriority.ShortestPrompt;
     // Automatic captures (UI text history, actors, word arrays, idle timeline) are for development only.
     public bool Diagnostics { get; set; }
-    public bool ShowChatInActivity { get; set; }
 
     public void Sanitize()
     {

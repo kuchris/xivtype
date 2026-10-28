@@ -4,9 +4,9 @@ namespace XivType;
 
 internal interface IActivityInput
 {
-    bool PressShift();
-    void ReleaseShift();
-    bool ShiftObserved { get; }
+    bool PressKey();
+    void ReleaseKey();
+    bool KeyObserved { get; }
     float IdleSeconds { get; }
 }
 
@@ -49,10 +49,10 @@ internal sealed unsafe class ActivityKeepAlive(IActivityInput input)
         }
         if (pending)
         {
-            observed |= input.ShiftObserved;
+            observed |= input.KeyObserved;
             if (held && now >= releaseAt)
             {
-                input.ReleaseShift();
+                input.ReleaseKey();
                 held = false;
             }
             if (!held && observed)
@@ -71,9 +71,9 @@ internal sealed unsafe class ActivityKeepAlive(IActivityInput input)
             return;
         }
         if (!hasAcknowledgement || now - lastAcknowledgement > 30000 || now < nextPulse || Unavailable) return;
-        if (input.ShiftObserved) { nextPulse = now + 1000; return; }
+        if (input.KeyObserved) { nextPulse = now + 1000; return; }
         LastInputBefore = input.IdleSeconds;
-        if (!float.IsFinite(LastInputBefore) || !input.PressShift())
+        if (!float.IsFinite(LastInputBefore) || !input.PressKey())
         {
             Unavailable = true;
             Status = "Game-targeted activity input unavailable. Automation must stop.";
@@ -90,7 +90,7 @@ internal sealed unsafe class ActivityKeepAlive(IActivityInput input)
 
     internal void Cancel()
     {
-        if (held) input.ReleaseShift();
+        if (held) input.ReleaseKey();
         held = pending = false;
     }
 

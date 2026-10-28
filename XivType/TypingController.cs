@@ -90,6 +90,7 @@ internal sealed unsafe class TypingController(DiagnosticStore diagnostics, Confi
                 case "on": Start(true); break;
                 case "off": Stop("Stopped by local development control."); break;
                 case "activity-probe": if (!running) activityProbe.Begin(); break;
+                case "activity-probe f13": if (!running) activityProbe.Begin("f13"); break;
             }
         }
         activityProbe.Update(now);

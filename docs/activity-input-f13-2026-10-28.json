@@ -1,0 +1,1990 @@
+{
+    "Version":  "0.1.24.0",
+    "DurationSeconds":  63.2002744,
+    "Completed":  3,
+    "Requested":  3,
+    "Passed":  false,
+    "Pulses":  [
+                   {
+                       "Pulse":  1,
+                       "At":  "2026-10-28T20:38:37.2066582+09:00",
+                       "Result":  {
+                                      "Key":  124,
+                                      "BeforeInputTimer":  26.024078,
+                                      "SawShift":  true,
+                                      "SawNaturalTimerReset":  true,
+                                      "AllBackground":  true,
+                                      "Passed":  true,
+                                      "Samples":  [
+                                                      {
+                                                          "ElapsedMs":  0,
+                                                          "Foreground":  false,
+                                                          "InputTimer":  26.024078,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  62,
+                                                          "Foreground":  false,
+                                                          "InputTimer":  26.088245,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  125,
+                                                          "Foreground":  false,
+                                                          "InputTimer":  0,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  true
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  187,
+                                                          "Foreground":  false,
+                                                          "InputTimer":  0.0626072,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  250,
+                                                          "Foreground":  false,
+                                                          "InputTimer":  0.124046296,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  312,
+                                                          "Foreground":  false,
+                                                          "InputTimer":  0.18541619,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  375,
+                                                          "Foreground":  false,
+                                                          "InputTimer":  0.24623099,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  437,
+                                                          "Foreground":  false,
+                                                          "InputTimer":  0.30705228,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  500,
+                                                          "Foreground":  false,
+                                                          "InputTimer":  0.36858767,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  546,
+                                                          "Foreground":  false,
+                                                          "InputTimer":  0.42938808,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  609,
+                                                          "Foreground":  false,
+                                                          "InputTimer":  0.48912096,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  671,
+                                                          "Foreground":  false,
+                                                          "InputTimer":  0.5500157,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  734,
+                                                          "Foreground":  false,
+                                                          "InputTimer":  0.6101595,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  796,
+                                                          "Foreground":  false,
+                                                          "InputTimer":  0.67157894,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  859,
+                                                          "Foreground":  false,
+                                                          "InputTimer":  0.73138314,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  921,
+                                                          "Foreground":  false,
+                                                          "InputTimer":  0.79227424,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  984,
+                                                          "Foreground":  false,
+                                                          "InputTimer":  0.85338765,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  1046,
+                                                          "Foreground":  false,
+                                                          "InputTimer":  0.91644055,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  1109,
+                                                          "Foreground":  false,
+                                                          "InputTimer":  0.9794232,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  1171,
+                                                          "Foreground":  false,
+                                                          "InputTimer":  1.0433705,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  1234,
+                                                          "Foreground":  false,
+                                                          "InputTimer":  1.105942,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  1296,
+                                                          "Foreground":  false,
+                                                          "InputTimer":  1.1679678,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  1359,
+                                                          "Foreground":  false,
+                                                          "InputTimer":  1.2301551,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  1406,
+                                                          "Foreground":  false,
+                                                          "InputTimer":  1.2901548,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  1468,
+                                                          "Foreground":  false,
+                                                          "InputTimer":  1.3505343,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  1531,
+                                                          "Foreground":  false,
+                                                          "InputTimer":  1.4127511,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  1593,
+                                                          "Foreground":  false,
+                                                          "InputTimer":  1.473467,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  1656,
+                                                          "Foreground":  false,
+                                                          "InputTimer":  1.53512,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  1718,
+                                                          "Foreground":  false,
+                                                          "InputTimer":  1.5978736,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  1781,
+                                                          "Foreground":  false,
+                                                          "InputTimer":  1.6594219,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  1843,
+                                                          "Foreground":  false,
+                                                          "InputTimer":  1.7200258,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  1906,
+                                                          "Foreground":  false,
+                                                          "InputTimer":  1.7809756,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  1968,
+                                                          "Foreground":  false,
+                                                          "InputTimer":  1.842002,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  2031,
+                                                          "Foreground":  false,
+                                                          "InputTimer":  1.9039038,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  2093,
+                                                          "Foreground":  false,
+                                                          "InputTimer":  1.9647583,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  2156,
+                                                          "Foreground":  false,
+                                                          "InputTimer":  2.0267284,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  2218,
+                                                          "Foreground":  false,
+                                                          "InputTimer":  2.089094,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  2281,
+                                                          "Foreground":  false,
+                                                          "InputTimer":  2.1496289,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  2328,
+                                                          "Foreground":  false,
+                                                          "InputTimer":  2.2100897,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  2390,
+                                                          "Foreground":  false,
+                                                          "InputTimer":  2.2708802,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  2453,
+                                                          "Foreground":  false,
+                                                          "InputTimer":  2.3317513,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  2515,
+                                                          "Foreground":  false,
+                                                          "InputTimer":  2.3937633,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  2578,
+                                                          "Foreground":  false,
+                                                          "InputTimer":  2.4565365,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  2640,
+                                                          "Foreground":  false,
+                                                          "InputTimer":  2.5175474,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  2703,
+                                                          "Foreground":  false,
+                                                          "InputTimer":  2.5795004,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  2765,
+                                                          "Foreground":  false,
+                                                          "InputTimer":  2.6403205,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  2828,
+                                                          "Foreground":  false,
+                                                          "InputTimer":  2.7008352,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  2890,
+                                                          "Foreground":  false,
+                                                          "InputTimer":  2.7608483,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  2953,
+                                                          "Foreground":  false,
+                                                          "InputTimer":  2.8219926,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  3015,
+                                                          "Foreground":  false,
+                                                          "InputTimer":  2.8841524,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      }
+                                                  ]
+                                  }
+                   },
+                   {
+                       "Pulse":  2,
+                       "At":  "2026-10-28T20:39:07.3390383+09:00",
+                       "Result":  {
+                                      "Key":  124,
+                                      "BeforeInputTimer":  30.036104,
+                                      "SawShift":  true,
+                                      "SawNaturalTimerReset":  true,
+                                      "AllBackground":  true,
+                                      "Passed":  true,
+                                      "Samples":  [
+                                                      {
+                                                          "ElapsedMs":  -15,
+                                                          "Foreground":  false,
+                                                          "InputTimer":  30.036104,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  47,
+                                                          "Foreground":  false,
+                                                          "InputTimer":  30.10093,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  110,
+                                                          "Foreground":  false,
+                                                          "InputTimer":  0,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  true
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  172,
+                                                          "Foreground":  false,
+                                                          "InputTimer":  0.0617538,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  235,
+                                                          "Foreground":  false,
+                                                          "InputTimer":  0.1229106,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  297,
+                                                          "Foreground":  false,
+                                                          "InputTimer":  0.18506029,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  360,
+                                                          "Foreground":  false,
+                                                          "InputTimer":  0.24806179,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  422,
+                                                          "Foreground":  false,
+                                                          "InputTimer":  0.3109533,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  485,
+                                                          "Foreground":  false,
+                                                          "InputTimer":  0.3738319,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  547,
+                                                          "Foreground":  false,
+                                                          "InputTimer":  0.4370463,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  610,
+                                                          "Foreground":  false,
+                                                          "InputTimer":  0.4991052,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  672,
+                                                          "Foreground":  false,
+                                                          "InputTimer":  0.5620127,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  735,
+                                                          "Foreground":  false,
+                                                          "InputTimer":  0.62391096,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  813,
+                                                          "Foreground":  false,
+                                                          "InputTimer":  0.68684345,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  891,
+                                                          "Foreground":  false,
+                                                          "InputTimer":  0.76066744,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  954,
+                                                          "Foreground":  false,
+                                                          "InputTimer":  0.83033776,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  1016,
+                                                          "Foreground":  false,
+                                                          "InputTimer":  0.8938566,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  1079,
+                                                          "Foreground":  false,
+                                                          "InputTimer":  0.9612702,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  1172,
+                                                          "Foreground":  false,
+                                                          "InputTimer":  1.0255752,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  1250,
+                                                          "Foreground":  false,
+                                                          "InputTimer":  1.1252985,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  1313,
+                                                          "Foreground":  false,
+                                                          "InputTimer":  1.1933596,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  1391,
+                                                          "Foreground":  false,
+                                                          "InputTimer":  1.2588716,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  1454,
+                                                          "Foreground":  false,
+                                                          "InputTimer":  1.3285286,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  1516,
+                                                          "Foreground":  false,
+                                                          "InputTimer":  1.3936478,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  1579,
+                                                          "Foreground":  false,
+                                                          "InputTimer":  1.4565824,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  1641,
+                                                          "Foreground":  false,
+                                                          "InputTimer":  1.5224127,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  1704,
+                                                          "Foreground":  false,
+                                                          "InputTimer":  1.5853012,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  1766,
+                                                          "Foreground":  false,
+                                                          "InputTimer":  1.6474322,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  1829,
+                                                          "Foreground":  false,
+                                                          "InputTimer":  1.710787,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  1891,
+                                                          "Foreground":  false,
+                                                          "InputTimer":  1.7729567,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  1954,
+                                                          "Foreground":  false,
+                                                          "InputTimer":  1.8362643,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  2016,
+                                                          "Foreground":  false,
+                                                          "InputTimer":  1.8983161,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  2079,
+                                                          "Foreground":  false,
+                                                          "InputTimer":  1.9621522,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  2141,
+                                                          "Foreground":  false,
+                                                          "InputTimer":  2.025513,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  2204,
+                                                          "Foreground":  false,
+                                                          "InputTimer":  2.0887964,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  2266,
+                                                          "Foreground":  false,
+                                                          "InputTimer":  2.1520975,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  2329,
+                                                          "Foreground":  false,
+                                                          "InputTimer":  2.2140198,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  2391,
+                                                          "Foreground":  false,
+                                                          "InputTimer":  2.276555,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  2454,
+                                                          "Foreground":  false,
+                                                          "InputTimer":  2.339388,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  2516,
+                                                          "Foreground":  false,
+                                                          "InputTimer":  2.4029663,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  2579,
+                                                          "Foreground":  false,
+                                                          "InputTimer":  2.4659703,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  2641,
+                                                          "Foreground":  false,
+                                                          "InputTimer":  2.5290198,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  2719,
+                                                          "Foreground":  false,
+                                                          "InputTimer":  2.5922163,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  2782,
+                                                          "Foreground":  false,
+                                                          "InputTimer":  2.6569505,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  2844,
+                                                          "Foreground":  false,
+                                                          "InputTimer":  2.7192903,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  2907,
+                                                          "Foreground":  false,
+                                                          "InputTimer":  2.7904415,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  2969,
+                                                          "Foreground":  false,
+                                                          "InputTimer":  2.8554852,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  3032,
+                                                          "Foreground":  false,
+                                                          "InputTimer":  2.921389,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      }
+                                                  ]
+                                  }
+                   },
+                   {
+                       "Pulse":  3,
+                       "At":  "2026-10-28T20:39:37.0846224+09:00",
+                       "Result":  {
+                                      "Key":  124,
+                                      "BeforeInputTimer":  3.830386,
+                                      "SawShift":  true,
+                                      "SawNaturalTimerReset":  true,
+                                      "AllBackground":  false,
+                                      "Passed":  false,
+                                      "Samples":  [
+                                                      {
+                                                          "ElapsedMs":  0,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  3.830386,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  15,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  3.8474104,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  31,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  0,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  true
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  47,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  0.0166637,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  62,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  0.0333839,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  78,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  0.0499785,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  109,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  0.0666421,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  125,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  0.0833778,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  140,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  0.0999809,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  156,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  0.116651095,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  172,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  0.13336089,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  187,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  0.14997719,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  203,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  0.16664399,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  219,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  0.1833451,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  234,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  0.1999934,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  250,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  0.2166457,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  265,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  0.2333222,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  281,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  0.250078,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  297,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  0.26664838,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  312,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  0.28331998,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  328,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  0.2999805,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  359,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  0,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  375,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  0.0169849,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  390,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  0.033695,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  406,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  0.0503164,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  422,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  0.0669902,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  437,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  0.083655395,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  453,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  0.100326695,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  469,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  0.1169858,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  484,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  0.1336495,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  500,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  0.1503647,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  515,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  0.1669934,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  531,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  0.183663,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  547,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  0.2003185,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  562,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  0.2169951,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  578,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  0.23365921,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  609,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  0.25032312,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  625,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  0.26703972,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  640,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  0.28366202,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  656,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  0.3003303,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  672,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  0.31699622,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  687,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  0.33365113,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  703,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  0.35034713,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  719,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  0.36698943,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  734,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  0.38370365,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  750,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  0.40033126,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  765,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  0.41699737,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  781,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  0.43367168,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  797,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  0.4503224,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  812,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  0.4669909,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  828,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  0.4836656,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  859,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  0.5003748,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  875,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  0.5170116,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  890,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  0.53366137,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  906,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  0.55033296,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  922,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  0.56699765,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  937,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  0.5836682,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  953,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  0.600409,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  969,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  0.61701936,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  984,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  0.63369095,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  1000,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  0.65037614,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  1015,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  0.66701233,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  1031,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  0.6836971,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  1047,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  0.7003535,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  1062,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  0.7170572,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  1094,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  0.7336812,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  1109,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  0.7506452,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  1125,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  0.767313,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  1140,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  0.7842049,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  1156,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  0.8008621,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  1172,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  0.81757605,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  1187,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  0.83421403,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  1203,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  0.85085505,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  1219,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  0.86756605,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  1234,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  0.8842009,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  1250,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  0.9008592,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  1265,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  0.91752726,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  1281,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  0.93448544,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  1297,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  0.95107996,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  1312,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  0.96774644,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  1344,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  0.9845066,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  1359,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  1.0011789,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  1375,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  1.017839,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  1390,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  1.0347016,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  1406,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  1.0512192,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  1422,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  1.0725064,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  1437,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  1.0891777,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  1453,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  1.1065273,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  1469,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  1.1231858,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  1500,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  1.1398973,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  1515,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  1.1568795,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  1531,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  1.1734297,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  1547,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  1.1900847,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  1562,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  1.2067608,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  1578,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  1.223403,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  1594,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  1.2400808,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  1609,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  1.2567325,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  1625,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  1.273468,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  1640,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  1.2905071,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  1656,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  1.3072407,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  1672,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  1.3238993,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  1687,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  1.3405715,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  1703,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  1.3572304,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  1734,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  1.3743867,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  1750,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  1.391245,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  1765,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  1.4078707,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  1781,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  1.4245416,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  1797,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  1.441225,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  1812,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  1.45786,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  1828,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  1.4745493,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  1844,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  1.491412,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  1859,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  1.5087277,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  1875,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  1.5262408,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  1890,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  1.5428745,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  1906,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  1.5595403,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  1922,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  1.5764475,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  1953,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  1.593474,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  1969,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  1.6106089,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  1984,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  1.627829,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  2000,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  1.6457653,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  2015,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  1.6624147,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  2031,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  1.679736,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  2047,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  1.6967412,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  2062,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  1.7141011,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  2078,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  1.7313608,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  2094,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  1.7479913,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  2125,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  1.7656591,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  2140,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  1.7837946,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  2156,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  1.800567,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  2172,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  1.8178905,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  2187,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  1.8353437,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  2203,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  1.852479,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  2219,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  1.8702626,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  2234,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  1.886989,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  2250,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  1.9036498,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  2281,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  1.9210948,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  2297,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  1.9383831,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  2312,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  1.9557152,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  2328,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  1.9735838,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  2344,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  1.9902661,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  2359,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  2.0071154,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  2375,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  2.0236955,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  2390,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  2.041155,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  2406,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  2.0585253,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  2422,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  2.0751064,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  2437,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  2.0922222,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  2469,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  2.1093347,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  2484,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  2.1259704,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  2500,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  2.1426387,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  2515,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  2.1594348,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  2531,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  2.1759758,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  2547,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  2.1926546,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  2562,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  2.2093716,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  2578,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  2.2260363,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  2594,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  2.2437258,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  2609,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  2.2611585,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  2625,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  2.2778661,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  2640,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  2.2944975,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  2656,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  2.3111773,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  2687,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  2.328373,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  2703,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  2.3450086,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  2719,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  2.3617034,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  2734,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  2.378389,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  2750,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  2.395017,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  2765,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  2.4118266,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  2781,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  2.4285004,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  2797,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  2.4451878,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  2812,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  2.4625466,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  2828,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  2.4792514,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  2844,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  2.4960017,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  2859,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  2.5132318,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  2875,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  2.5304,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  2906,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  2.5470483,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  2922,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  2.5638685,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  2937,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  2.5811958,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  2953,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  2.6002073,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  2969,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  2.6189568,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  2984,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  2.6356604,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      },
+                                                      {
+                                                          "ElapsedMs":  3000,
+                                                          "Foreground":  true,
+                                                          "InputTimer":  2.6529176,
+                                                          "ShiftState":  "None",
+                                                          "KeyboardChanged":  false
+                                                      }
+                                                  ]
+                                  }
+                   }
+               ]
+}

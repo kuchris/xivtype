@@ -1,4 +1,4 @@
-param([int]$Pulses = 3, [int]$IntervalSeconds = 30)
+param([int]$Pulses = 3, [int]$IntervalSeconds = 30, [ValidateSet('shift', 'f13')][string]$Key = 'shift', [string]$OutputPath = 'docs\activity-input-sequence-2026-10-28.json')
 $ErrorActionPreference = 'Stop'
 $diag = Join-Path $env:APPDATA 'XIVLauncher\pluginConfigs\XivType\diagnostics'
 $probePath = Join-Path $diag 'activity-probe.json'
@@ -12,7 +12,7 @@ for ($index = 0; $index -lt $Pulses; $index++) {
         throw 'Lobby diagnostic requires stopped automation and territory 1360.'
     }
     $stamp = [DateTime]::Now
-    Set-Content -LiteralPath (Join-Path $diag 'control.txt') -Value 'activity-probe'
+    Set-Content -LiteralPath (Join-Path $diag 'control.txt') -Value $(if ($Key -eq 'shift') { 'activity-probe' } else { "activity-probe $Key" })
     $deadline = [DateTime]::UtcNow.AddSeconds(6)
     $fresh = $false
     do {
@@ -30,7 +30,7 @@ for ($index = 0; $index -lt $Pulses; $index++) {
         Passed = @($results | Where-Object { !$_.Result.Passed }).Count -eq 0 -and $results.Count -eq $Pulses
         Pulses = $results
     }
-    $summary | ConvertTo-Json -Depth 8 | Set-Content -LiteralPath docs\activity-input-sequence-2026-10-28.json
+    $summary | ConvertTo-Json -Depth 8 | Set-Content -LiteralPath $OutputPath
     Write-Output "Pulse $($index + 1)/${Pulses}: passed=$($probe.Passed); background=$($probe.AllBackground); keyboard=$($probe.SawShift); natural reset=$($probe.SawNaturalTimerReset); before=$($probe.BeforeInputTimer)s"
     if (!$probe.Passed) { exit 1 }
 }

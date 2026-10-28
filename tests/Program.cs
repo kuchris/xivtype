@@ -97,13 +97,13 @@ unsafe class Program
         keepAlive.RecordAcknowledgement(1000);
         keepAlive.Update(1000, true, true, true, 1359);
         if (backend.Presses != 1) throw new Exception("Activity key was not sent after acknowledged typing.");
-        backend.ShiftObserved = true;
+        backend.KeyObserved = true;
         backend.IdleSeconds = 0;
         keepAlive.Update(1100, true, true, true, 1359);
         if (backend.Releases != 0 || keepAlive.Acknowledged != 0) throw new Exception("Key completed before its hold duration.");
         keepAlive.Update(1250, true, true, true, 1359);
         if (backend.Releases != 1 || keepAlive.Acknowledged != 1) throw new Exception("Observed activity key was not released and acknowledged.");
-        backend.ShiftObserved = false;
+        backend.KeyObserved = false;
         keepAlive.RecordAcknowledgement(2000);
         keepAlive.Update(2000, true, true, true, 1359);
         if (backend.Presses != 1) throw new Exception("Activity key interval was not enforced.");
@@ -135,7 +135,7 @@ unsafe class Program
         missing.Update(1600, true, true, true, 1359);
         if (!missing.Unavailable || missing.Acknowledged != 0 || missingBackend.Releases != 1)
             throw new Exception("An unobserved key was incorrectly reported as successful.");
-        var ownedBackend = new FakeActivityInput { ShiftObserved = true };
+        var ownedBackend = new FakeActivityInput { KeyObserved = true };
         var owned = new ActivityKeepAlive(ownedBackend);
         owned.RecordAcknowledgement(0);
         owned.Update(0, true, true, true, 1359);
@@ -207,10 +207,10 @@ sealed class FakeActivityInput : IActivityInput
 {
     public int Presses { get; private set; }
     public int Releases { get; private set; }
-    public bool ShiftObserved { get; set; }
+    public bool KeyObserved { get; set; }
     public float IdleSeconds { get; set; } = 120;
-    public bool PressShift() { Presses++; return true; }
-    public void ReleaseShift() => Releases++;
+    public bool PressKey() { Presses++; return true; }
+    public void ReleaseKey() => Releases++;
 }
 
 unsafe sealed class InputFixture : IDisposable

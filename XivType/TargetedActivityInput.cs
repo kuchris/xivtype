@@ -7,32 +7,34 @@ using FFXIVClientStructs.FFXIV.Client.System.Input;
 namespace XivType;
 
 // Messages target only the hosting FFXIV process's window. No focus changes or global SendInput.
-internal sealed unsafe partial class TargetedActivityInput : IActivityInput
+// Default is Shift (VK 0x10, scan 0x2A); the lobby probe can try other keys such as F13 (VK 0x7C, scan 0x64).
+internal sealed unsafe partial class TargetedActivityInput(ushort virtualKey = 0x10, uint scanCode = 0x2A) : IActivityInput
 {
     private nint heldWindow;
-    public bool ShiftObserved
+    internal ushort VirtualKey => virtualKey;
+    public bool KeyObserved
     {
-        get { var data = UIInputData.Instance(); return data != null && (data->GetKeyState(0x10) & (KeyStateFlags.Down | KeyStateFlags.Pressed)) != 0; }
+        get { var data = UIInputData.Instance(); return data != null && (data->GetKeyState(virtualKey) & (KeyStateFlags.Down | KeyStateFlags.Pressed)) != 0; }
     }
     public float IdleSeconds
     {
         get { var timer = InputTimerModule.Instance(); return timer != null ? timer->InputTimer : float.NaN; }
     }
 
-    public bool PressShift()
+    public bool PressKey()
     {
         using var process = Process.GetCurrentProcess();
         var window = process.MainWindowHandle;
         if (window == 0 || heldWindow != 0) return false;
         GetWindowThreadProcessId(window, out var owner);
-        if (owner != Environment.ProcessId || !PostMessageW(window, 0x100, 0x10, 0x002A0001)) return false;
+        if (owner != Environment.ProcessId || !PostMessageW(window, 0x100, virtualKey, (nint)(1 | scanCode << 16))) return false;
         heldWindow = window;
         return true;
     }
 
-    public void ReleaseShift()
+    public void ReleaseKey()
     {
-        if (heldWindow != 0) PostMessageW(heldWindow, 0x101, 0x10, unchecked((nint)0xC02A0001));
+        if (heldWindow != 0) PostMessageW(heldWindow, 0x101, virtualKey, unchecked((nint)(0xC0000001u | scanCode << 16)));
         heldWindow = 0;
     }
 

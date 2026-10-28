@@ -148,3 +148,11 @@ The user confirmed that stopping typing during Cursed Gaze avoids its lock, whic
 The user then reported a near enemy (`You should get yourself a reading!`) losing to the distant boss (`crimsonite crystal`) in Nearest enemy mode. The log shows both prompts unbound at 20:28:08 (`distance=unknown`), so the selection fell back to shortest prompt. The live state also showed two enemies projecting to the same screen column (X 1720, the screen centre), which the screen-X binding deliberately refuses to resolve.
 
 A 25-second live sample of bound prompts showed `KTGEWord` label ScaleX decreasing linearly with world distance, from 1.50 at 12.7 y to 1.14 at about 24 y, and holding at 1.14 beyond that (28-40 y). Version 0.1.21 uses that relation as a distance estimate for unbound labels with scale above 1.15; saturated unbound labels still sort last. The calibration reflects this client's UI scale. The reported scene has not been re-run on 0.1.21.
+
+## F13 as the activity key - versions 0.1.23.0 and 0.1.24.0 (lobby only)
+
+The user asked whether a less intrusive key than Shift could serve the activity pulse, since FFXIV briefly sees a real Shift hold. Version 0.1.23 lets the lobby probe post F13 (VK 0x7C, scan 0x64) to FFXIV's own window through the same targeted-message path; production still uses Shift.
+
+The first F13 probe (20:37) reset the idle timer from 12.9 s to 0 about 125 ms after the message, with the game unfocused and `KeyboardInputsChanged` true, but `UIInputData.GetKeyState(0x7C)` never reported F13 down. FFXIV's key-state table evidently does not track F13. Version 0.1.24 therefore also accepts `KeyboardInputsChanged` as the probe's keyboard observation.
+
+The repeated sequence (`activity-input-f13-2026-10-28.json`) gave two clean unfocused passes: 26.0 s -> 0 at 125 ms (20:38:37) and 30.0 s -> 0 at 110 ms (20:39:07). The third pulse is invalid as evidence because the game was in the foreground with a 3.8 s idle timer, meaning the user had just interacted. Together with the first probe, F13 produced three clean natural idle resets. As with Shift, this is lobby evidence only, not duty/server AFK protection. Switching production to F13 would also need the keepalive's acknowledgement to rely on the keyboard-changed flag and idle reset rather than key state.

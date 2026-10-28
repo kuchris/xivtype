@@ -6,6 +6,11 @@
 
 A Dalamud plugin that types the enemy prompts in Keybound Brawler for you. English client only.
 
+> [!WARNING]
+> This plugin is for educational purposes only. Use it at your own risk.
+>
+> For normal use, keep **Typing delay** at **100 ms**. Only use **0 ms** if you have a full party.
+
 ## Install
 
 Add this URL in `/xlsettings` → **Experimental** → **Custom Plugin Repositories**:
@@ -41,7 +46,7 @@ Escape stops typing while FFXIV is focused.
 
 ## Settings
 
-- **Typing delay** (default 100 ms): extra wait after each character. At 0 ms it types about one character per frame.
+- **Typing delay** (default 100 ms): extra wait after each character. Keep 100 ms for normal use; at 0 ms it types about one character per frame, so only use 0 ms with a full party.
 - **Key hold** (default 0 ms = one frame): raise it if keys are missed.
 - **Allow background typing** (default on): uncheck to type with the physical keyboard, which needs FFXIV in the foreground.
 - **Target priority**: shortest prompt or nearest enemy.

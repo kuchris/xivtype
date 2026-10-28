@@ -27,6 +27,7 @@ internal sealed unsafe class TypingController(DiagnosticStore diagnostics, Confi
     private string sentFrom = "";
     private int editRetries;
     private int recoveries;
+    private bool pipelined;
     private int submitRetries;
     private int adaptiveHoldMs;
     private bool inputWasBlocked;
@@ -62,6 +63,7 @@ internal sealed unsafe class TypingController(DiagnosticStore diagnostics, Confi
         activationAttempts = 0;
         nextActivation = 0;
         recoveries = 0;
+        pipelined = false;
         inputWasBlocked = false;
         nextAction = Environment.TickCount64 + 500;
         Status = singleCharacter ? "Testing one character." : "Waiting for a visible English prompt.";
@@ -73,6 +75,7 @@ internal sealed unsafe class TypingController(DiagnosticStore diagnostics, Confi
         NativeInput.Release();
         running = false;
         pending = false;
+        pipelined = false;
         submitted = false;
         target = "";
         clearing = false;
@@ -189,6 +192,8 @@ internal sealed unsafe class TypingController(DiagnosticStore diagnostics, Confi
         {
             if (state.Input.Equals(expected, StringComparison.OrdinalIgnoreCase))
             {
+                if (pipelined) accepted++;
+                pipelined = false;
                 pending = false;
                 ownsInput = true;
                 accepted++;
@@ -199,12 +204,36 @@ internal sealed unsafe class TypingController(DiagnosticStore diagnostics, Confi
                 }
                 nextAction = now + (clearing ? config.ClearDelayMs : config.TypingDelayMs);
             }
+            else if (pipelined && state.Input.Equals(expected[..^1], StringComparison.OrdinalIgnoreCase))
+            {
+                // The earlier in-flight character landed; only the latest one is still outstanding.
+                pipelined = false;
+                sentFrom = state.Input;
+                sentAt = now;
+                accepted++;
+                return;
+            }
+            else if (CanPipeline(now, state))
+            {
+                // The game shows a key one frame after it goes down, so waiting for each character costs two
+                // frames. With one character in flight, posted typing advances a character per frame.
+                var typeable = PromptSelection.Typeable(target);
+                var next = typeable[expected.Length];
+                if (!NativeInput.ReadyFor(next, now) || !NativeInput.SendCharacter(Process.GetCurrentProcess().MainWindowHandle, next)) return;
+                pipelined = true;
+                expected += next;
+                Status = $"Typing '{target}' ({expected.Length}/{typeable.Length}).";
+                Plugin.Log.Debug("XivType character sent '{Character}', expecting '{Expected}'", next, expected);
+                return;
+            }
             else if (now - sentAt > 1500)
             {
                 // The input closes after locks and submissions; resume from its actual text once Enter reopens it.
-                if (config.BackgroundTyping && GameInput.Focus == GameInput.TextFocus.None)
+                // With two characters in flight, a single-key retry could skip one, so restart from the real input.
+                if (pipelined || (config.BackgroundTyping && GameInput.Focus == GameInput.TextFocus.None))
                 {
                     pending = false;
+                    pipelined = false;
                     return;
                 }
                 var targetStillActive = clearing || state.Words.Any(w => w.NodeId == targetNode && w.Text == target);
@@ -230,6 +259,7 @@ internal sealed unsafe class TypingController(DiagnosticStore diagnostics, Confi
                 if (config.BackgroundTyping && !targetStillActive && state.Input.Equals(sentFrom, StringComparison.OrdinalIgnoreCase))
                 {
                     pending = false;
+                    pipelined = false;
                     return;
                 }
                 // A wrong or repeatedly dropped character from our own edit is cleared and the prompt retyped.
@@ -251,7 +281,7 @@ internal sealed unsafe class TypingController(DiagnosticStore diagnostics, Confi
                 ownsInput = false;
                 target = "";
                 // The posted route reopens the input with Enter before typing, which already spaces prompts.
-                nextAction = now + (config.BackgroundTyping ? 60 : 250);
+                nextAction = now + (config.BackgroundTyping ? 20 : 250);
                 if (!continuous)
                 {
                     Stop($"Prompt submitted and acknowledged. Score: {state.Score}.");
@@ -289,6 +319,7 @@ internal sealed unsafe class TypingController(DiagnosticStore diagnostics, Confi
             }
             if (focus == GameInput.TextFocus.None)
             {
+                if (!NativeInput.ReadyForScan(0x1C, now)) return;
                 if (activationAttempts >= 3) { Stop("The activity input did not activate after pressing Enter."); return; }
                 if (now < nextActivation) return;
                 if (!NativeInput.Submit(Process.GetCurrentProcess().MainWindowHandle)) return;
@@ -313,6 +344,7 @@ internal sealed unsafe class TypingController(DiagnosticStore diagnostics, Confi
                 // A direct clear only blanked the display; the activity keeps its own text, so the next
                 // keystroke restored it ('gimme a fol' + 'p', 2026-10-28). Clearing must use Backspace.
                 var next = state.Input[..^1];
+                if (!NativeInput.ReadyForScan(0x0E, now)) return;
                 if (!NativeInput.Backspace())
                 {
                     Stop("Could not clear the expired prompt input.");
@@ -359,6 +391,7 @@ internal sealed unsafe class TypingController(DiagnosticStore diagnostics, Confi
         if (state.Input.Length < typed.Length)
         {
             var ch = typed[state.Input.Length];
+            if (!NativeInput.ReadyFor(ch, now)) return;
             if (!NativeInput.SendCharacter(hwnd, ch))
             {
                 Stop(config.BackgroundTyping ? $"Could not post a keystroke to the game: {GameInput.Describe()}" :
@@ -376,6 +409,7 @@ internal sealed unsafe class TypingController(DiagnosticStore diagnostics, Confi
         else
         {
             if (probe) { Stop("The selected prompt is already complete."); return; }
+            if (!NativeInput.ReadyForScan(0x1C, now)) return;
             if (!SendSubmit(target)) { Stop("Input route rejected submission."); return; }
             submitted = true;
             submitRetries = 0;
@@ -386,11 +420,21 @@ internal sealed unsafe class TypingController(DiagnosticStore diagnostics, Confi
         }
     }
 
+    private bool CanPipeline(long now, LiveState state)
+    {
+        if (!config.BackgroundTyping || clearing || pipelined || probe || target.Length == 0 || config.TypingDelayMs > 0) return false;
+        var typed = PromptSelection.Typeable(target);
+        return expected.Length < typed.Length && typed.StartsWith(expected, StringComparison.OrdinalIgnoreCase) &&
+            state.Input.Equals(sentFrom, StringComparison.OrdinalIgnoreCase) && NativeInput.Ready(now) &&
+            state.Words.Any(w => w.NodeId == targetNode && w.Text == target);
+    }
+
     private bool Recover(string observed, string context)
     {
         if (recoveries >= 2) return false;
         recoveries++;
         pending = false;
+        pipelined = false;
         submitted = false;
         target = "";
         ownsInput = true;
@@ -530,10 +574,27 @@ internal static partial class NativeInput
         var released = heldScan != 0 || heldShift;
         if (heldScan != 0) Key(heldScan, heldExtended, true);
         if (heldShift) Key(0x2A, false, true);
+        if (heldScan != 0) { lastReleasedScan = heldScan; lastReleasedAt = Environment.TickCount64; }
         heldScan = 0;
         heldShift = false;
-        // A distinct key-up frame is needed for repeated letters such as the two g's in nidhogg.
-        if (released) nextKeyAt = Environment.TickCount64 + 10;
+        // A distinct key-up frame is needed for repeated letters such as the two g's in nidhogg. Posted
+        // keys only need it for the same key: a different key may go down in the frame the last one rises,
+        // halving per-character time from two frames to one.
+        if (released) nextKeyAt = Environment.TickCount64 + (Posted ? 0 : 10);
+    }
+
+    private static ushort lastReleasedScan;
+    private static long lastReleasedAt;
+
+    internal static bool ReadyForScan(ushort scan, long now) =>
+        Ready(now) && !(Posted && scan == lastReleasedScan && now < lastReleasedAt + 10);
+
+    internal static bool ReadyFor(char value, long now)
+    {
+        var layout = GetKeyboardLayout(0);
+        var mapped = VkKeyScanExW(value, layout);
+        var scan = mapped == -1 ? 0 : MapVirtualKeyExW((uint)(mapped & 0xFF), 4, layout) & 0xFF;
+        return ReadyForScan((ushort)scan, now);
     }
 
     private static bool PostCharacter(char value)

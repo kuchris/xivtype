@@ -29,6 +29,7 @@ public sealed class Plugin : IDalamudPlugin
     [PluginService] internal static IObjectTable Objects { get; private set; } = null!;
     [PluginService] internal static IAddonLifecycle Lifecycle { get; private set; } = null!;
     [PluginService] internal static IGameConfig GameConfig { get; private set; } = null!;
+    [PluginService] internal static ITargetManager Targets { get; private set; } = null!;
     internal static bool KeyboardCaptured { get; private set; }
     internal static EnemyInputLock EnemyLock { get; } = new();
     internal static string[] EnemyCastLabels { get; private set; } = [];
@@ -61,6 +62,7 @@ public sealed class Plugin : IDalamudPlugin
         config = Interface.GetPluginConfig() as Configuration ?? new Configuration();
         config.Sanitize();
         typing = new TypingController(diagnostics, config);
+        EntryRecorder.Register();
         Commands.AddHandler("/xivtype", new CommandInfo(OnCommand)
         {
             HelpMessage = "Open XivType. /xivtype on | once | off | status | dump <addon name>",
@@ -85,6 +87,7 @@ public sealed class Plugin : IDalamudPlugin
         if (args.Equals("on", StringComparison.OrdinalIgnoreCase)) typing.Request("on");
         else if (args.Equals("once", StringComparison.OrdinalIgnoreCase)) typing.Request("once");
         else if (args.Equals("status", StringComparison.OrdinalIgnoreCase)) Chat.Print($"[XivType] {typing.Status}");
+        else if (args.Equals("record", StringComparison.OrdinalIgnoreCase)) EntryRecorder.Start(180);
         else if (args.Equals("stop", StringComparison.OrdinalIgnoreCase) || args.Equals("off", StringComparison.OrdinalIgnoreCase))
         {
             watch = false;
@@ -451,6 +454,7 @@ public sealed class Plugin : IDalamudPlugin
 
     public void Dispose()
     {
+        EntryRecorder.Unregister();
         typing.Dispose();
         NativeInput.Release();
         Framework.Update -= Update;

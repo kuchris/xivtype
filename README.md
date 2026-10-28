@@ -6,8 +6,6 @@
 
 A Dalamud plugin that types the enemy prompts in Keybound Brawler for you. English client only.
 
-If XivType helps you, you can support it on [Ko-fi](https://ko-fi.com/kuchris).
-
 ## Install
 
 Add this URL in `/xlsettings` → **Experimental** → **Custom Plugin Repositories**:
@@ -56,3 +54,5 @@ dotnet run --project tests/XivType.Replay.csproj
 ```
 
 Development notes are in [docs/DEVELOPMENT.md](docs/DEVELOPMENT.md); live test history is in [docs/LIVE-VALIDATION.md](docs/LIVE-VALIDATION.md).
+
+If XivType helps you, you can support it on [Ko-fi](https://ko-fi.com/kuchris).

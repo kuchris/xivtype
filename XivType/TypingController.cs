@@ -99,6 +99,7 @@ internal sealed unsafe class TypingController(DiagnosticStore diagnostics, Confi
                 case "off": Stop("Stopped by local development control."); break;
                 case "activity-probe": if (!running) activityProbe.Begin(); break;
                 case "activity-probe f13": if (!running) activityProbe.Begin("f13"); break;
+                case "record-entry": EntryRecorder.Start(180); break;
                 case var fps when fps.StartsWith("fps ") && uint.TryParse(fps[4..], out var value) && value < 5:
                     Plugin.SetFrameRate(value);
                     break;

@@ -48,7 +48,7 @@ $report = [pscustomobject]@{
     Selection = $selection
     SampleData = $samples
 }
-$report | ConvertTo-Json -Depth 6 | Set-Content -LiteralPath docs\nearest-enemy-live.json
+$report | ConvertTo-Json -Depth 6 | Set-Content -LiteralPath $OutputPath
 if ($samples.Count -eq 0) { Write-Output 'INCOMPLETE: no visible prompts were observed.'; exit 2 }
 Write-Output "Mapped $($mapped.Count)/$($words.Count) prompt observations ($($report.MappedRatio))."
 $mapped | Group-Object Text | ForEach-Object { '{0} -> actor {1:X8}, {2:0.0} y' -f $_.Name, $_.Group[-1].Entity, $_.Group[-1].Distance } | Select-Object -First 12

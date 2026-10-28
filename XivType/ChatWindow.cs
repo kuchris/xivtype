@@ -4,6 +4,7 @@ using Dalamud.Game.Chat;
 using Dalamud.Game.Text;
 using FFXIVClientStructs.FFXIV.Client.System.String;
 using FFXIVClientStructs.FFXIV.Client.UI;
+using FFXIVClientStructs.FFXIV.Client.UI.Info;
 
 namespace XivType;
 
@@ -26,11 +27,40 @@ internal sealed unsafe class ChatWindow : IDisposable
     private string draft = "";
     private int channel;
     private string sendError = "";
-    private static readonly (string Label, string Command)[] SendChannels =
+    private static readonly (string Label, string Command, XivChatType Type)[] FixedChannels =
     [
-        ("Party", "/p"), ("Say", "/s"), ("Free Company", "/fc"), ("Alliance", "/a"), ("Linkshell 1", "/l1"),
-        ("CWLS 1", "/cwl1"), ("Shout", "/sh"), ("Yell", "/y"), ("Echo", "/e"),
+        ("Party", "/p", XivChatType.Party), ("Say", "/s", XivChatType.Say), ("Free Company", "/fc", XivChatType.FreeCompany),
+        ("Alliance", "/a", XivChatType.Alliance), ("Shout", "/sh", XivChatType.Shout), ("Yell", "/y", XivChatType.Yell),
+        ("Echo", "/e", XivChatType.Echo),
     ];
+    private static readonly XivChatType[] LinkshellTypes =
+        [XivChatType.Ls1, XivChatType.Ls2, XivChatType.Ls3, XivChatType.Ls4, XivChatType.Ls5, XivChatType.Ls6, XivChatType.Ls7, XivChatType.Ls8];
+    private static readonly XivChatType[] CrossLinkshellTypes =
+    [
+        XivChatType.CrossLinkShell1, XivChatType.CrossLinkShell2, XivChatType.CrossLinkShell3, XivChatType.CrossLinkShell4,
+        XivChatType.CrossLinkShell5, XivChatType.CrossLinkShell6, XivChatType.CrossLinkShell7, XivChatType.CrossLinkShell8,
+    ];
+    private (string Label, string Command, XivChatType Type)[] SendChannels = FixedChannels;
+    private long nextChannelRefresh;
+
+    // All 8 linkshells and 8 cross-world linkshells; CWLS show their names when the game has them.
+    private void RefreshChannels()
+    {
+        var now = Environment.TickCount64;
+        if (now < nextChannelRefresh) return;
+        nextChannelRefresh = now + 5000;
+        var list = FixedChannels.ToList();
+        var cwls = InfoProxyCrossWorldLinkshell.Instance();
+        for (var i = 0; i < 8; i++)
+        {
+            var name = cwls == null ? null : cwls->GetCrossworldLinkshellName((uint)i);
+            var label = name != null && name->ToString() is { Length: > 0 } text ? $"CWLS {i + 1}: {text}" : $"CWLS {i + 1}";
+            list.Add((label, $"/cwl{i + 1}", CrossLinkshellTypes[i]));
+        }
+        for (var i = 0; i < 8; i++) list.Add(($"Linkshell {i + 1}", $"/l{i + 1}", LinkshellTypes[i]));
+        SendChannels = list.ToArray();
+        channel = Math.Min(channel, SendChannels.Length - 1);
+    }
 
     // ChatMessage sees every message, including ones other plugins later handle; the Unhandled event missed those.
     internal ChatWindow() => Plugin.Chat.ChatMessage += OnMessage;
@@ -60,6 +90,8 @@ internal sealed unsafe class ChatWindow : IDisposable
             {
                 if (playerOnly && !PlayerChannels.Contains(channel)) continue;
                 ImGui.TextColored(Colour(channel), sender.Length > 0 ? $"[{time:HH:mm}] [{Label(channel)}] {sender}:" : $"[{time:HH:mm}] [{Label(channel)}]");
+                if (ImGui.IsItemClicked()) ReplyTo(channel);
+                if (ImGui.IsItemHovered()) ImGui.SetTooltip("Click to reply in this channel");
                 ImGui.SameLine();
                 ImGui.TextWrapped(text);
             }
@@ -73,6 +105,7 @@ internal sealed unsafe class ChatWindow : IDisposable
     // Kept in its own window region below the log so the input stays visible while the log scrolls.
     private void DrawInput()
     {
+        RefreshChannels();
         ImGui.Separator();
         ImGui.SetNextItemWidth(110);
         if (ImGui.BeginCombo("##channel", SendChannels[channel].Label))
@@ -98,6 +131,15 @@ internal sealed unsafe class ChatWindow : IDisposable
         ImGui.TextDisabled("Typing pauses while this box has focus.");
     }
 
+    // Clicking a message picks its channel; tells start a /r reply.
+    private void ReplyTo(XivChatType type)
+    {
+        if (type == XivChatType.TellIncoming) { draft = draft.StartsWith("/r ") ? draft : "/r " + draft; return; }
+        if (type == XivChatType.CrossParty) type = XivChatType.Party;
+        var index = Array.FindIndex(SendChannels, c => c.Type == type);
+        if (index >= 0) channel = index;
+    }
+
     private static bool Send(string text)
     {
         if (text.Any(char.IsControl) || System.Text.Encoding.UTF8.GetByteCount(text) > 500) return false;
@@ -120,7 +162,8 @@ internal sealed unsafe class ChatWindow : IDisposable
         XivChatType.FreeCompany => "FC",
         XivChatType.NoviceNetwork => "NN",
         XivChatType.CrossParty => "Party",
-        _ when channel.ToString().StartsWith("CrossLinkShell", StringComparison.Ordinal) => "CWLS",
+        _ when Array.IndexOf(CrossLinkshellTypes, channel) is var cw and >= 0 => $"CWLS{cw + 1}",
+        _ when Array.IndexOf(LinkshellTypes, channel) is var ls and >= 0 => $"LS{ls + 1}",
         _ => channel.ToString(),
     };
 

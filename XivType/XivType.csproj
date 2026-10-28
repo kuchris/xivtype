@@ -1,6 +1,6 @@
 <Project Sdk="Dalamud.NET.Sdk/15.0.0">
   <PropertyGroup>
-    <Version>0.1.49.0</Version>
+    <Version>0.1.51.0</Version>
     <Author>kuchris</Author>
     <Name>XivType</Name>
     <Punchline>Automatic English typing for Keybound Brawler.</Punchline>

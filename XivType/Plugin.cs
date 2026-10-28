@@ -44,7 +44,6 @@ public sealed class Plugin : IDalamudPlugin
     private long nextScan;
     private long nextCapture;
     private long nextActivityCapture;
-    private bool captureActivity = true;
     private string lastActivity = "";
     private readonly string output = Path.Combine(Interface.GetPluginConfigDirectory(), "diagnostics");
     private readonly TypingController typing;
@@ -87,7 +86,8 @@ public sealed class Plugin : IDalamudPlugin
         else if (args.Equals("stop", StringComparison.OrdinalIgnoreCase) || args.Equals("off", StringComparison.OrdinalIgnoreCase))
         {
             watch = false;
-            captureActivity = false;
+            config.Diagnostics = false;
+            Interface.SavePluginConfig(config);
             typing.Request("off");
             dumpRequested = false;
             Chat.Print("[XivType] Typing and capture stopped.");
@@ -129,7 +129,7 @@ public sealed class Plugin : IDalamudPlugin
             uiLockSince = uiLock == 0 ? 0 : uiLockSince == 0 ? now : uiLockSince;
             EnemyLock.Observe(now, Client.TerritoryType == 1359,
                 uiLock != 0 ? casts.Append(new EnemyCast(uiLock, true, (now - uiLockSince) / 5000f)).ToArray() : casts);
-            if (Client.TerritoryType == 1359 && now >= nextActorCapture)
+            if (config.Diagnostics && Client.TerritoryType == 1359 && now >= nextActorCapture)
             {
                 nextActorCapture = now + 1000;
                 var actors = Objects.Where(o => o.ObjectKind is ObjectKind.BattleNpc or ObjectKind.EventNpc or ObjectKind.EventObj)
@@ -140,7 +140,7 @@ public sealed class Plugin : IDalamudPlugin
                 diagnostics.Write("activity-actors.json", JsonSerializer.Serialize(actors, new JsonSerializerOptions { WriteIndented = true }));
             }
             typing.Update(now);
-            if (Client.TerritoryType == 1359 && now >= nextWordArrayCapture)
+            if (config.Diagnostics && Client.TerritoryType == 1359 && now >= nextWordArrayCapture)
             {
                 nextWordArrayCapture = now + 5000;
                 var wordAddon = GameGui.GetAddonByName<AtkUnitBase>("KTGEWord");
@@ -148,7 +148,7 @@ public sealed class Plugin : IDalamudPlugin
                     Objects.Where(o => o.ObjectKind == ObjectKind.BattleNpc).Select(o => o.EntityId).ToHashSet()) is { } data)
                     diagnostics.Write("word-array-map.json", data);
             }
-            else if (Client.TerritoryType != 1359 && now >= nextWordArrayCapture)
+            else if (config.Diagnostics && Client.TerritoryType != 1359 && now >= nextWordArrayCapture)
             {
                 nextWordArrayCapture = now + 5000;
                 var requestPath = Path.Combine(output, "word-array-probe-request.json");
@@ -161,7 +161,7 @@ public sealed class Plugin : IDalamudPlugin
                     File.Move(requestPath, requestPath + ".processed", true);
                 }
             }
-            if (captureActivity && now >= nextActivityCapture)
+            if (config.Diagnostics && now >= nextActivityCapture)
             {
                 nextActivityCapture = now + 250;
                 CaptureActivity();
@@ -181,7 +181,7 @@ public sealed class Plugin : IDalamudPlugin
                 }
                 addons = found.Distinct().Order(StringComparer.Ordinal).ToArray();
                 var current = $"Language={Client.ClientLanguage}; Territory={Client.TerritoryType}\n" + string.Join('\n', addons);
-                if (current != inventory)
+                if (config.Diagnostics && current != inventory)
                 {
                     inventory = current;
                     diagnostics.Write("visible-addons.txt", current);
@@ -299,14 +299,20 @@ public sealed class Plugin : IDalamudPlugin
             var selected = (int)Math.Min(fps, (uint)FrameRateLabels.Length - 1);
             if (ImGui.Combo("Frame rate threshold", ref selected, FrameRateLabels, FrameRateLabels.Length))
             {
-                GameConfig.Set(SystemConfigOption.Fps, (uint)selected);
-                Log.Information("XivType set game Fps {Before} -> {After}", fps, selected);
+                SetFrameRate((uint)selected);
             }
             if (fps >= FrameRateLabels.Length) ImGui.TextDisabled($"Current game value {fps} is outside the known list.");
         }
         DrawSystemToggle("Limit frame rate when client is inactive", SystemConfigOption.FPSInActive);
         DrawSystemToggle("Limit frame rate when AFK", SystemConfigOption.FPSDownAFK);
         ImGui.TextDisabled("Writes the game's System Configuration. Background typing speed follows the frame rate.");
+    }
+
+    internal static void SetFrameRate(uint value)
+    {
+        var before = ReadSystem(SystemConfigOption.Fps);
+        GameConfig.Set(SystemConfigOption.Fps, value);
+        Log.Information("XivType set game Fps {Before} -> {After}", before?.ToString() ?? "?", value);
     }
 
     private static void DrawSystemToggle(string label, SystemConfigOption option)
@@ -380,7 +386,12 @@ public sealed class Plugin : IDalamudPlugin
             ImGui.TextDisabled($"Effective key hold: {NativeInput.KeyHoldMs} ms (adapts after a missed key).");
             if (diagnostics.Error is { } diagnosticError) ImGui.TextWrapped($"Diagnostic file error: {diagnosticError}");
             if (!ImGui.CollapsingHeader("Diagnostics")) { ImGui.End(); return; }
-            ImGui.Checkbox("Capture activity prompts and input automatically", ref captureActivity);
+            var capture = config.Diagnostics;
+            if (ImGui.Checkbox("Capture activity prompts, actors and timelines automatically", ref capture))
+            {
+                config.Diagnostics = capture;
+                Interface.SavePluginConfig(config);
+            }
             ImGui.TextWrapped(status);
             ImGui.SetNextItemWidth(320);
             if (ImGui.BeginCombo("Visible addon", selected.Length == 0 ? "Select activity UI" : selected))

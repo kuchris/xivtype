@@ -99,6 +99,9 @@ internal sealed unsafe class TypingController(DiagnosticStore diagnostics, Confi
                 case "off": Stop("Stopped by local development control."); break;
                 case "activity-probe": if (!running) activityProbe.Begin(); break;
                 case "activity-probe f13": if (!running) activityProbe.Begin("f13"); break;
+                case var fps when fps.StartsWith("fps ") && uint.TryParse(fps[4..], out var value) && value < 5:
+                    Plugin.SetFrameRate(value);
+                    break;
             }
         }
         activityProbe.Update(now);
@@ -107,7 +110,7 @@ internal sealed unsafe class TypingController(DiagnosticStore diagnostics, Confi
         KnownDistances = state.Words.Count(w => w.Distance.HasValue);
         var permission = GameInput.Permission;
         if (running) Tick(now, state, permission);
-        if (Plugin.Client.TerritoryType == 1359 && now >= nextIdleLog)
+        if (config.Diagnostics && Plugin.Client.TerritoryType == 1359 && now >= nextIdleLog)
         {
             // The duty inactivity check ignored acknowledged activity keys on 2026-10-28; log every candidate signal.
             nextIdleLog = now + 5000;

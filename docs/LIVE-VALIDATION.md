@@ -126,3 +126,17 @@ Version 0.1.19 projects every targetable, living battle NPC with `WorldToScreen`
 A passive 30-second live sample at 20:22-20:23 (`Test-NearestEnemy.ps1`, no input sent) bound 255 of 295 prompt observations (86%). Bound actors were 0-3 px horizontally from the label centre, with the label top about 170-210 px above the projected position for enemies at 25-50 yalms, so the 48 px tolerance is generous rather than limiting. Unbound observations were enemies at identical screen X (deliberately refused) and brief moments when the label's actor was not projected. Example bindings: `marjoram` 25.8 y, `Psych!` 28.2 y, `Shinra-8` 29.2 y, `nidhogg` 44.7 y, `Stamp` 50.8 y. The raw sample file was overwritten by the following run; the figures above come from analysis of it before that happened.
 
 `Test-NearestEnemy.ps1 -TypeOnce` then observed 13/13 bound prompts, and the single typed and acknowledged prompt was `elemental`, the nearest bound enemy beforehand. The user's continuous run in the same session logged Nearest enemy selections with distances. This verifies binding and selection in this arena layout and camera; other camera angles, very close enemies and overlapping crowds were not specifically tested.
+
+## Cursed Gaze and jammer lock timing - 2026-10-28 20:24-20:26
+
+The user's screenshot shows the prohibited-input marker over an enemy casting **Cursed Gaze** (prompt `hi-ether`). Only Dynamic Sensory Jammer was previously associated with the marker. A timeline of `KTGEnemyCastBar` captions against `KTGInput` permission (AtkValue 2) and countdown (AtkValue 4) in the activity history shows:
+
+| Cast | Visible | Input during cast | Lock |
+| --- | --- | --- | --- |
+| Cursed Gaze | 19:53:26.4-19:53:30.9 | manual typing (`Farm Bo`) | none |
+| Cursed Gaze | 19:54:04.5-19:54:09.0 | manual typing (`EXP U`, `G`) | none |
+| Cursed Gaze | 20:24:56.2-20:25:00.5 | plugin typing | 7 s from 20:25:01.7 |
+| Cursed Gaze | 20:25:34.2-20:25:38.7 | plugin typing | 7 s from 20:25:39.7 |
+| Dynamic Sensory Jammer | 20:26:12.7-20:26:16.9 | none: plugin paused, input held at `P` | 7 s from 20:26:18.4 |
+
+Every lock started about 1 s after the cast caption disappeared, and the existing permission guard paused and resumed typing each time. The jammer row is the first live proactive detection: the plugin paused at 20:26:12.4 before the castbar caption appeared, yet the lock still followed, so pausing during a jammer cast does not prevent its lock. Typing alone does not explain the Cursed Gaze locks, because manual typing through two earlier gazes caused none. A gaze-style facing check is plausible but unverified; character facing was not recorded. Cursed Gaze was therefore not added to the pre-emptive pause list.

@@ -23,6 +23,8 @@ Enable the repository, then search for **XivType** in `/xlplugins`. Enter the ac
 - Pauses for Dynamic Sensory Jammer and Cursed Gaze from half the cast bar, and for the game's own typing lock.
 - Retries missed keys and retypes wrong input instead of stopping. Accented letters are typed as plain letters.
 - **Game frame rate** section: shows the measured fps and changes the game's frame-rate settings. Typing speed follows the frame rate.
+- **Loop**: stand next to the Keybound Registrar, set the number of runs and press **Start loop**. It registers, commences Duty Ready and types each run.
+- **Chat window**: a read-only copy of chat opens during the activity, which hides the game's chat. The game blocks sending chat there.
 
 ## Commands
 
@@ -31,7 +33,8 @@ Enable the repository, then search for **XivType** in `/xlplugins`. Enter the ac
 | `/xivtype` | Open the window |
 | `/xivtype on` | Start automatic typing |
 | `/xivtype once` | Type one prompt |
-| `/xivtype off` | Stop |
+| `/xivtype off` | Stop (also stops the loop) |
+| `/xivtype loop 5` | Loop 5 runs (`/xivtype loop off` to stop) |
 | `/xivtype status` | Print the current status |
 
 Escape stops typing while FFXIV is focused.

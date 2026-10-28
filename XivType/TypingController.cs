@@ -208,10 +208,13 @@ internal sealed unsafe class TypingController(DiagnosticStore diagnostics, Confi
                     return;
                 }
                 var targetStillActive = clearing || state.Words.Any(w => w.NodeId == targetNode && w.Text == target);
-                if (editRetries == 0 && state.Input.Equals(sentFrom, StringComparison.OrdinalIgnoreCase) &&
+                // Posted keys are occasionally dropped (e.g. 'D' twice at 21:29:52), so background mode retries
+                // more and then retypes rather than stopping for manual help.
+                var retryLimit = config.BackgroundTyping ? 3 : 1;
+                if (editRetries < retryLimit && state.Input.Equals(sentFrom, StringComparison.OrdinalIgnoreCase) &&
                     targetStillActive && NativeInput.Ready(now))
                 {
-                    adaptiveHoldMs = Math.Min(80, Math.Max(60, NativeInput.KeyHoldMs + 15));
+                    adaptiveHoldMs = Math.Min(80, Math.Max(60 + 10 * editRetries, NativeInput.KeyHoldMs + 15));
                     NativeInput.KeyHoldMs = adaptiveHoldMs;
                     var sent = clearing ? NativeInput.Backspace(adaptiveHoldMs) :
                             NativeInput.SendCharacter(Process.GetCurrentProcess().MainWindowHandle, expected[^1]);
@@ -219,13 +222,19 @@ internal sealed unsafe class TypingController(DiagnosticStore diagnostics, Confi
                     {
                         editRetries++;
                         sentAt = now;
-                        Status = $"Retrying one unacknowledged edit with a {adaptiveHoldMs} ms key hold.";
+                        Status = $"Retrying an unacknowledged edit with a {adaptiveHoldMs} ms key hold.";
                         Plugin.Log.Information("XivType retrying unchanged input '{Input}', expected '{Expected}', hold={Hold}", state.Input, expected, adaptiveHoldMs);
                         return;
                     }
                 }
-                // A wrong character from our own edit is cleared and the prompt retyped instead of stopping.
-                if (!state.Input.Equals(sentFrom, StringComparison.OrdinalIgnoreCase) && Recover(state.Input, $"expected '{expected}'")) return;
+                if (config.BackgroundTyping && !targetStillActive && state.Input.Equals(sentFrom, StringComparison.OrdinalIgnoreCase))
+                {
+                    pending = false;
+                    return;
+                }
+                // A wrong or repeatedly dropped character from our own edit is cleared and the prompt retyped.
+                if ((config.BackgroundTyping || !state.Input.Equals(sentFrom, StringComparison.OrdinalIgnoreCase)) &&
+                    Recover(state.Input, $"expected '{expected}'")) return;
                 Stop($"Input was not acknowledged. Expected '{expected}', observed '{state.Input}'.");
                 return;
             }

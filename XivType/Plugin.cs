@@ -328,30 +328,32 @@ public sealed class Plugin : IDalamudPlugin
         }
     }
 
-    // Small heart in the title bar, left of Dalamud's window menu and close buttons.
+    // Small heart in the title bar, left of Dalamud's window menu and close buttons. Drawn at absolute
+    // coordinates centred on the title bar; cursor placement in the title bar sat too high.
     private static void DrawKofiButton()
     {
-        var cursor = ImGui.GetCursorPos();
-        var titleHeight = ImGui.GetFontSize() + ImGui.GetStyle().FramePadding.Y * 2;
+        var style = ImGui.GetStyle();
+        var titleHeight = ImGui.GetFontSize() + style.FramePadding.Y * 2;
         var windowPos = ImGui.GetWindowPos();
-        ImGui.PushClipRect(windowPos, windowPos + ImGui.GetWindowSize(), false);
-        ImGui.PushFont(UiBuilder.IconFont);
         var icon = FontAwesomeIcon.Heart.ToIconString();
-        var iconWidth = ImGui.CalcTextSize(icon).X;
-        ImGui.SetCursorPos(new Vector2(ImGui.GetWindowWidth() - titleHeight * 2 - iconWidth - ImGui.GetStyle().ItemInnerSpacing.X * 4,
-            (titleHeight - ImGui.GetFontSize()) / 2));
-        ImGui.PushStyleColor(ImGuiCol.Text, new Vector4(1f, 0.45f, 0.6f, 1f));
-        ImGui.TextUnformatted(icon);
-        ImGui.PopStyleColor();
+        ImGui.PushFont(UiBuilder.IconFont);
+        var iconSize = ImGui.CalcTextSize(icon);
+        var font = ImGui.GetFont();
+        var fontSize = ImGui.GetFontSize();
         ImGui.PopFont();
-        if (ImGui.IsItemHovered())
-        {
-            ImGui.SetMouseCursor(ImGuiMouseCursor.Hand);
-            ImGui.SetTooltip("Support XivType on Ko-fi");
-            if (ImGui.IsMouseClicked(ImGuiMouseButton.Left)) Util.OpenLink("https://ko-fi.com/kuchris");
-        }
-        ImGui.PopClipRect();
-        ImGui.SetCursorPos(cursor);
+        var min = new Vector2(windowPos.X + ImGui.GetWindowWidth() - titleHeight * 2 - iconSize.X - style.ItemInnerSpacing.X * 4,
+            windowPos.Y + (titleHeight - iconSize.Y) / 2);
+        var max = min + iconSize;
+        var hovered = ImGui.IsWindowHovered(ImGuiHoveredFlags.RootAndChildWindows) && ImGui.IsMouseHoveringRect(min, max);
+        var color = hovered ? new Vector4(1f, 0.6f, 0.72f, 1f) : new Vector4(1f, 0.45f, 0.6f, 1f);
+        var drawList = ImGui.GetWindowDrawList();
+        drawList.PushClipRect(windowPos, windowPos + ImGui.GetWindowSize());
+        drawList.AddText(font, fontSize, min, ImGui.GetColorU32(color), icon);
+        drawList.PopClipRect();
+        if (!hovered) return;
+        ImGui.SetMouseCursor(ImGuiMouseCursor.Hand);
+        ImGui.SetTooltip("Support XivType on Ko-fi");
+        if (ImGui.IsMouseClicked(ImGuiMouseButton.Left)) Util.OpenLink("https://ko-fi.com/kuchris");
     }
 
     private void Draw()

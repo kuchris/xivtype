@@ -344,7 +344,8 @@ public sealed class Plugin : IDalamudPlugin
         var min = new Vector2(windowPos.X + ImGui.GetWindowWidth() - titleHeight * 2 - iconSize.X - style.ItemInnerSpacing.X * 4,
             windowPos.Y + (titleHeight - iconSize.Y) / 2);
         var max = min + iconSize;
-        var hovered = ImGui.IsWindowHovered(ImGuiHoveredFlags.RootAndChildWindows) && ImGui.IsMouseHoveringRect(min, max);
+        // The title bar lies outside the content clip rect, so hit-test without clipping.
+        var hovered = ImGui.IsWindowHovered(ImGuiHoveredFlags.RootAndChildWindows) && ImGui.IsMouseHoveringRect(min, max, false);
         var color = hovered ? new Vector4(1f, 0.6f, 0.72f, 1f) : new Vector4(1f, 0.45f, 0.6f, 1f);
         var drawList = ImGui.GetWindowDrawList();
         drawList.PushClipRect(windowPos, windowPos + ImGui.GetWindowSize());

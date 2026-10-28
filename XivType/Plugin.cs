@@ -116,9 +116,9 @@ public sealed class Plugin : IDalamudPlugin
             var castAddon = GameGui.GetAddonByName<AtkUnitBase>("KTGEnemyCastBar");
             EnemyCastLabels = Client.TerritoryType == 1359 && castAddon != null && castAddon->IsVisible
                 ? JammerCastBarReader.ReadLabels(castAddon) : [];
-            var uiJammer = JammerCastBarReader.HasJammer(EnemyCastLabels);
+            var uiLock = JammerCastBarReader.LockingAction(EnemyCastLabels);
             EnemyLock.Observe(now, Client.TerritoryType == 1359,
-                uiJammer ? casts.Append(new EnemyCast(49532, true)).ToArray() : casts);
+                uiLock != 0 ? casts.Append(new EnemyCast(uiLock, true)).ToArray() : casts);
             if (Client.TerritoryType == 1359 && now >= nextActorCapture)
             {
                 nextActorCapture = now + 1000;

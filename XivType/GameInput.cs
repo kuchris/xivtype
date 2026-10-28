@@ -36,7 +36,7 @@ internal static unsafe class GameInput
         get
         {
             if (Plugin.EnemyLock.Blocked)
-                return new(false, 0, "Paused - an enemy is using Dynamic Sensory Jammer.");
+                return new(false, 0, $"Paused - an enemy is using {EnemyInputLock.Name(Plugin.EnemyLock.ActionId)}.");
             return TryGet(out var addon, out var input)
                 ? InputAvailability.Read(addon, input->Enabled)
                 : new(false, 0, "Waiting - activity input component is unavailable.");

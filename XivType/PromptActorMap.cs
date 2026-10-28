@@ -11,6 +11,11 @@ internal static class PromptActorMap
     internal const float MaxOffset = 48;
     internal const float AmbiguityMargin = 12;
 
+    // Live 2026-10-28: label ScaleX fell linearly from 1.50 at 12.7 y to 1.14 at about 24 y and stays 1.14
+    // beyond. Calibrated at this client's UI scale. Saturated labels give no estimate.
+    internal static float? EstimateDistance(float scale) =>
+        scale > 1.15f && float.IsFinite(scale) ? Math.Max(0, 24 + (1.14f - scale) * 31.3f) : null;
+
     internal static Prompt[] WithDistances(Prompt[] prompts, IReadOnlyList<ActorScreen> actors, Vector3 origin)
     {
         var result = prompts.ToArray();

@@ -74,13 +74,15 @@ unsafe class Program
         TestEnemyInputLock();
         using var castFixture = new CaptureFixture(Path.Combine(AppContext.BaseDirectory, "fixtures", "castbar-layout.txt"), "KTGEnemyCastBar");
         var castLabels = JammerCastBarReader.ReadLabels(castFixture.Addon, CaptureFixture.Shown);
-        if (!JammerCastBarReader.HasJammer(castLabels)) throw new Exception("Jammer UI on a non-selected enemy was ignored.");
+        if (JammerCastBarReader.LockingAction(castLabels) != 49532) throw new Exception("Jammer UI on a non-selected enemy was ignored.");
         var uiLock = new EnemyInputLock();
-        uiLock.Observe(1000, true, JammerCastBarReader.HasJammer(castLabels) ? [new(49532, true)] : []);
+        uiLock.Observe(1000, true, JammerCastBarReader.LockingAction(castLabels) is var ui and not 0 ? [new(ui, true)] : []);
         if (!uiLock.Blocked) throw new Exception("Jammer UI did not block input when actor casting data was absent.");
         ((AtkResNode*)castFixture.Nodes["1/20001"])->NodeFlags &= ~NodeFlags.Visible;
-        if (JammerCastBarReader.HasJammer(JammerCastBarReader.ReadLabels(castFixture.Addon, CaptureFixture.Shown)))
+        if (JammerCastBarReader.LockingAction(JammerCastBarReader.ReadLabels(castFixture.Addon, CaptureFixture.Shown)) != 0)
             throw new Exception("Hidden stale jammer caption blocked input.");
+        if (JammerCastBarReader.LockingAction(["Burst", "Cursed Gaze"]) != 49529 || JammerCastBarReader.LockingAction(["Burst", "Tankbuster"]) != 0)
+            throw new Exception("Cursed Gaze caption was not mapped to its locking action.");
         Console.WriteLine("PASS: Visible castbar fallback covers unselected enemies without actor casting data.");
         TestPromptSelection();
         return 0;
@@ -146,7 +148,7 @@ unsafe class Program
 
     static void TestEnemyInputLock()
     {
-        foreach (var action in new uint[] { 49532, 49702 })
+        foreach (var action in new uint[] { 49532, 49702, 49529 })
         {
             var enemyLock = new EnemyInputLock();
             enemyLock.Observe(1000, true, [new(49516, true), new(action, true)]);
@@ -165,7 +167,7 @@ unsafe class Program
         var ordinary = new EnemyInputLock();
         ordinary.Observe(1000, true, [new(49516, true)]);
         if (ordinary.Blocked) throw new Exception("An ordinary enemy cast blocked typing.");
-        Console.WriteLine("PASS: Both jammer variants, unselected enemies, settling, interruption and scope guards.");
+        Console.WriteLine("PASS: Both jammer variants and Cursed Gaze, unselected enemies, settling, interruption and scope guards.");
     }
 
     static void TestPromptSelection()
@@ -191,7 +193,13 @@ unsafe class Program
         if (located[3].Distance != null) throw new Exception("An actor above the label was bound.");
         if (PromptActorMap.WithDistances([labels[0], labels[0] with { NodeId = 14 }], actors, Vector3.Zero).Any(p => p.Distance != null))
             throw new Exception("One actor carried two prompts.");
-        Console.WriteLine("PASS: Nearest/shortest priority, typed-prefix preservation and screen-position actor binding.");
+        // Two enemies on one screen column stay unbound; the near label's scale must still win over a bound far enemy.
+        Prompt[] stacked = [new(30, "crimsonite crystal", Scale: 1.14f, Distance: 40), new(31, "You should get yourself a reading!", Scale: 1.45f)];
+        if (PromptSelection.Choose(stacked, "", TargetPriority.NearestEnemy)?.NodeId != 31)
+            throw new Exception("A near unbound label lost to a bound distant enemy.");
+        if (PromptActorMap.EstimateDistance(1.14f) != null || PromptActorMap.EstimateDistance(1.501f) is not (> 12 and < 14))
+            throw new Exception("Scale estimate does not match the live calibration.");
+        Console.WriteLine("PASS: Nearest/shortest priority, typed-prefix preservation, screen-position actor binding and scale fallback.");
     }
 }
 

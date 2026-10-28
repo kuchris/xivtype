@@ -140,3 +140,11 @@ The user's screenshot shows the prohibited-input marker over an enemy casting **
 | Dynamic Sensory Jammer | 20:26:12.7-20:26:16.9 | none: plugin paused, input held at `P` | 7 s from 20:26:18.4 |
 
 Every lock started about 1 s after the cast caption disappeared, and the existing permission guard paused and resumed typing each time. The jammer row is the first live proactive detection: the plugin paused at 20:26:12.4 before the castbar caption appeared, yet the lock still followed, so pausing during a jammer cast does not prevent its lock. Typing alone does not explain the Cursed Gaze locks, because manual typing through two earlier gazes caused none. A gaze-style facing check is plausible but unverified; character facing was not recorded. Cursed Gaze was therefore not added to the pre-emptive pause list.
+
+## Cursed Gaze pause and scale fallback - versions 0.1.20.0 and 0.1.21.0
+
+The user confirmed that stopping typing during Cursed Gaze avoids its lock, which matches the earlier manual casts that produced none. The installed client's Action sheet has a Keybound-era Cursed Gaze row 49529 (5 s cast, range 70, the same shape as jammer rows 49532/49702). Version 0.1.20 pauses on that action ID or on a visible `Cursed Gaze` castbar caption, through the same guard and 750 ms tail as the jammer, and names the cast in the pause reason. Replay checks cover the ID and caption mapping. The pause has not yet been observed against a live Cursed Gaze.
+
+The user then reported a near enemy (`You should get yourself a reading!`) losing to the distant boss (`crimsonite crystal`) in Nearest enemy mode. The log shows both prompts unbound at 20:28:08 (`distance=unknown`), so the selection fell back to shortest prompt. The live state also showed two enemies projecting to the same screen column (X 1720, the screen centre), which the screen-X binding deliberately refuses to resolve.
+
+A 25-second live sample of bound prompts showed `KTGEWord` label ScaleX decreasing linearly with world distance, from 1.50 at 12.7 y to 1.14 at about 24 y, and holding at 1.14 beyond that (28-40 y). Version 0.1.21 uses that relation as a distance estimate for unbound labels with scale above 1.15; saturated unbound labels still sort last. The calibration reflects this client's UI scale. The reported scene has not been re-run on 0.1.21.

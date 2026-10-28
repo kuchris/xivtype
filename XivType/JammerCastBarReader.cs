@@ -14,8 +14,16 @@ internal static unsafe class JammerCastBarReader
         return labels.Order(StringComparer.Ordinal).ToArray();
     }
 
-    internal static bool HasJammer(IEnumerable<string> labels) => labels.Any(label =>
-        label.Contains("Dynamic Sensory Jammer", StringComparison.OrdinalIgnoreCase));
+    // Returns a representative action ID for a visible locking caption, or 0.
+    internal static uint LockingAction(IEnumerable<string> labels)
+    {
+        foreach (var label in labels)
+        {
+            if (label.Contains("Dynamic Sensory Jammer", StringComparison.OrdinalIgnoreCase)) return 49532;
+            if (label.Contains("Cursed Gaze", StringComparison.OrdinalIgnoreCase)) return 49529;
+        }
+        return 0;
+    }
 
     private static void Read(AtkUldManager* manager, Func<nint, bool> shown, HashSet<string> labels,
         HashSet<nint> visited, int depth)

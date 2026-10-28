@@ -32,6 +32,7 @@ internal sealed unsafe class TypingController(DiagnosticStore diagnostics, Confi
     private bool inputWasBlocked;
     private long nextAction;
     private long nextReport;
+    private long nextIdleLog;
     private string lastReport = "";
     private uint scoreBefore;
     private int accepted;
@@ -108,6 +109,16 @@ internal sealed unsafe class TypingController(DiagnosticStore diagnostics, Confi
                 activity.Acknowledged, activity.LastInputBefore, activity.LastInputAfter);
         if (running && config.PreventAfk && config.BackgroundTyping && activity.Unavailable)
             Stop("Stopped: the game did not acknowledge its targeted activity key. AFK protection is unavailable.");
+        if (Plugin.Client.TerritoryType == 1359 && now >= nextIdleLog)
+        {
+            // The duty inactivity check ignored acknowledged activity keys on 2026-10-28; log every candidate signal.
+            nextIdleLog = now + 5000;
+            var timers = InputTimerModule.Instance();
+            Plugin.Log.Information("XivType idle timeline: running={Running}; foreground={Foreground}; minimized={Minimized}; systemIdle={SystemIdle:0.0}s; afk={Afk:0.0}; content={Content:0.0}; input={Input:0.0}; submissions={Submissions}; activityKeys={Keys}",
+                running, NativeInput.IsGameForeground(), NativeInput.IsGameMinimized(), NativeInput.SystemIdleSeconds(),
+                timers != null ? timers->AfkTimer : float.NaN, timers != null ? timers->ContentInputTimer : float.NaN,
+                timers != null ? timers->InputTimer : float.NaN, submissions, activity.Acknowledged);
+        }
         if (now < nextReport) return;
         nextReport = now + 100;
         var report = JsonSerializer.Serialize(new
@@ -402,6 +413,29 @@ internal static partial class NativeInput
     internal static bool Ready(long now) => heldScan == 0 && now >= nextKeyAt;
     [LibraryImport("user32.dll")]
     private static partial nint GetForegroundWindow();
+    [LibraryImport("user32.dll")]
+    [return: MarshalAs(UnmanagedType.Bool)]
+    private static partial bool IsIconic(nint window);
+    [LibraryImport("user32.dll")]
+    [return: MarshalAs(UnmanagedType.Bool)]
+    private static partial bool GetLastInputInfo(ref LastInputInfo info);
+    [LibraryImport("kernel32.dll")]
+    private static partial uint GetTickCount();
+
+    private struct LastInputInfo { public uint Size; public uint Time; }
+
+    internal static bool IsGameMinimized()
+    {
+        using var process = Process.GetCurrentProcess();
+        return process.MainWindowHandle != 0 && IsIconic(process.MainWindowHandle);
+    }
+
+    // Seconds since the last physical keyboard/mouse input anywhere in the Windows session.
+    internal static float SystemIdleSeconds()
+    {
+        var info = new LastInputInfo { Size = (uint)Marshal.SizeOf<LastInputInfo>() };
+        return GetLastInputInfo(ref info) ? (GetTickCount() - info.Time) / 1000f : float.NaN;
+    }
     [LibraryImport("user32.dll")]
     private static partial uint GetWindowThreadProcessId(nint window, out uint processId);
     [LibraryImport("user32.dll")]

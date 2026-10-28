@@ -50,6 +50,8 @@ public sealed class Plugin : IDalamudPlugin
     private string lastActivity = "";
     private readonly string output = Path.Combine(Interface.GetPluginConfigDirectory(), "diagnostics");
     private readonly TypingController typing;
+    private readonly RunLoop loop;
+    private int loopRuns = 5;
     private readonly DiagnosticStore diagnostics;
     private readonly Configuration config;
     private long nextActorCapture;
@@ -62,6 +64,9 @@ public sealed class Plugin : IDalamudPlugin
         config = Interface.GetPluginConfig() as Configuration ?? new Configuration();
         config.Sanitize();
         typing = new TypingController(diagnostics, config);
+        loop = new RunLoop(typing);
+        typing.UserStopped += () => loop.Stop("Loop stopped with typing.");
+        typing.OtherCommand += command => { if (command.StartsWith("loop", StringComparison.OrdinalIgnoreCase)) OnCommand("/xivtype", command); };
         EntryRecorder.Register();
         Commands.AddHandler("/xivtype", new CommandInfo(OnCommand)
         {
@@ -88,6 +93,13 @@ public sealed class Plugin : IDalamudPlugin
         else if (args.Equals("once", StringComparison.OrdinalIgnoreCase)) typing.Request("once");
         else if (args.Equals("status", StringComparison.OrdinalIgnoreCase)) Chat.Print($"[XivType] {typing.Status}");
         else if (args.Equals("record", StringComparison.OrdinalIgnoreCase)) EntryRecorder.Start(1800);
+        else if (args.StartsWith("loop", StringComparison.OrdinalIgnoreCase))
+        {
+            var count = args[4..].Trim();
+            if (count.Equals("off", StringComparison.OrdinalIgnoreCase)) loop.Stop("Loop stopped by command.");
+            else loop.Start(int.TryParse(count, out var runs) ? runs : loopRuns);
+            Chat.Print($"[XivType] {loop.Status}");
+        }
         else if (args.Equals("stop", StringComparison.OrdinalIgnoreCase) || args.Equals("off", StringComparison.OrdinalIgnoreCase))
         {
             watch = false;
@@ -145,6 +157,7 @@ public sealed class Plugin : IDalamudPlugin
                 diagnostics.Write("activity-actors.json", JsonSerializer.Serialize(actors, new JsonSerializerOptions { WriteIndented = true }));
             }
             typing.Update(now);
+            loop.Update(now);
             if (config.Diagnostics && Client.TerritoryType == 1359 && now >= nextWordArrayCapture)
             {
                 nextWordArrayCapture = now + 5000;
@@ -384,6 +397,13 @@ public sealed class Plugin : IDalamudPlugin
                 if (typing.VisiblePrompts > 0 && typing.KnownDistances == 0)
                     ImGui.TextWrapped("Distance unavailable: using shortest prompt for now.");
             }
+            ImGui.SetNextItemWidth(100);
+            ImGui.InputInt("Runs", ref loopRuns);
+            loopRuns = Math.Clamp(loopRuns, 1, 99);
+            ImGui.SameLine();
+            if (!loop.Active && ImGui.Button("Start loop")) loop.Start(loopRuns);
+            else if (loop.Active && ImGui.Button("Stop loop")) loop.Stop("Loop stopped.");
+            ImGui.TextDisabled(loop.Active ? loop.Status : $"{loop.Status} Stand next to the Keybound Registrar; it registers, commences and types each run.");
             if (ImGui.Button("Type one prompt")) typing.Request("once");
             ImGui.SameLine();
             if (ImGui.Button("Start automatic typing")) typing.Request("on");

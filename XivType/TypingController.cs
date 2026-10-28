@@ -42,6 +42,9 @@ internal sealed unsafe class TypingController(DiagnosticStore diagnostics, Confi
     private int submissions;
     public bool Running => running;
     public int Submissions => submissions;
+    // Raised when the user stops typing (Stop button, /xivtype off, Escape) so a run loop stops too.
+    public event Action? UserStopped;
+    public event Action<string>? OtherCommand;
     public int Accepted => accepted;
     public int VisiblePrompts { get; private set; }
     public int KnownDistances { get; private set; }
@@ -96,10 +99,11 @@ internal sealed unsafe class TypingController(DiagnosticStore diagnostics, Confi
                 case "probe": Start(false, true); break;
                 case "once": Start(false); break;
                 case "on": Start(true); break;
-                case "off": Stop("Stopped by local development control."); break;
+                case "off": Stop("Stopped by local development control."); UserStopped?.Invoke(); break;
                 case "activity-probe": if (!running) activityProbe.Begin(); break;
                 case "activity-probe f13": if (!running) activityProbe.Begin("f13"); break;
                 case "record-entry": EntryRecorder.Start(1800); break;
+                default: OtherCommand?.Invoke(command); break;
                 case var fps when fps.StartsWith("fps ") && uint.TryParse(fps[4..], out var value) && value < 5:
                     Plugin.SetFrameRate(value);
                     break;
@@ -154,6 +158,7 @@ internal sealed unsafe class TypingController(DiagnosticStore diagnostics, Confi
         if (NativeInput.IsGameForeground() && (NativeInput.GetAsyncKeyState(0x1B) & 0x8000) != 0)
         {
             Stop("Stopped by Escape.");
+            UserStopped?.Invoke();
             return;
         }
         if (!state.Ready)

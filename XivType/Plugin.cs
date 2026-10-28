@@ -1,4 +1,6 @@
 using Dalamud.Game.Config;
+using Dalamud.Interface;
+using Dalamud.Utility;
 using System.Numerics;
 using System.Text;
 using Dalamud.Bindings.ImGui;
@@ -326,6 +328,32 @@ public sealed class Plugin : IDalamudPlugin
         }
     }
 
+    // Small heart in the title bar, left of the close button.
+    private static void DrawKofiButton()
+    {
+        var cursor = ImGui.GetCursorPos();
+        var titleHeight = ImGui.GetFontSize() + ImGui.GetStyle().FramePadding.Y * 2;
+        var windowPos = ImGui.GetWindowPos();
+        ImGui.PushClipRect(windowPos, windowPos + ImGui.GetWindowSize(), false);
+        ImGui.PushFont(UiBuilder.IconFont);
+        var icon = FontAwesomeIcon.Heart.ToIconString();
+        var iconWidth = ImGui.CalcTextSize(icon).X;
+        ImGui.SetCursorPos(new Vector2(ImGui.GetWindowWidth() - titleHeight - iconWidth - ImGui.GetStyle().ItemInnerSpacing.X * 3,
+            (titleHeight - ImGui.GetFontSize()) / 2));
+        ImGui.PushStyleColor(ImGuiCol.Text, new Vector4(1f, 0.45f, 0.6f, 1f));
+        ImGui.TextUnformatted(icon);
+        ImGui.PopStyleColor();
+        ImGui.PopFont();
+        if (ImGui.IsItemHovered())
+        {
+            ImGui.SetMouseCursor(ImGuiMouseCursor.Hand);
+            ImGui.SetTooltip("Support XivType on Ko-fi");
+            if (ImGui.IsMouseClicked(ImGuiMouseButton.Left)) Util.OpenLink("https://ko-fi.com/kuchris");
+        }
+        ImGui.PopClipRect();
+        ImGui.SetCursorPos(cursor);
+    }
+
     private void Draw()
     {
         KeyboardCaptured = ImGui.GetIO().WantCaptureKeyboard;
@@ -333,6 +361,7 @@ public sealed class Plugin : IDalamudPlugin
         ImGui.SetNextWindowSize(new Vector2(760, 580), ImGuiCond.FirstUseEver);
         if (ImGui.Begin("XivType", ref visible))
         {
+            DrawKofiButton();
             ImGui.TextUnformatted("English Keybound Brawler - development build");
             ImGui.TextWrapped(typing.Status);
             ImGui.TextUnformatted($"Acknowledged submissions: {typing.Submissions} | Acknowledged edits: {typing.Accepted}");

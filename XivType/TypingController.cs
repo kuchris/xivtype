@@ -199,6 +199,12 @@ internal sealed unsafe class TypingController(DiagnosticStore diagnostics, Confi
             }
             else if (now - sentAt > 1500)
             {
+                // The input closes after locks and submissions; resume from its actual text once Enter reopens it.
+                if (config.BackgroundTyping && GameInput.Focus == GameInput.TextFocus.None)
+                {
+                    pending = false;
+                    return;
+                }
                 var targetStillActive = clearing || state.Words.Any(w => w.NodeId == targetNode && w.Text == target);
                 if (editRetries == 0 && state.Input.Equals(sentFrom, StringComparison.OrdinalIgnoreCase) &&
                     targetStillActive && NativeInput.Ready(now))
@@ -497,6 +503,16 @@ internal static partial class NativeInput
         if (released) nextKeyAt = Environment.TickCount64 + 10;
     }
 
+    private static bool PostCharacter(char value)
+    {
+        if (!GameInput.CanPost() || !Ready(Environment.TickCount64) || !GameInput.Permission.Allowed) return false;
+        using var process = Process.GetCurrentProcess();
+        if (process.MainWindowHandle == 0 || !PostMessageW(process.MainWindowHandle, 0x102, value, 1)) return false;
+        GameInput.CountEdit();
+        nextKeyAt = Environment.TickCount64 + KeyHoldMs;
+        return true;
+    }
+
     private static bool Press(ushort scan, bool extended, bool shift, int? holdMs = null)
     {
         if (!(Posted ? GameInput.CanPost() : IsGameForeground()) || !Ready(Environment.TickCount64) || !GameInput.Permission.Allowed) return false;
@@ -529,6 +545,8 @@ internal static partial class NativeInput
         // Posted Shift never changed letter case live and a capital first letter was then ignored;
         // acknowledgements are case-insensitive, so posted letters go without Shift.
         var shift = (mapped & 0x0100) != 0 && !(Posted && char.IsLetter(value));
+        // A posted Shift+1 still arrived as '1', so shifted symbols are posted as the character itself.
+        if (Posted && shift) return PostCharacter(value);
         return scan != 0 && Press((ushort)(scan & 0xFF), (scan & 0xFF00) != 0, shift);
     }
 

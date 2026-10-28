@@ -2,12 +2,14 @@ using System.Numerics;
 using Dalamud.Bindings.ImGui;
 using Dalamud.Game.Chat;
 using Dalamud.Game.Text;
+using FFXIVClientStructs.FFXIV.Client.System.String;
+using FFXIVClientStructs.FFXIV.Client.UI;
 
 namespace XivType;
 
-// Read-only mirror of player chat, because Keybound Brawler hides the game's chat log. It only listens to
-// messages; it never touches the game's chat windows, chat input or Enter.
-internal sealed class ChatWindow : IDisposable
+// Mirror of chat, because Keybound Brawler hides the game's chat log. It listens to messages and sends what
+// the user types through the game's own chat entry; it never touches the game's chat windows or Enter.
+internal sealed unsafe class ChatWindow : IDisposable
 {
     private static readonly HashSet<XivChatType> PlayerChannels =
     [
@@ -21,6 +23,14 @@ internal sealed class ChatWindow : IDisposable
     private readonly Queue<(DateTime Time, XivChatType Channel, string Sender, string Text)> lines = new();
     private bool scrollToEnd;
     private bool playerOnly;
+    private string draft = "";
+    private int channel;
+    private string sendError = "";
+    private static readonly (string Label, string Command)[] SendChannels =
+    [
+        ("Party", "/p"), ("Say", "/s"), ("Free Company", "/fc"), ("Alliance", "/a"), ("Linkshell 1", "/l1"),
+        ("CWLS 1", "/cwl1"), ("Shout", "/sh"), ("Yell", "/y"), ("Echo", "/e"),
+    ];
 
     // ChatMessage sees every message, including ones other plugins later handle; the Unhandled event missed those.
     internal ChatWindow() => Plugin.Chat.ChatMessage += OnMessage;
@@ -41,6 +51,8 @@ internal sealed class ChatWindow : IDisposable
         ImGui.SetNextWindowSize(new Vector2(420, 220), ImGuiCond.FirstUseEver);
         if (ImGui.Begin("XivType Chat", ref open))
         {
+            var inputHeight = ImGui.GetFrameHeightWithSpacing() * 2 + ImGui.GetTextLineHeightWithSpacing() * 2;
+            ImGui.BeginChild("log", new Vector2(0, -inputHeight));
             ImGui.Checkbox("Player chat only", ref playerOnly);
             ImGui.Separator();
             if (lines.Count == 0) ImGui.TextDisabled("Chat appears here while the activity hides the game's chat.");
@@ -52,8 +64,53 @@ internal sealed class ChatWindow : IDisposable
                 ImGui.TextWrapped(text);
             }
             if (scrollToEnd) { ImGui.SetScrollHereY(1); scrollToEnd = false; }
+            ImGui.EndChild();
+            DrawInput();
         }
         ImGui.End();
+    }
+
+    // Kept in its own window region below the log so the input stays visible while the log scrolls.
+    private void DrawInput()
+    {
+        ImGui.Separator();
+        ImGui.SetNextItemWidth(110);
+        if (ImGui.BeginCombo("##channel", SendChannels[channel].Label))
+        {
+            for (var i = 0; i < SendChannels.Length; i++)
+                if (ImGui.Selectable(SendChannels[i].Label, i == channel)) channel = i;
+            ImGui.EndCombo();
+        }
+        ImGui.SameLine();
+        ImGui.SetNextItemWidth(-60);
+        var send = ImGui.InputText("##message", ref draft, 400, ImGuiInputTextFlags.EnterReturnsTrue);
+        ImGui.SameLine();
+        send |= ImGui.Button("Send");
+        if (send && draft.Trim().Length > 0)
+        {
+            var text = draft.Trim();
+            // A leading slash is sent as typed (e.g. /tell Name@World hi); otherwise use the chosen channel.
+            sendError = Send(text.StartsWith('/') ? text : $"{SendChannels[channel].Command} {text}") ? "" : "Message contains characters the game rejects.";
+            if (sendError.Length == 0) draft = "";
+            ImGui.SetKeyboardFocusHere(-1);
+        }
+        if (sendError.Length > 0) ImGui.TextColored(new Vector4(1f, 0.5f, 0.5f, 1f), sendError);
+        ImGui.TextDisabled("Typing pauses while this box has focus.");
+    }
+
+    private static bool Send(string text)
+    {
+        if (text.Any(char.IsControl) || System.Text.Encoding.UTF8.GetByteCount(text) > 500) return false;
+        var message = Utf8String.FromString(text);
+        try
+        {
+            // Same check the game applies to typed chat: refuse anything sanitising would change.
+            message->SanitizeString((AllowedEntities)0x27F, null);
+            if (message->ToString() != text) return false;
+            UIModule.Instance()->ProcessChatBoxEntry(message, nint.Zero, false);
+            return true;
+        }
+        finally { message->Dtor(true); }
     }
 
     private static string Label(XivChatType channel) => channel switch

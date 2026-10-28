@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net10.0-windows</TargetFramework>
+    <PlatformTarget>x64</PlatformTarget>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="FFXIVClientStructs" HintPath="$(APPDATA)/XIVLauncher/addon/Hooks/dev/FFXIVClientStructs.dll" />
+    <Reference Include="InteropGenerator.Runtime" HintPath="$(APPDATA)/XIVLauncher/addon/Hooks/dev/InteropGenerator.Runtime.dll" />
+    <Compile Include="../XivType/PromptReader.cs" Link="PromptReader.cs" />
+    <Compile Include="../XivType/InputAvailability.cs" Link="InputAvailability.cs" />
+    <Compile Include="../XivType/ActivityKeepAlive.cs" Link="ActivityKeepAlive.cs" />
+    <Compile Include="../XivType/EnemyInputLock.cs" Link="EnemyInputLock.cs" />
+    <Compile Include="../XivType/JammerCastBarReader.cs" Link="JammerCastBarReader.cs" />
+    <Compile Include="../XivType/PromptSelection.cs" Link="PromptSelection.cs" />
+    <Compile Include="../XivType/PromptActorMap.cs" Link="PromptActorMap.cs" />
+    <None Include="fixtures/masked-full.txt" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="fixtures/input-jammed.txt" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="fixtures/input-unlocked.txt" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="fixtures/castbar-layout.txt" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>

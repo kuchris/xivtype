@@ -1,0 +1,3633 @@
+{
+  "CombineHeader": {
+    "Identifier": "uldh",
+    "Version": "0100",
+    "ComponentOffset": 16,
+    "WidgetOffset": 5592
+  },
+  "ComponentHeader": {
+    "Identifier": "atkh",
+    "Version": "0100",
+    "AssetListOffset": 36,
+    "PartListOffset": 276,
+    "ComponentListOffset": 640,
+    "TimelineListOffset": 1484,
+    "WidgetOffset": 0,
+    "RewriteDataOffset": 0,
+    "TimelineListSize": 8
+  },
+  "AssetList": {
+    "Identifier": "ashd",
+    "Version": "0101",
+    "ElementCount": 4,
+    "Unk1": 0
+  },
+  "AssetData": [
+    {
+      "Id": 1,
+      "Path": "ui/uld/FocusTargetInfo.tex\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000",
+      "IconId": 0,
+      "ThemeSupportBitmask": 0
+    },
+    {
+      "Id": 2,
+      "Path": "ui/uld/KTGGaugeCast.tex\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000",
+      "IconId": 0,
+      "ThemeSupportBitmask": 0
+    },
+    {
+      "Id": 3,
+      "Path": "ui/uld/KTGInterrupt.tex\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000",
+      "IconId": 0,
+      "ThemeSupportBitmask": 0
+    },
+    {
+      "Id": 4,
+      "Path": "ui/uld/TargetInfo.tex\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000",
+      "IconId": 0,
+      "ThemeSupportBitmask": 0
+    }
+  ],
+  "PartList": {
+    "Identifier": "tphd",
+    "Version": "0100",
+    "ElementCount": 4,
+    "Unk1": 0
+  },
+  "Parts": [
+    {
+      "Id": 1,
+      "PartCount": 1,
+      "Offset": 24,
+      "Parts": [
+        {
+          "TextureId": 1,
+          "U": 0,
+          "V": 0,
+          "W": 44,
+          "H": 44
+        }
+      ]
+    },
+    {
+      "Id": 2,
+      "PartCount": 14,
+      "Offset": 180,
+      "Parts": [
+        {
+          "TextureId": 3,
+          "U": 0,
+          "V": 0,
+          "W": 172,
+          "H": 32
+        },
+        {
+          "TextureId": 3,
+          "U": 172,
+          "V": 0,
+          "W": 172,
+          "H": 32
+        },
+        {
+          "TextureId": 3,
+          "U": 0,
+          "V": 32,
+          "W": 172,
+          "H": 32
+        },
+        {
+          "TextureId": 3,
+          "U": 172,
+          "V": 32,
+          "W": 172,
+          "H": 32
+        },
+        {
+          "TextureId": 3,
+          "U": 0,
+          "V": 64,
+          "W": 172,
+          "H": 32
+        },
+        {
+          "TextureId": 3,
+          "U": 172,
+          "V": 64,
+          "W": 172,
+          "H": 32
+        },
+        {
+          "TextureId": 3,
+          "U": 0,
+          "V": 96,
+          "W": 172,
+          "H": 32
+        },
+        {
+          "TextureId": 3,
+          "U": 172,
+          "V": 96,
+          "W": 172,
+          "H": 32
+        },
+        {
+          "TextureId": 3,
+          "U": 0,
+          "V": 128,
+          "W": 172,
+          "H": 32
+        },
+        {
+          "TextureId": 3,
+          "U": 172,
+          "V": 128,
+          "W": 172,
+          "H": 32
+        },
+        {
+          "TextureId": 3,
+          "U": 0,
+          "V": 160,
+          "W": 172,
+          "H": 32
+        },
+        {
+          "TextureId": 3,
+          "U": 172,
+          "V": 160,
+          "W": 172,
+          "H": 32
+        },
+        {
+          "TextureId": 3,
+          "U": 0,
+          "V": 192,
+          "W": 172,
+          "H": 32
+        },
+        {
+          "TextureId": 3,
+          "U": 172,
+          "V": 192,
+          "W": 172,
+          "H": 32
+        }
+      ]
+    },
+    {
+      "Id": 3,
+      "PartCount": 3,
+      "Offset": 48,
+      "Parts": [
+        {
+          "TextureId": 2,
+          "U": 8,
+          "V": 3,
+          "W": 128,
+          "H": 7
+        },
+        {
+          "TextureId": 2,
+          "U": 0,
+          "V": 12,
+          "W": 144,
+          "H": 20
+        },
+        {
+          "TextureId": 2,
+          "U": 0,
+          "V": 32,
+          "W": 144,
+          "H": 20
+        }
+      ]
+    },
+    {
+      "Id": 4,
+      "PartCount": 7,
+      "Offset": 96,
+      "Parts": [
+        {
+          "TextureId": 4,
+          "U": 0,
+          "V": 0,
+          "W": 28,
+          "H": 28
+        },
+        {
+          "TextureId": 4,
+          "U": 0,
+          "V": 28,
+          "W": 24,
+          "H": 16
+        },
+        {
+          "TextureId": 4,
+          "U": 0,
+          "V": 44,
+          "W": 32,
+          "H": 12
+        },
+        {
+          "TextureId": 4,
+          "U": 28,
+          "V": 0,
+          "W": 12,
+          "H": 44
+        },
+        {
+          "TextureId": 4,
+          "U": 0,
+          "V": 56,
+          "W": 12,
+          "H": 12
+        },
+        {
+          "TextureId": 4,
+          "U": 12,
+          "V": 56,
+          "W": 12,
+          "H": 12
+        },
+        {
+          "TextureId": 4,
+          "U": 24,
+          "V": 56,
+          "W": 12,
+          "H": 12
+        }
+      ]
+    }
+  ],
+  "ComponentList": {
+    "Identifier": "cohd",
+    "Version": "0100",
+    "ElementCount": 1,
+    "Unk1": 0
+  },
+  "Components": [
+    {
+      "Id": 1001,
+      "ShouldIgnoreInput": false,
+      "DragArrow": false,
+      "DropArrow": false,
+      "Type": 0,
+      "NodeCount": 8,
+      "Size": 828,
+      "Offset": 16,
+      "Component": null,
+      "Nodes": [
+        {
+          "NodeId": 1,
+          "ParentId": 0,
+          "NextSiblingId": 0,
+          "PrevSiblingId": 0,
+          "ChildNodeId": 2,
+          "NodeType": 1,
+          "NodeOffset": 88,
+          "TabIndex": 0,
+          "Unk1": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "X": 0,
+          "Y": 0,
+          "W": 160,
+          "H": 26,
+          "Rotation": 0,
+          "ScaleX": 1,
+          "ScaleY": 1,
+          "OriginX": 0,
+          "OriginY": 0,
+          "Priority": 0,
+          "field1": 91,
+          "Visible": false,
+          "Enabled": true,
+          "Clip": false,
+          "Fill": true,
+          "AnchorTop": true,
+          "AnchorBottom": false,
+          "AnchorLeft": true,
+          "AnchorRight": true,
+          "Unk2": 0,
+          "MultiplyRed": 100,
+          "MultiplyGreen": 100,
+          "MultiplyBlue": 100,
+          "AddRed": 0,
+          "AddGreen": 0,
+          "AddBlue": 0,
+          "Alpha": 255,
+          "ClipCount": 0,
+          "TimelineId": 1,
+          "Node": null,
+          "UnknownNodeData": null
+        },
+        {
+          "NodeId": 2,
+          "ParentId": 1,
+          "NextSiblingId": 0,
+          "PrevSiblingId": 0,
+          "ChildNodeId": 8,
+          "NodeType": 1,
+          "NodeOffset": 88,
+          "TabIndex": 0,
+          "Unk1": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "X": 8,
+          "Y": 0,
+          "W": 144,
+          "H": 26,
+          "Rotation": 0,
+          "ScaleX": 1,
+          "ScaleY": 1,
+          "OriginX": 0,
+          "OriginY": 0,
+          "Priority": 0,
+          "field1": 83,
+          "Visible": false,
+          "Enabled": true,
+          "Clip": false,
+          "Fill": true,
+          "AnchorTop": false,
+          "AnchorBottom": false,
+          "AnchorLeft": true,
+          "AnchorRight": true,
+          "Unk2": 0,
+          "MultiplyRed": 100,
+          "MultiplyGreen": 100,
+          "MultiplyBlue": 100,
+          "AddRed": 0,
+          "AddGreen": 0,
+          "AddBlue": 0,
+          "Alpha": 255,
+          "ClipCount": 0,
+          "TimelineId": 2,
+          "Node": null,
+          "UnknownNodeData": null
+        },
+        {
+          "NodeId": 3,
+          "ParentId": 2,
+          "NextSiblingId": 0,
+          "PrevSiblingId": 4,
+          "ChildNodeId": 0,
+          "NodeType": 3,
+          "NodeOffset": 112,
+          "TabIndex": 0,
+          "Unk1": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "X": -30,
+          "Y": -5,
+          "W": 205,
+          "H": 30,
+          "Rotation": 0,
+          "ScaleX": 1,
+          "ScaleY": 1,
+          "OriginX": 102,
+          "OriginY": 15,
+          "Priority": 0,
+          "field1": 83,
+          "Visible": false,
+          "Enabled": true,
+          "Clip": false,
+          "Fill": true,
+          "AnchorTop": false,
+          "AnchorBottom": false,
+          "AnchorLeft": true,
+          "AnchorRight": true,
+          "Unk2": 0,
+          "MultiplyRed": 100,
+          "MultiplyGreen": 100,
+          "MultiplyBlue": 100,
+          "AddRed": 0,
+          "AddGreen": 0,
+          "AddBlue": 0,
+          "Alpha": 255,
+          "ClipCount": 0,
+          "TimelineId": 3,
+          "Node": {
+            "TextId": 1099,
+            "Color": 1,
+            "Alignment": 4,
+            "Font": 1,
+            "FontSize": 18,
+            "EdgeColor": 54,
+            "TextFlags": 4,
+            "SheetType": 0,
+            "CharSpacing": 0,
+            "LineSpacing": 0,
+            "TextFlags2": 6
+          },
+          "UnknownNodeData": null
+        },
+        {
+          "NodeId": 4,
+          "ParentId": 2,
+          "NextSiblingId": 3,
+          "PrevSiblingId": 5,
+          "ChildNodeId": 0,
+          "NodeType": 3,
+          "NodeOffset": 112,
+          "TabIndex": 0,
+          "Unk1": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "X": 0,
+          "Y": 10,
+          "W": 144,
+          "H": 20,
+          "Rotation": 0,
+          "ScaleX": 1,
+          "ScaleY": 1,
+          "OriginX": 0,
+          "OriginY": 0,
+          "Priority": 0,
+          "field1": 83,
+          "Visible": false,
+          "Enabled": true,
+          "Clip": false,
+          "Fill": true,
+          "AnchorTop": false,
+          "AnchorBottom": false,
+          "AnchorLeft": true,
+          "AnchorRight": true,
+          "Unk2": 0,
+          "MultiplyRed": 100,
+          "MultiplyGreen": 100,
+          "MultiplyBlue": 100,
+          "AddRed": 0,
+          "AddGreen": 0,
+          "AddBlue": 0,
+          "Alpha": 255,
+          "ClipCount": 0,
+          "TimelineId": 4,
+          "Node": {
+            "TextId": 0,
+            "Color": 1,
+            "Alignment": 7,
+            "Font": 0,
+            "FontSize": 14,
+            "EdgeColor": 29,
+            "TextFlags": 4,
+            "SheetType": 0,
+            "CharSpacing": 0,
+            "LineSpacing": 0,
+            "TextFlags2": 6
+          },
+          "UnknownNodeData": null
+        },
+        {
+          "NodeId": 5,
+          "ParentId": 2,
+          "NextSiblingId": 4,
+          "PrevSiblingId": 6,
+          "ChildNodeId": 0,
+          "NodeType": 3,
+          "NodeOffset": 112,
+          "TabIndex": 0,
+          "Unk1": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "X": 60,
+          "Y": 28,
+          "W": 24,
+          "H": 24,
+          "Rotation": 0,
+          "ScaleX": 1,
+          "ScaleY": 1,
+          "OriginX": 0,
+          "OriginY": 0,
+          "Priority": 0,
+          "field1": 83,
+          "Visible": false,
+          "Enabled": true,
+          "Clip": false,
+          "Fill": true,
+          "AnchorTop": false,
+          "AnchorBottom": false,
+          "AnchorLeft": true,
+          "AnchorRight": true,
+          "Unk2": 0,
+          "MultiplyRed": 50,
+          "MultiplyGreen": 50,
+          "MultiplyBlue": 50,
+          "AddRed": 0,
+          "AddGreen": 0,
+          "AddBlue": 0,
+          "Alpha": 255,
+          "ClipCount": 0,
+          "TimelineId": 5,
+          "Node": {
+            "TextId": 0,
+            "Color": 1,
+            "Alignment": 4,
+            "Font": 1,
+            "FontSize": 20,
+            "EdgeColor": 29,
+            "TextFlags": 4,
+            "SheetType": 0,
+            "CharSpacing": 0,
+            "LineSpacing": 0,
+            "TextFlags2": 6
+          },
+          "UnknownNodeData": null
+        },
+        {
+          "NodeId": 6,
+          "ParentId": 2,
+          "NextSiblingId": 5,
+          "PrevSiblingId": 7,
+          "ChildNodeId": 0,
+          "NodeType": 2,
+          "NodeOffset": 100,
+          "TabIndex": 0,
+          "Unk1": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "X": 8,
+          "Y": 7,
+          "W": 128,
+          "H": 7,
+          "Rotation": 0,
+          "ScaleX": 1,
+          "ScaleY": 1,
+          "OriginX": 0,
+          "OriginY": 0,
+          "Priority": 0,
+          "field1": 83,
+          "Visible": false,
+          "Enabled": true,
+          "Clip": false,
+          "Fill": true,
+          "AnchorTop": false,
+          "AnchorBottom": false,
+          "AnchorLeft": true,
+          "AnchorRight": true,
+          "Unk2": 0,
+          "MultiplyRed": 100,
+          "MultiplyGreen": 100,
+          "MultiplyBlue": 100,
+          "AddRed": 0,
+          "AddGreen": 0,
+          "AddBlue": 0,
+          "Alpha": 255,
+          "ClipCount": 0,
+          "TimelineId": 6,
+          "Node": {
+            "PartListId": 3,
+            "PartId": 0,
+            "FlipH": false,
+            "FlipV": false,
+            "Wrap": 1,
+            "Unk1": 0
+          },
+          "UnknownNodeData": null
+        },
+        {
+          "NodeId": 7,
+          "ParentId": 2,
+          "NextSiblingId": 6,
+          "PrevSiblingId": 8,
+          "ChildNodeId": 0,
+          "NodeType": 2,
+          "NodeOffset": 100,
+          "TabIndex": 0,
+          "Unk1": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "X": -12,
+          "Y": -6,
+          "W": 172,
+          "H": 32,
+          "Rotation": 0,
+          "ScaleX": 1,
+          "ScaleY": 1,
+          "OriginX": 86,
+          "OriginY": 16,
+          "Priority": 0,
+          "field1": 83,
+          "Visible": false,
+          "Enabled": true,
+          "Clip": false,
+          "Fill": true,
+          "AnchorTop": false,
+          "AnchorBottom": false,
+          "AnchorLeft": true,
+          "AnchorRight": true,
+          "Unk2": 0,
+          "MultiplyRed": 100,
+          "MultiplyGreen": 100,
+          "MultiplyBlue": 100,
+          "AddRed": 255,
+          "AddGreen": 0,
+          "AddBlue": -80,
+          "Alpha": 255,
+          "ClipCount": 0,
+          "TimelineId": 7,
+          "Node": {
+            "PartListId": 2,
+            "PartId": 11,
+            "FlipH": false,
+            "FlipV": false,
+            "Wrap": 0,
+            "Unk1": 0
+          },
+          "UnknownNodeData": null
+        },
+        {
+          "NodeId": 8,
+          "ParentId": 2,
+          "NextSiblingId": 7,
+          "PrevSiblingId": 0,
+          "ChildNodeId": 0,
+          "NodeType": 2,
+          "NodeOffset": 100,
+          "TabIndex": 0,
+          "Unk1": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "X": 0,
+          "Y": 0,
+          "W": 144,
+          "H": 20,
+          "Rotation": 0,
+          "ScaleX": 1,
+          "ScaleY": 1,
+          "OriginX": 0,
+          "OriginY": 0,
+          "Priority": 0,
+          "field1": 83,
+          "Visible": false,
+          "Enabled": true,
+          "Clip": false,
+          "Fill": true,
+          "AnchorTop": false,
+          "AnchorBottom": false,
+          "AnchorLeft": true,
+          "AnchorRight": true,
+          "Unk2": 0,
+          "MultiplyRed": 100,
+          "MultiplyGreen": 100,
+          "MultiplyBlue": 100,
+          "AddRed": 0,
+          "AddGreen": 0,
+          "AddBlue": 0,
+          "Alpha": 255,
+          "ClipCount": 0,
+          "TimelineId": 8,
+          "Node": {
+            "PartListId": 3,
+            "PartId": 1,
+            "FlipH": false,
+            "FlipV": false,
+            "Wrap": 1,
+            "Unk1": 0
+          },
+          "UnknownNodeData": null
+        }
+      ]
+    }
+  ],
+  "TimelineList": {
+    "Identifier": "tlhd",
+    "Version": "0100",
+    "ElementCount": 8,
+    "Unk1": 0
+  },
+  "Timelines": [
+    {
+      "Id": 1,
+      "Offset": 76,
+      "NumFrames": 1,
+      "FrameData": [
+        {
+          "StartFrame": 1,
+          "EndFrame": 19,
+          "Offset": 64,
+          "KeygroupCount": 1,
+          "KeyGroups": [
+            {
+              "Usage": 0,
+              "Type": 25,
+              "Offset": 48,
+              "KeyframeCount": 2,
+              "Frames": [
+                {
+                  "Keyframe": {
+                    "Time": 1,
+                    "Offset": 20,
+                    "Interpolation": 0,
+                    "Unk1": 0,
+                    "Acceleration": 0,
+                    "Deceleration": 0
+                  },
+                  "LabelId": 101,
+                  "LabelCommand": 1,
+                  "JumpId": 0
+                },
+                {
+                  "Keyframe": {
+                    "Time": 10,
+                    "Offset": 20,
+                    "Interpolation": 0,
+                    "Unk1": 0,
+                    "Acceleration": 0,
+                    "Deceleration": 0
+                  },
+                  "LabelId": 102,
+                  "LabelCommand": 1,
+                  "JumpId": 0
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Id": 2,
+      "Offset": 304,
+      "NumFrames": 3,
+      "FrameData": [
+        {
+          "StartFrame": 1,
+          "EndFrame": 9,
+          "Offset": 44,
+          "KeygroupCount": 1,
+          "KeyGroups": [
+            {
+              "Usage": 3,
+              "Type": 6,
+              "Offset": 28,
+              "KeyframeCount": 1,
+              "Frames": [
+                {
+                  "Keyframe": {
+                    "Time": 1,
+                    "Offset": 20,
+                    "Interpolation": 1,
+                    "Unk1": 0,
+                    "Acceleration": 0,
+                    "Deceleration": 1
+                  },
+                  "Value": -1,
+                  "Padding": [
+                    0,
+                    0,
+                    0
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "StartFrame": 10,
+          "EndFrame": 19,
+          "Offset": 44,
+          "KeygroupCount": 1,
+          "KeyGroups": [
+            {
+              "Usage": 3,
+              "Type": 6,
+              "Offset": 28,
+              "KeyframeCount": 1,
+              "Frames": [
+                {
+                  "Keyframe": {
+                    "Time": 10,
+                    "Offset": 20,
+                    "Interpolation": 1,
+                    "Unk1": 0,
+                    "Acceleration": 0,
+                    "Deceleration": 1
+                  },
+                  "Value": -103,
+                  "Padding": [
+                    0,
+                    0,
+                    0
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "StartFrame": 1,
+          "EndFrame": 175,
+          "Offset": 204,
+          "KeygroupCount": 1,
+          "KeyGroups": [
+            {
+              "Usage": 0,
+              "Type": 25,
+              "Offset": 188,
+              "KeyframeCount": 9,
+              "Frames": [
+                {
+                  "Keyframe": {
+                    "Time": 1,
+                    "Offset": 20,
+                    "Interpolation": 0,
+                    "Unk1": 0,
+                    "Acceleration": 0,
+                    "Deceleration": 0
+                  },
+                  "LabelId": 17,
+                  "LabelCommand": 1,
+                  "JumpId": 0
+                },
+                {
+                  "Keyframe": {
+                    "Time": 11,
+                    "Offset": 20,
+                    "Interpolation": 0,
+                    "Unk1": 0,
+                    "Acceleration": 0,
+                    "Deceleration": 0
+                  },
+                  "LabelId": 101,
+                  "LabelCommand": 1,
+                  "JumpId": 0
+                },
+                {
+                  "Keyframe": {
+                    "Time": 21,
+                    "Offset": 20,
+                    "Interpolation": 0,
+                    "Unk1": 0,
+                    "Acceleration": 0,
+                    "Deceleration": 0
+                  },
+                  "LabelId": 102,
+                  "LabelCommand": 0,
+                  "JumpId": 0
+                },
+                {
+                  "Keyframe": {
+                    "Time": 45,
+                    "Offset": 20,
+                    "Interpolation": 0,
+                    "Unk1": 0,
+                    "Acceleration": 0,
+                    "Deceleration": 0
+                  },
+                  "LabelId": 0,
+                  "LabelCommand": 2,
+                  "JumpId": 102
+                },
+                {
+                  "Keyframe": {
+                    "Time": 46,
+                    "Offset": 20,
+                    "Interpolation": 0,
+                    "Unk1": 0,
+                    "Acceleration": 0,
+                    "Deceleration": 0
+                  },
+                  "LabelId": 103,
+                  "LabelCommand": 0,
+                  "JumpId": 0
+                },
+                {
+                  "Keyframe": {
+                    "Time": 121,
+                    "Offset": 20,
+                    "Interpolation": 0,
+                    "Unk1": 0,
+                    "Acceleration": 0,
+                    "Deceleration": 0
+                  },
+                  "LabelId": 104,
+                  "LabelCommand": 0,
+                  "JumpId": 0
+                },
+                {
+                  "Keyframe": {
+                    "Time": 160,
+                    "Offset": 20,
+                    "Interpolation": 0,
+                    "Unk1": 0,
+                    "Acceleration": 0,
+                    "Deceleration": 0
+                  },
+                  "LabelId": 0,
+                  "LabelCommand": 2,
+                  "JumpId": 104
+                },
+                {
+                  "Keyframe": {
+                    "Time": 161,
+                    "Offset": 20,
+                    "Interpolation": 0,
+                    "Unk1": 0,
+                    "Acceleration": 0,
+                    "Deceleration": 0
+                  },
+                  "LabelId": 105,
+                  "LabelCommand": 0,
+                  "JumpId": 0
+                },
+                {
+                  "Keyframe": {
+                    "Time": 175,
+                    "Offset": 20,
+                    "Interpolation": 0,
+                    "Unk1": 0,
+                    "Acceleration": 0,
+                    "Deceleration": 0
+                  },
+                  "LabelId": 0,
+                  "LabelCommand": 1,
+                  "JumpId": 0
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Id": 3,
+      "Offset": 1624,
+      "NumFrames": 6,
+      "FrameData": [
+        {
+          "StartFrame": 46,
+          "EndFrame": 61,
+          "Offset": 404,
+          "KeygroupCount": 5,
+          "KeyGroups": [
+            {
+              "Usage": 0,
+              "Type": 1,
+              "Offset": 80,
+              "KeyframeCount": 3,
+              "Frames": [
+                {
+                  "Keyframe": {
+                    "Time": 46,
+                    "Offset": 24,
+                    "Interpolation": 2,
+                    "Unk1": 0,
+                    "Acceleration": 0,
+                    "Deceleration": 1
+                  },
+                  "Value": [
+                    40,
+                    -5
+                  ]
+                },
+                {
+                  "Keyframe": {
+                    "Time": 51,
+                    "Offset": 24,
+                    "Interpolation": 1,
+                    "Unk1": 0,
+                    "Acceleration": 0,
+                    "Deceleration": 1
+                  },
+                  "Value": [
+                    -30,
+                    -5
+                  ]
+                },
+                {
+                  "Keyframe": {
+                    "Time": 61,
+                    "Offset": 24,
+                    "Interpolation": 1,
+                    "Unk1": 0,
+                    "Acceleration": 0,
+                    "Deceleration": 1
+                  },
+                  "Value": [
+                    -30,
+                    -5
+                  ]
+                }
+              ]
+            },
+            {
+              "Usage": 2,
+              "Type": 1,
+              "Offset": 80,
+              "KeyframeCount": 3,
+              "Frames": [
+                {
+                  "Keyframe": {
+                    "Time": 46,
+                    "Offset": 24,
+                    "Interpolation": 1,
+                    "Unk1": 0,
+                    "Acceleration": 0,
+                    "Deceleration": 1
+                  },
+                  "Value": [
+                    1,
+                    1
+                  ]
+                },
+                {
+                  "Keyframe": {
+                    "Time": 51,
+                    "Offset": 24,
+                    "Interpolation": 1,
+                    "Unk1": 0,
+                    "Acceleration": 0,
+                    "Deceleration": 1
+                  },
+                  "Value": [
+                    1,
+                    1
+                  ]
+                },
+                {
+                  "Keyframe": {
+                    "Time": 61,
+                    "Offset": 24,
+                    "Interpolation": 1,
+                    "Unk1": 0,
+                    "Acceleration": 0,
+                    "Deceleration": 1
+                  },
+                  "Value": [
+                    1,
+                    1
+                  ]
+                }
+              ]
+            },
+            {
+              "Usage": 3,
+              "Type": 6,
+              "Offset": 68,
+              "KeyframeCount": 3,
+              "Frames": [
+                {
+                  "Keyframe": {
+                    "Time": 46,
+                    "Offset": 20,
+                    "Interpolation": 2,
+                    "Unk1": 0,
+                    "Acceleration": 0,
+                    "Deceleration": 1
+                  },
+                  "Value": -1,
+                  "Padding": [
+                    0,
+                    0,
+                    0
+                  ]
+                },
+                {
+                  "Keyframe": {
+                    "Time": 51,
+                    "Offset": 20,
+                    "Interpolation": 1,
+                    "Unk1": 0,
+                    "Acceleration": 0,
+                    "Deceleration": 1
+                  },
+                  "Value": -1,
+                  "Padding": [
+                    0,
+                    0,
+                    0
+                  ]
+                },
+                {
+                  "Keyframe": {
+                    "Time": 61,
+                    "Offset": 20,
+                    "Interpolation": 1,
+                    "Unk1": 0,
+                    "Acceleration": 0,
+                    "Deceleration": 1
+                  },
+                  "Value": -1,
+                  "Padding": [
+                    0,
+                    0,
+                    0
+                  ]
+                }
+              ]
+            },
+            {
+              "Usage": 4,
+              "Type": 24,
+              "Offset": 92,
+              "KeyframeCount": 3,
+              "Frames": [
+                {
+                  "Keyframe": {
+                    "Time": 46,
+                    "Offset": 28,
+                    "Interpolation": 1,
+                    "Unk1": 0,
+                    "Acceleration": 0,
+                    "Deceleration": 1
+                  },
+                  "MultiplyRed": 100,
+                  "MultiplyGreen": 100,
+                  "MultiplyBlue": 100,
+                  "AddRed": 0,
+                  "AddGreen": 0,
+                  "AddBlue": 0
+                },
+                {
+                  "Keyframe": {
+                    "Time": 51,
+                    "Offset": 28,
+                    "Interpolation": 1,
+                    "Unk1": 0,
+                    "Acceleration": 0,
+                    "Deceleration": 1
+                  },
+                  "MultiplyRed": 100,
+                  "MultiplyGreen": 100,
+                  "MultiplyBlue": 100,
+                  "AddRed": 0,
+                  "AddGreen": 0,
+                  "AddBlue": 0
+                },
+                {
+                  "Keyframe": {
+                    "Time": 61,
+                    "Offset": 28,
+                    "Interpolation": 1,
+                    "Unk1": 0,
+                    "Acceleration": 0,
+                    "Deceleration": 1
+                  },
+                  "MultiplyRed": 100,
+                  "MultiplyGreen": 100,
+                  "MultiplyBlue": 100,
+                  "AddRed": 0,
+                  "AddGreen": 0,
+                  "AddBlue": 0
+                }
+              ]
+            },
+            {
+              "Usage": 5,
+              "Type": 18,
+              "Offset": 68,
+              "KeyframeCount": 3,
+              "Frames": [
+                {
+                  "Keyframe": {
+                    "Time": 46,
+                    "Offset": 20,
+                    "Interpolation": 1,
+                    "Unk1": 0,
+                    "Acceleration": 0,
+                    "Deceleration": 1
+                  },
+                  "Value": 16777217
+                },
+                {
+                  "Keyframe": {
+                    "Time": 51,
+                    "Offset": 20,
+                    "Interpolation": 1,
+                    "Unk1": 0,
+                    "Acceleration": 0,
+                    "Deceleration": 1
+                  },
+                  "Value": 16777217
+                },
+                {
+                  "Keyframe": {
+                    "Time": 61,
+                    "Offset": 20,
+                    "Interpolation": 1,
+                    "Unk1": 0,
+                    "Acceleration": 0,
+                    "Deceleration": 1
+                  },
+                  "Value": 16777217
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "StartFrame": 66,
+          "EndFrame": 76,
+          "Offset": 172,
+          "KeygroupCount": 5,
+          "KeyGroups": [
+            {
+              "Usage": 0,
+              "Type": 1,
+              "Offset": 32,
+              "KeyframeCount": 1,
+              "Frames": [
+                {
+                  "Keyframe": {
+                    "Time": 66,
+                    "Offset": 24,
+                    "Interpolation": 1,
+                    "Unk1": 0,
+                    "Acceleration": 0,
+                    "Deceleration": 1
+                  },
+                  "Value": [
+                    -30,
+                    -5
+                  ]
+                }
+              ]
+            },
+            {
+              "Usage": 2,
+              "Type": 1,
+              "Offset": 32,
+              "KeyframeCount": 1,
+              "Frames": [
+                {
+                  "Keyframe": {
+                    "Time": 66,
+                    "Offset": 24,
+                    "Interpolation": 1,
+                    "Unk1": 0,
+                    "Acceleration": 0,
+                    "Deceleration": 1
+                  },
+                  "Value": [
+                    1,
+                    1
+                  ]
+                }
+              ]
+            },
+            {
+              "Usage": 3,
+              "Type": 6,
+              "Offset": 28,
+              "KeyframeCount": 1,
+              "Frames": [
+                {
+                  "Keyframe": {
+                    "Time": 66,
+                    "Offset": 20,
+                    "Interpolation": 1,
+                    "Unk1": 0,
+                    "Acceleration": 0,
+                    "Deceleration": 1
+                  },
+                  "Value": -1,
+                  "Padding": [
+                    0,
+                    0,
+                    0
+                  ]
+                }
+              ]
+            },
+            {
+              "Usage": 4,
+              "Type": 24,
+              "Offset": 36,
+              "KeyframeCount": 1,
+              "Frames": [
+                {
+                  "Keyframe": {
+                    "Time": 66,
+                    "Offset": 28,
+                    "Interpolation": 1,
+                    "Unk1": 0,
+                    "Acceleration": 0,
+                    "Deceleration": 1
+                  },
+                  "MultiplyRed": 100,
+                  "MultiplyGreen": 100,
+                  "MultiplyBlue": 100,
+                  "AddRed": 0,
+                  "AddGreen": 0,
+                  "AddBlue": 0
+                }
+              ]
+            },
+            {
+              "Usage": 5,
+              "Type": 18,
+              "Offset": 28,
+              "KeyframeCount": 1,
+              "Frames": [
+                {
+                  "Keyframe": {
+                    "Time": 66,
+                    "Offset": 20,
+                    "Interpolation": 1,
+                    "Unk1": 0,
+                    "Acceleration": 0,
+                    "Deceleration": 1
+                  },
+                  "Value": 16777217
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "StartFrame": 81,
+          "EndFrame": 91,
+          "Offset": 172,
+          "KeygroupCount": 5,
+          "KeyGroups": [
+            {
+              "Usage": 0,
+              "Type": 1,
+              "Offset": 32,
+              "KeyframeCount": 1,
+              "Frames": [
+                {
+                  "Keyframe": {
+                    "Time": 81,
+                    "Offset": 24,
+                    "Interpolation": 1,
+                    "Unk1": 0,
+                    "Acceleration": 0,
+                    "Deceleration": 1
+                  },
+                  "Value": [
+                    -30,
+                    -5
+                  ]
+                }
+              ]
+            },
+            {
+              "Usage": 2,
+              "Type": 1,
+              "Offset": 32,
+              "KeyframeCount": 1,
+              "Frames": [
+                {
+                  "Keyframe": {
+                    "Time": 81,
+                    "Offset": 24,
+                    "Interpolation": 1,
+                    "Unk1": 0,
+                    "Acceleration": 0,
+                    "Deceleration": 1
+                  },
+                  "Value": [
+                    1,
+                    1
+                  ]
+                }
+              ]
+            },
+            {
+              "Usage": 3,
+              "Type": 6,
+              "Offset": 28,
+              "KeyframeCount": 1,
+              "Frames": [
+                {
+                  "Keyframe": {
+                    "Time": 81,
+                    "Offset": 20,
+                    "Interpolation": 1,
+                    "Unk1": 0,
+                    "Acceleration": 0,
+                    "Deceleration": 1
+                  },
+                  "Value": -1,
+                  "Padding": [
+                    0,
+                    0,
+                    0
+                  ]
+                }
+              ]
+            },
+            {
+              "Usage": 4,
+              "Type": 24,
+              "Offset": 36,
+              "KeyframeCount": 1,
+              "Frames": [
+                {
+                  "Keyframe": {
+                    "Time": 81,
+                    "Offset": 28,
+                    "Interpolation": 1,
+                    "Unk1": 0,
+                    "Acceleration": 0,
+                    "Deceleration": 1
+                  },
+                  "MultiplyRed": 100,
+                  "MultiplyGreen": 100,
+                  "MultiplyBlue": 100,
+                  "AddRed": 0,
+                  "AddGreen": 0,
+                  "AddBlue": 0
+                }
+              ]
+            },
+            {
+              "Usage": 5,
+              "Type": 18,
+              "Offset": 28,
+              "KeyframeCount": 1,
+              "Frames": [
+                {
+                  "Keyframe": {
+                    "Time": 81,
+                    "Offset": 20,
+                    "Interpolation": 1,
+                    "Unk1": 0,
+                    "Acceleration": 0,
+                    "Deceleration": 1
+                  },
+                  "Value": 16777217
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "StartFrame": 96,
+          "EndFrame": 106,
+          "Offset": 172,
+          "KeygroupCount": 5,
+          "KeyGroups": [
+            {
+              "Usage": 0,
+              "Type": 1,
+              "Offset": 32,
+              "KeyframeCount": 1,
+              "Frames": [
+                {
+                  "Keyframe": {
+                    "Time": 96,
+                    "Offset": 24,
+                    "Interpolation": 1,
+                    "Unk1": 0,
+                    "Acceleration": 0,
+                    "Deceleration": 1
+                  },
+                  "Value": [
+                    -30,
+                    -5
+                  ]
+                }
+              ]
+            },
+            {
+              "Usage": 2,
+              "Type": 1,
+              "Offset": 32,
+              "KeyframeCount": 1,
+              "Frames": [
+                {
+                  "Keyframe": {
+                    "Time": 96,
+                    "Offset": 24,
+                    "Interpolation": 1,
+                    "Unk1": 0,
+                    "Acceleration": 0,
+                    "Deceleration": 1
+                  },
+                  "Value": [
+                    1,
+                    1
+                  ]
+                }
+              ]
+            },
+            {
+              "Usage": 3,
+              "Type": 6,
+              "Offset": 28,
+              "KeyframeCount": 1,
+              "Frames": [
+                {
+                  "Keyframe": {
+                    "Time": 96,
+                    "Offset": 20,
+                    "Interpolation": 1,
+                    "Unk1": 0,
+                    "Acceleration": 0,
+                    "Deceleration": 1
+                  },
+                  "Value": -1,
+                  "Padding": [
+                    0,
+                    0,
+                    0
+                  ]
+                }
+              ]
+            },
+            {
+              "Usage": 4,
+              "Type": 24,
+              "Offset": 36,
+              "KeyframeCount": 1,
+              "Frames": [
+                {
+                  "Keyframe": {
+                    "Time": 96,
+                    "Offset": 28,
+                    "Interpolation": 1,
+                    "Unk1": 0,
+                    "Acceleration": 0,
+                    "Deceleration": 1
+                  },
+                  "MultiplyRed": 100,
+                  "MultiplyGreen": 100,
+                  "MultiplyBlue": 100,
+                  "AddRed": 0,
+                  "AddGreen": 0,
+                  "AddBlue": 0
+                }
+              ]
+            },
+            {
+              "Usage": 5,
+              "Type": 18,
+              "Offset": 28,
+              "KeyframeCount": 1,
+              "Frames": [
+                {
+                  "Keyframe": {
+                    "Time": 96,
+                    "Offset": 20,
+                    "Interpolation": 1,
+                    "Unk1": 0,
+                    "Acceleration": 0,
+                    "Deceleration": 1
+                  },
+                  "Value": 16777217
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "StartFrame": 117,
+          "EndFrame": 120,
+          "Offset": 288,
+          "KeygroupCount": 5,
+          "KeyGroups": [
+            {
+              "Usage": 0,
+              "Type": 1,
+              "Offset": 56,
+              "KeyframeCount": 2,
+              "Frames": [
+                {
+                  "Keyframe": {
+                    "Time": 117,
+                    "Offset": 24,
+                    "Interpolation": 1,
+                    "Unk1": 0,
+                    "Acceleration": 0,
+                    "Deceleration": 1
+                  },
+                  "Value": [
+                    -30,
+                    -5
+                  ]
+                },
+                {
+                  "Keyframe": {
+                    "Time": 120,
+                    "Offset": 24,
+                    "Interpolation": 1,
+                    "Unk1": 0,
+                    "Acceleration": 0,
+                    "Deceleration": 1
+                  },
+                  "Value": [
+                    -30,
+                    -5
+                  ]
+                }
+              ]
+            },
+            {
+              "Usage": 2,
+              "Type": 1,
+              "Offset": 56,
+              "KeyframeCount": 2,
+              "Frames": [
+                {
+                  "Keyframe": {
+                    "Time": 117,
+                    "Offset": 24,
+                    "Interpolation": 1,
+                    "Unk1": 0,
+                    "Acceleration": 0,
+                    "Deceleration": 1
+                  },
+                  "Value": [
+                    0.8,
+                    0.8
+                  ]
+                },
+                {
+                  "Keyframe": {
+                    "Time": 120,
+                    "Offset": 24,
+                    "Interpolation": 1,
+                    "Unk1": 0,
+                    "Acceleration": 0,
+                    "Deceleration": 1
+                  },
+                  "Value": [
+                    0.8,
+                    0.8
+                  ]
+                }
+              ]
+            },
+            {
+              "Usage": 3,
+              "Type": 6,
+              "Offset": 48,
+              "KeyframeCount": 2,
+              "Frames": [
+                {
+                  "Keyframe": {
+                    "Time": 117,
+                    "Offset": 20,
+                    "Interpolation": 1,
+                    "Unk1": 0,
+                    "Acceleration": 0,
+                    "Deceleration": 1
+                  },
+                  "Value": 0,
+                  "Padding": [
+                    0,
+                    0,
+                    0
+                  ]
+                },
+                {
+                  "Keyframe": {
+                    "Time": 120,
+                    "Offset": 20,
+                    "Interpolation": 1,
+                    "Unk1": 0,
+                    "Acceleration": 0,
+                    "Deceleration": 1
+                  },
+                  "Value": -1,
+                  "Padding": [
+                    0,
+                    0,
+                    0
+                  ]
+                }
+              ]
+            },
+            {
+              "Usage": 4,
+              "Type": 24,
+              "Offset": 64,
+              "KeyframeCount": 2,
+              "Frames": [
+                {
+                  "Keyframe": {
+                    "Time": 117,
+                    "Offset": 28,
+                    "Interpolation": 1,
+                    "Unk1": 0,
+                    "Acceleration": 0,
+                    "Deceleration": 1
+                  },
+                  "MultiplyRed": 70,
+                  "MultiplyGreen": 70,
+                  "MultiplyBlue": 70,
+                  "AddRed": 0,
+                  "AddGreen": 0,
+                  "AddBlue": 0
+                },
+                {
+                  "Keyframe": {
+                    "Time": 120,
+                    "Offset": 28,
+                    "Interpolation": 1,
+                    "Unk1": 0,
+                    "Acceleration": 0,
+                    "Deceleration": 1
+                  },
+                  "MultiplyRed": 70,
+                  "MultiplyGreen": 70,
+                  "MultiplyBlue": 70,
+                  "AddRed": 0,
+                  "AddGreen": 0,
+                  "AddBlue": 0
+                }
+              ]
+            },
+            {
+              "Usage": 5,
+              "Type": 18,
+              "Offset": 48,
+              "KeyframeCount": 2,
+              "Frames": [
+                {
+                  "Keyframe": {
+                    "Time": 117,
+                    "Offset": 20,
+                    "Interpolation": 1,
+                    "Unk1": 0,
+                    "Acceleration": 0,
+                    "Deceleration": 1
+                  },
+                  "Value": 16777217
+                },
+                {
+                  "Keyframe": {
+                    "Time": 120,
+                    "Offset": 20,
+                    "Interpolation": 1,
+                    "Unk1": 0,
+                    "Acceleration": 0,
+                    "Deceleration": 1
+                  },
+                  "Value": 16777217
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "StartFrame": 121,
+          "EndFrame": 160,
+          "Offset": 404,
+          "KeygroupCount": 5,
+          "KeyGroups": [
+            {
+              "Usage": 0,
+              "Type": 1,
+              "Offset": 80,
+              "KeyframeCount": 3,
+              "Frames": [
+                {
+                  "Keyframe": {
+                    "Time": 121,
+                    "Offset": 24,
+                    "Interpolation": 1,
+                    "Unk1": 0,
+                    "Acceleration": 0,
+                    "Deceleration": 1
+                  },
+                  "Value": [
+                    -30,
+                    -5
+                  ]
+                },
+                {
+                  "Keyframe": {
+                    "Time": 141,
+                    "Offset": 24,
+                    "Interpolation": 1,
+                    "Unk1": 0,
+                    "Acceleration": 0,
+                    "Deceleration": 1
+                  },
+                  "Value": [
+                    -30,
+                    -5
+                  ]
+                },
+                {
+                  "Keyframe": {
+                    "Time": 160,
+                    "Offset": 24,
+                    "Interpolation": 1,
+                    "Unk1": 0,
+                    "Acceleration": 0,
+                    "Deceleration": 1
+                  },
+                  "Value": [
+                    -30,
+                    -5
+                  ]
+                }
+              ]
+            },
+            {
+              "Usage": 2,
+              "Type": 1,
+              "Offset": 80,
+              "KeyframeCount": 3,
+              "Frames": [
+                {
+                  "Keyframe": {
+                    "Time": 121,
+                    "Offset": 24,
+                    "Interpolation": 1,
+                    "Unk1": 0,
+                    "Acceleration": 0,
+                    "Deceleration": 1
+                  },
+                  "Value": [
+                    0.8,
+                    0.8
+                  ]
+                },
+                {
+                  "Keyframe": {
+                    "Time": 141,
+                    "Offset": 24,
+                    "Interpolation": 1,
+                    "Unk1": 0,
+                    "Acceleration": 0,
+                    "Deceleration": 1
+                  },
+                  "Value": [
+                    0.8,
+                    0.8
+                  ]
+                },
+                {
+                  "Keyframe": {
+                    "Time": 160,
+                    "Offset": 24,
+                    "Interpolation": 1,
+                    "Unk1": 0,
+                    "Acceleration": 0,
+                    "Deceleration": 1
+                  },
+                  "Value": [
+                    0.8,
+                    0.8
+                  ]
+                }
+              ]
+            },
+            {
+              "Usage": 3,
+              "Type": 6,
+              "Offset": 68,
+              "KeyframeCount": 3,
+              "Frames": [
+                {
+                  "Keyframe": {
+                    "Time": 121,
+                    "Offset": 20,
+                    "Interpolation": 1,
+                    "Unk1": 0,
+                    "Acceleration": 0,
+                    "Deceleration": 1
+                  },
+                  "Value": -1,
+                  "Padding": [
+                    0,
+                    0,
+                    0
+                  ]
+                },
+                {
+                  "Keyframe": {
+                    "Time": 141,
+                    "Offset": 20,
+                    "Interpolation": 1,
+                    "Unk1": 0,
+                    "Acceleration": 0,
+                    "Deceleration": 1
+                  },
+                  "Value": -1,
+                  "Padding": [
+                    0,
+                    0,
+                    0
+                  ]
+                },
+                {
+                  "Keyframe": {
+                    "Time": 160,
+                    "Offset": 20,
+                    "Interpolation": 1,
+                    "Unk1": 0,
+                    "Acceleration": 0,
+                    "Deceleration": 1
+                  },
+                  "Value": -1,
+                  "Padding": [
+                    0,
+                    0,
+                    0
+                  ]
+                }
+              ]
+            },
+            {
+              "Usage": 4,
+              "Type": 24,
+              "Offset": 92,
+              "KeyframeCount": 3,
+              "Frames": [
+                {
+                  "Keyframe": {
+                    "Time": 121,
+                    "Offset": 28,
+                    "Interpolation": 1,
+                    "Unk1": 0,
+                    "Acceleration": 0,
+                    "Deceleration": 1
+                  },
+                  "MultiplyRed": 70,
+                  "MultiplyGreen": 70,
+                  "MultiplyBlue": 70,
+                  "AddRed": 0,
+                  "AddGreen": 0,
+                  "AddBlue": 0
+                },
+                {
+                  "Keyframe": {
+                    "Time": 141,
+                    "Offset": 28,
+                    "Interpolation": 1,
+                    "Unk1": 0,
+                    "Acceleration": 0,
+                    "Deceleration": 1
+                  },
+                  "MultiplyRed": 70,
+                  "MultiplyGreen": 70,
+                  "MultiplyBlue": 70,
+                  "AddRed": 30,
+                  "AddGreen": 30,
+                  "AddBlue": 30
+                },
+                {
+                  "Keyframe": {
+                    "Time": 160,
+                    "Offset": 28,
+                    "Interpolation": 1,
+                    "Unk1": 0,
+                    "Acceleration": 0,
+                    "Deceleration": 1
+                  },
+                  "MultiplyRed": 70,
+                  "MultiplyGreen": 70,
+                  "MultiplyBlue": 70,
+                  "AddRed": 0,
+                  "AddGreen": 0,
+                  "AddBlue": 0
+                }
+              ]
+            },
+            {
+              "Usage": 5,
+              "Type": 18,
+              "Offset": 68,
+              "KeyframeCount": 3,
+              "Frames": [
+                {
+                  "Keyframe": {
+                    "Time": 121,
+                    "Offset": 20,
+                    "Interpolation": 1,
+                    "Unk1": 0,
+                    "Acceleration": 0,
+                    "Deceleration": 1
+                  },
+                  "Value": 16777217
+                },
+                {
+                  "Keyframe": {
+                    "Time": 141,
+                    "Offset": 20,
+                    "Interpolation": 1,
+                    "Unk1": 0,
+                    "Acceleration": 0,
+                    "Deceleration": 1
+                  },
+                  "Value": 16777217
+                },
+                {
+                  "Keyframe": {
+                    "Time": 160,
+                    "Offset": 20,
+                    "Interpolation": 1,
+                    "Unk1": 0,
+                    "Acceleration": 0,
+                    "Deceleration": 1
+                  },
+                  "Value": 16777217
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Id": 4,
+      "Offset": 476,
+      "NumFrames": 4,
+      "FrameData": [
+        {
+          "StartFrame": 1,
+          "EndFrame": 10,
+          "Offset": 80,
+          "KeygroupCount": 2,
+          "KeyGroups": [
+            {
+              "Usage": 3,
+              "Type": 6,
+              "Offset": 28,
+              "KeyframeCount": 1,
+              "Frames": [
+                {
+                  "Keyframe": {
+                    "Time": 1,
+                    "Offset": 20,
+                    "Interpolation": 1,
+                    "Unk1": 0,
+                    "Acceleration": 0,
+                    "Deceleration": 1
+                  },
+                  "Value": -1,
+                  "Padding": [
+                    0,
+                    0,
+                    0
+                  ]
+                }
+              ]
+            },
+            {
+              "Usage": 4,
+              "Type": 24,
+              "Offset": 36,
+              "KeyframeCount": 1,
+              "Frames": [
+                {
+                  "Keyframe": {
+                    "Time": 1,
+                    "Offset": 28,
+                    "Interpolation": 1,
+                    "Unk1": 0,
+                    "Acceleration": 0,
+                    "Deceleration": 1
+                  },
+                  "MultiplyRed": 100,
+                  "MultiplyGreen": 100,
+                  "MultiplyBlue": 100,
+                  "AddRed": 0,
+                  "AddGreen": 0,
+                  "AddBlue": 0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "StartFrame": 21,
+          "EndFrame": 45,
+          "Offset": 80,
+          "KeygroupCount": 2,
+          "KeyGroups": [
+            {
+              "Usage": 3,
+              "Type": 6,
+              "Offset": 28,
+              "KeyframeCount": 1,
+              "Frames": [
+                {
+                  "Keyframe": {
+                    "Time": 21,
+                    "Offset": 20,
+                    "Interpolation": 1,
+                    "Unk1": 0,
+                    "Acceleration": 0,
+                    "Deceleration": 1
+                  },
+                  "Value": -1,
+                  "Padding": [
+                    0,
+                    0,
+                    0
+                  ]
+                }
+              ]
+            },
+            {
+              "Usage": 4,
+              "Type": 24,
+              "Offset": 36,
+              "KeyframeCount": 1,
+              "Frames": [
+                {
+                  "Keyframe": {
+                    "Time": 21,
+                    "Offset": 28,
+                    "Interpolation": 1,
+                    "Unk1": 0,
+                    "Acceleration": 0,
+                    "Deceleration": 1
+                  },
+                  "MultiplyRed": 100,
+                  "MultiplyGreen": 100,
+                  "MultiplyBlue": 100,
+                  "AddRed": 0,
+                  "AddGreen": 0,
+                  "AddBlue": 0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "StartFrame": 46,
+          "EndFrame": 160,
+          "Offset": 128,
+          "KeygroupCount": 2,
+          "KeyGroups": [
+            {
+              "Usage": 3,
+              "Type": 6,
+              "Offset": 48,
+              "KeyframeCount": 2,
+              "Frames": [
+                {
+                  "Keyframe": {
+                    "Time": 46,
+                    "Offset": 20,
+                    "Interpolation": 1,
+                    "Unk1": 0,
+                    "Acceleration": 0,
+                    "Deceleration": 1
+                  },
+                  "Value": -1,
+                  "Padding": [
+                    0,
+                    0,
+                    0
+                  ]
+                },
+                {
+                  "Keyframe": {
+                    "Time": 51,
+                    "Offset": 20,
+                    "Interpolation": 1,
+                    "Unk1": 0,
+                    "Acceleration": 0,
+                    "Deceleration": 1
+                  },
+                  "Value": -1,
+                  "Padding": [
+                    0,
+                    0,
+                    0
+                  ]
+                }
+              ]
+            },
+            {
+              "Usage": 4,
+              "Type": 24,
+              "Offset": 64,
+              "KeyframeCount": 2,
+              "Frames": [
+                {
+                  "Keyframe": {
+                    "Time": 46,
+                    "Offset": 28,
+                    "Interpolation": 1,
+                    "Unk1": 0,
+                    "Acceleration": 0,
+                    "Deceleration": 1
+                  },
+                  "MultiplyRed": 100,
+                  "MultiplyGreen": 100,
+                  "MultiplyBlue": 100,
+                  "AddRed": 0,
+                  "AddGreen": 0,
+                  "AddBlue": 0
+                },
+                {
+                  "Keyframe": {
+                    "Time": 51,
+                    "Offset": 28,
+                    "Interpolation": 1,
+                    "Unk1": 0,
+                    "Acceleration": 0,
+                    "Deceleration": 1
+                  },
+                  "MultiplyRed": 50,
+                  "MultiplyGreen": 50,
+                  "MultiplyBlue": 50,
+                  "AddRed": 0,
+                  "AddGreen": 0,
+                  "AddBlue": 0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "StartFrame": 161,
+          "EndFrame": 175,
+          "Offset": 176,
+          "KeygroupCount": 2,
+          "KeyGroups": [
+            {
+              "Usage": 3,
+              "Type": 6,
+              "Offset": 68,
+              "KeyframeCount": 3,
+              "Frames": [
+                {
+                  "Keyframe": {
+                    "Time": 161,
+                    "Offset": 20,
+                    "Interpolation": 1,
+                    "Unk1": 0,
+                    "Acceleration": 0,
+                    "Deceleration": 1
+                  },
+                  "Value": -1,
+                  "Padding": [
+                    0,
+                    0,
+                    0
+                  ]
+                },
+                {
+                  "Keyframe": {
+                    "Time": 170,
+                    "Offset": 20,
+                    "Interpolation": 1,
+                    "Unk1": 0,
+                    "Acceleration": 0,
+                    "Deceleration": 1
+                  },
+                  "Value": -1,
+                  "Padding": [
+                    0,
+                    0,
+                    0
+                  ]
+                },
+                {
+                  "Keyframe": {
+                    "Time": 175,
+                    "Offset": 20,
+                    "Interpolation": 1,
+                    "Unk1": 0,
+                    "Acceleration": 0,
+                    "Deceleration": 1
+                  },
+                  "Value": 0,
+                  "Padding": [
+                    0,
+                    0,
+                    0
+                  ]
+                }
+              ]
+            },
+            {
+              "Usage": 4,
+              "Type": 24,
+              "Offset": 92,
+              "KeyframeCount": 3,
+              "Frames": [
+                {
+                  "Keyframe": {
+                    "Time": 161,
+                    "Offset": 28,
+                    "Interpolation": 1,
+                    "Unk1": 0,
+                    "Acceleration": 0,
+                    "Deceleration": 1
+                  },
+                  "MultiplyRed": 50,
+                  "MultiplyGreen": 50,
+                  "MultiplyBlue": 50,
+                  "AddRed": 0,
+                  "AddGreen": 0,
+                  "AddBlue": 0
+                },
+                {
+                  "Keyframe": {
+                    "Time": 170,
+                    "Offset": 28,
+                    "Interpolation": 1,
+                    "Unk1": 0,
+                    "Acceleration": 0,
+                    "Deceleration": 1
+                  },
+                  "MultiplyRed": 50,
+                  "MultiplyGreen": 50,
+                  "MultiplyBlue": 50,
+                  "AddRed": 0,
+                  "AddGreen": 0,
+                  "AddBlue": 0
+                },
+                {
+                  "Keyframe": {
+                    "Time": 175,
+                    "Offset": 28,
+                    "Interpolation": 1,
+                    "Unk1": 0,
+                    "Acceleration": 0,
+                    "Deceleration": 1
+                  },
+                  "MultiplyRed": 50,
+                  "MultiplyGreen": 50,
+                  "MultiplyBlue": 50,
+                  "AddRed": 0,
+                  "AddGreen": 0,
+                  "AddBlue": 0
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Id": 5,
+      "Offset": 396,
+      "NumFrames": 3,
+      "FrameData": [
+        {
+          "StartFrame": 21,
+          "EndFrame": 45,
+          "Offset": 80,
+          "KeygroupCount": 2,
+          "KeyGroups": [
+            {
+              "Usage": 3,
+              "Type": 6,
+              "Offset": 28,
+              "KeyframeCount": 1,
+              "Frames": [
+                {
+                  "Keyframe": {
+                    "Time": 21,
+                    "Offset": 20,
+                    "Interpolation": 1,
+                    "Unk1": 0,
+                    "Acceleration": 0,
+                    "Deceleration": 1
+                  },
+                  "Value": -1,
+                  "Padding": [
+                    0,
+                    0,
+                    0
+                  ]
+                }
+              ]
+            },
+            {
+              "Usage": 4,
+              "Type": 24,
+              "Offset": 36,
+              "KeyframeCount": 1,
+              "Frames": [
+                {
+                  "Keyframe": {
+                    "Time": 21,
+                    "Offset": 28,
+                    "Interpolation": 1,
+                    "Unk1": 0,
+                    "Acceleration": 0,
+                    "Deceleration": 1
+                  },
+                  "MultiplyRed": 100,
+                  "MultiplyGreen": 100,
+                  "MultiplyBlue": 100,
+                  "AddRed": 0,
+                  "AddGreen": 0,
+                  "AddBlue": 0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "StartFrame": 46,
+          "EndFrame": 160,
+          "Offset": 128,
+          "KeygroupCount": 2,
+          "KeyGroups": [
+            {
+              "Usage": 3,
+              "Type": 6,
+              "Offset": 48,
+              "KeyframeCount": 2,
+              "Frames": [
+                {
+                  "Keyframe": {
+                    "Time": 46,
+                    "Offset": 20,
+                    "Interpolation": 1,
+                    "Unk1": 0,
+                    "Acceleration": 0,
+                    "Deceleration": 1
+                  },
+                  "Value": -1,
+                  "Padding": [
+                    0,
+                    0,
+                    0
+                  ]
+                },
+                {
+                  "Keyframe": {
+                    "Time": 51,
+                    "Offset": 20,
+                    "Interpolation": 1,
+                    "Unk1": 0,
+                    "Acceleration": 0,
+                    "Deceleration": 1
+                  },
+                  "Value": -1,
+                  "Padding": [
+                    0,
+                    0,
+                    0
+                  ]
+                }
+              ]
+            },
+            {
+              "Usage": 4,
+              "Type": 24,
+              "Offset": 64,
+              "KeyframeCount": 2,
+              "Frames": [
+                {
+                  "Keyframe": {
+                    "Time": 46,
+                    "Offset": 28,
+                    "Interpolation": 1,
+                    "Unk1": 0,
+                    "Acceleration": 0,
+                    "Deceleration": 1
+                  },
+                  "MultiplyRed": 100,
+                  "MultiplyGreen": 100,
+                  "MultiplyBlue": 100,
+                  "AddRed": 0,
+                  "AddGreen": 0,
+                  "AddBlue": 0
+                },
+                {
+                  "Keyframe": {
+                    "Time": 51,
+                    "Offset": 28,
+                    "Interpolation": 1,
+                    "Unk1": 0,
+                    "Acceleration": 0,
+                    "Deceleration": 1
+                  },
+                  "MultiplyRed": 50,
+                  "MultiplyGreen": 50,
+                  "MultiplyBlue": 50,
+                  "AddRed": 0,
+                  "AddGreen": 0,
+                  "AddBlue": 0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "StartFrame": 161,
+          "EndFrame": 175,
+          "Offset": 176,
+          "KeygroupCount": 2,
+          "KeyGroups": [
+            {
+              "Usage": 3,
+              "Type": 6,
+              "Offset": 68,
+              "KeyframeCount": 3,
+              "Frames": [
+                {
+                  "Keyframe": {
+                    "Time": 161,
+                    "Offset": 20,
+                    "Interpolation": 1,
+                    "Unk1": 0,
+                    "Acceleration": 0,
+                    "Deceleration": 1
+                  },
+                  "Value": -1,
+                  "Padding": [
+                    0,
+                    0,
+                    0
+                  ]
+                },
+                {
+                  "Keyframe": {
+                    "Time": 170,
+                    "Offset": 20,
+                    "Interpolation": 1,
+                    "Unk1": 0,
+                    "Acceleration": 0,
+                    "Deceleration": 1
+                  },
+                  "Value": -1,
+                  "Padding": [
+                    0,
+                    0,
+                    0
+                  ]
+                },
+                {
+                  "Keyframe": {
+                    "Time": 175,
+                    "Offset": 20,
+                    "Interpolation": 1,
+                    "Unk1": 0,
+                    "Acceleration": 0,
+                    "Deceleration": 1
+                  },
+                  "Value": 0,
+                  "Padding": [
+                    0,
+                    0,
+                    0
+                  ]
+                }
+              ]
+            },
+            {
+              "Usage": 4,
+              "Type": 24,
+              "Offset": 92,
+              "KeyframeCount": 3,
+              "Frames": [
+                {
+                  "Keyframe": {
+                    "Time": 161,
+                    "Offset": 28,
+                    "Interpolation": 1,
+                    "Unk1": 0,
+                    "Acceleration": 0,
+                    "Deceleration": 1
+                  },
+                  "MultiplyRed": 50,
+                  "MultiplyGreen": 50,
+                  "MultiplyBlue": 50,
+                  "AddRed": 0,
+                  "AddGreen": 0,
+                  "AddBlue": 0
+                },
+                {
+                  "Keyframe": {
+                    "Time": 170,
+                    "Offset": 28,
+                    "Interpolation": 1,
+                    "Unk1": 0,
+                    "Acceleration": 0,
+                    "Deceleration": 1
+                  },
+                  "MultiplyRed": 50,
+                  "MultiplyGreen": 50,
+                  "MultiplyBlue": 50,
+                  "AddRed": 0,
+                  "AddGreen": 0,
+                  "AddBlue": 0
+                },
+                {
+                  "Keyframe": {
+                    "Time": 175,
+                    "Offset": 28,
+                    "Interpolation": 1,
+                    "Unk1": 0,
+                    "Acceleration": 0,
+                    "Deceleration": 1
+                  },
+                  "MultiplyRed": 50,
+                  "MultiplyGreen": 50,
+                  "MultiplyBlue": 50,
+                  "AddRed": 0,
+                  "AddGreen": 0,
+                  "AddBlue": 0
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Id": 6,
+      "Offset": 476,
+      "NumFrames": 4,
+      "FrameData": [
+        {
+          "StartFrame": 1,
+          "EndFrame": 10,
+          "Offset": 80,
+          "KeygroupCount": 2,
+          "KeyGroups": [
+            {
+              "Usage": 3,
+              "Type": 6,
+              "Offset": 28,
+              "KeyframeCount": 1,
+              "Frames": [
+                {
+                  "Keyframe": {
+                    "Time": 1,
+                    "Offset": 20,
+                    "Interpolation": 1,
+                    "Unk1": 0,
+                    "Acceleration": 0,
+                    "Deceleration": 1
+                  },
+                  "Value": -1,
+                  "Padding": [
+                    0,
+                    0,
+                    0
+                  ]
+                }
+              ]
+            },
+            {
+              "Usage": 4,
+              "Type": 24,
+              "Offset": 36,
+              "KeyframeCount": 1,
+              "Frames": [
+                {
+                  "Keyframe": {
+                    "Time": 1,
+                    "Offset": 28,
+                    "Interpolation": 1,
+                    "Unk1": 0,
+                    "Acceleration": 0,
+                    "Deceleration": 1
+                  },
+                  "MultiplyRed": 100,
+                  "MultiplyGreen": 100,
+                  "MultiplyBlue": 100,
+                  "AddRed": 0,
+                  "AddGreen": 0,
+                  "AddBlue": 0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "StartFrame": 21,
+          "EndFrame": 45,
+          "Offset": 80,
+          "KeygroupCount": 2,
+          "KeyGroups": [
+            {
+              "Usage": 3,
+              "Type": 6,
+              "Offset": 28,
+              "KeyframeCount": 1,
+              "Frames": [
+                {
+                  "Keyframe": {
+                    "Time": 21,
+                    "Offset": 20,
+                    "Interpolation": 1,
+                    "Unk1": 0,
+                    "Acceleration": 0,
+                    "Deceleration": 1
+                  },
+                  "Value": -1,
+                  "Padding": [
+                    0,
+                    0,
+                    0
+                  ]
+                }
+              ]
+            },
+            {
+              "Usage": 4,
+              "Type": 24,
+              "Offset": 36,
+              "KeyframeCount": 1,
+              "Frames": [
+                {
+                  "Keyframe": {
+                    "Time": 21,
+                    "Offset": 28,
+                    "Interpolation": 1,
+                    "Unk1": 0,
+                    "Acceleration": 0,
+                    "Deceleration": 1
+                  },
+                  "MultiplyRed": 100,
+                  "MultiplyGreen": 100,
+                  "MultiplyBlue": 100,
+                  "AddRed": 0,
+                  "AddGreen": 0,
+                  "AddBlue": 0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "StartFrame": 46,
+          "EndFrame": 160,
+          "Offset": 128,
+          "KeygroupCount": 2,
+          "KeyGroups": [
+            {
+              "Usage": 3,
+              "Type": 6,
+              "Offset": 48,
+              "KeyframeCount": 2,
+              "Frames": [
+                {
+                  "Keyframe": {
+                    "Time": 46,
+                    "Offset": 20,
+                    "Interpolation": 1,
+                    "Unk1": 0,
+                    "Acceleration": 0,
+                    "Deceleration": 1
+                  },
+                  "Value": -1,
+                  "Padding": [
+                    0,
+                    0,
+                    0
+                  ]
+                },
+                {
+                  "Keyframe": {
+                    "Time": 51,
+                    "Offset": 20,
+                    "Interpolation": 1,
+                    "Unk1": 0,
+                    "Acceleration": 0,
+                    "Deceleration": 1
+                  },
+                  "Value": -1,
+                  "Padding": [
+                    0,
+                    0,
+                    0
+                  ]
+                }
+              ]
+            },
+            {
+              "Usage": 4,
+              "Type": 24,
+              "Offset": 64,
+              "KeyframeCount": 2,
+              "Frames": [
+                {
+                  "Keyframe": {
+                    "Time": 46,
+                    "Offset": 28,
+                    "Interpolation": 1,
+                    "Unk1": 0,
+                    "Acceleration": 0,
+                    "Deceleration": 1
+                  },
+                  "MultiplyRed": 100,
+                  "MultiplyGreen": 100,
+                  "MultiplyBlue": 100,
+                  "AddRed": 0,
+                  "AddGreen": 0,
+                  "AddBlue": 0
+                },
+                {
+                  "Keyframe": {
+                    "Time": 51,
+                    "Offset": 28,
+                    "Interpolation": 1,
+                    "Unk1": 0,
+                    "Acceleration": 0,
+                    "Deceleration": 1
+                  },
+                  "MultiplyRed": 50,
+                  "MultiplyGreen": 50,
+                  "MultiplyBlue": 50,
+                  "AddRed": 0,
+                  "AddGreen": 0,
+                  "AddBlue": 0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "StartFrame": 161,
+          "EndFrame": 175,
+          "Offset": 176,
+          "KeygroupCount": 2,
+          "KeyGroups": [
+            {
+              "Usage": 3,
+              "Type": 6,
+              "Offset": 68,
+              "KeyframeCount": 3,
+              "Frames": [
+                {
+                  "Keyframe": {
+                    "Time": 161,
+                    "Offset": 20,
+                    "Interpolation": 1,
+                    "Unk1": 0,
+                    "Acceleration": 0,
+                    "Deceleration": 1
+                  },
+                  "Value": -1,
+                  "Padding": [
+                    0,
+                    0,
+                    0
+                  ]
+                },
+                {
+                  "Keyframe": {
+                    "Time": 170,
+                    "Offset": 20,
+                    "Interpolation": 1,
+                    "Unk1": 0,
+                    "Acceleration": 0,
+                    "Deceleration": 1
+                  },
+                  "Value": -1,
+                  "Padding": [
+                    0,
+                    0,
+                    0
+                  ]
+                },
+                {
+                  "Keyframe": {
+                    "Time": 175,
+                    "Offset": 20,
+                    "Interpolation": 1,
+                    "Unk1": 0,
+                    "Acceleration": 0,
+                    "Deceleration": 1
+                  },
+                  "Value": 0,
+                  "Padding": [
+                    0,
+                    0,
+                    0
+                  ]
+                }
+              ]
+            },
+            {
+              "Usage": 4,
+              "Type": 24,
+              "Offset": 92,
+              "KeyframeCount": 3,
+              "Frames": [
+                {
+                  "Keyframe": {
+                    "Time": 161,
+                    "Offset": 28,
+                    "Interpolation": 1,
+                    "Unk1": 0,
+                    "Acceleration": 0,
+                    "Deceleration": 1
+                  },
+                  "MultiplyRed": 50,
+                  "MultiplyGreen": 50,
+                  "MultiplyBlue": 50,
+                  "AddRed": 0,
+                  "AddGreen": 0,
+                  "AddBlue": 0
+                },
+                {
+                  "Keyframe": {
+                    "Time": 170,
+                    "Offset": 28,
+                    "Interpolation": 1,
+                    "Unk1": 0,
+                    "Acceleration": 0,
+                    "Deceleration": 1
+                  },
+                  "MultiplyRed": 50,
+                  "MultiplyGreen": 50,
+                  "MultiplyBlue": 50,
+                  "AddRed": 0,
+                  "AddGreen": 0,
+                  "AddBlue": 0
+                },
+                {
+                  "Keyframe": {
+                    "Time": 175,
+                    "Offset": 28,
+                    "Interpolation": 1,
+                    "Unk1": 0,
+                    "Acceleration": 0,
+                    "Deceleration": 1
+                  },
+                  "MultiplyRed": 50,
+                  "MultiplyGreen": 50,
+                  "MultiplyBlue": 50,
+                  "AddRed": 0,
+                  "AddGreen": 0,
+                  "AddBlue": 0
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Id": 7,
+      "Offset": 76,
+      "NumFrames": 1,
+      "FrameData": [
+        {
+          "StartFrame": 21,
+          "EndFrame": 45,
+          "Offset": 64,
+          "KeygroupCount": 1,
+          "KeyGroups": [
+            {
+              "Usage": 5,
+              "Type": 12,
+              "Offset": 48,
+              "KeyframeCount": 2,
+              "Frames": [
+                {
+                  "Keyframe": {
+                    "Time": 21,
+                    "Offset": 20,
+                    "Interpolation": 1,
+                    "Unk1": 0,
+                    "Acceleration": 0,
+                    "Deceleration": 0
+                  },
+                  "Value": 0,
+                  "Padding": [
+                    0,
+                    0
+                  ]
+                },
+                {
+                  "Keyframe": {
+                    "Time": 45,
+                    "Offset": 20,
+                    "Interpolation": 0,
+                    "Unk1": 0,
+                    "Acceleration": 0,
+                    "Deceleration": 0
+                  },
+                  "Value": 13,
+                  "Padding": [
+                    0,
+                    0
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Id": 8,
+      "Offset": 648,
+      "NumFrames": 4,
+      "FrameData": [
+        {
+          "StartFrame": 1,
+          "EndFrame": 10,
+          "Offset": 108,
+          "KeygroupCount": 3,
+          "KeyGroups": [
+            {
+              "Usage": 3,
+              "Type": 6,
+              "Offset": 28,
+              "KeyframeCount": 1,
+              "Frames": [
+                {
+                  "Keyframe": {
+                    "Time": 1,
+                    "Offset": 20,
+                    "Interpolation": 1,
+                    "Unk1": 0,
+                    "Acceleration": 0,
+                    "Deceleration": 1
+                  },
+                  "Value": -1,
+                  "Padding": [
+                    0,
+                    0,
+                    0
+                  ]
+                }
+              ]
+            },
+            {
+              "Usage": 4,
+              "Type": 24,
+              "Offset": 36,
+              "KeyframeCount": 1,
+              "Frames": [
+                {
+                  "Keyframe": {
+                    "Time": 1,
+                    "Offset": 28,
+                    "Interpolation": 1,
+                    "Unk1": 0,
+                    "Acceleration": 0,
+                    "Deceleration": 1
+                  },
+                  "MultiplyRed": 100,
+                  "MultiplyGreen": 100,
+                  "MultiplyBlue": 100,
+                  "AddRed": 0,
+                  "AddGreen": 0,
+                  "AddBlue": 0
+                }
+              ]
+            },
+            {
+              "Usage": 5,
+              "Type": 12,
+              "Offset": 28,
+              "KeyframeCount": 1,
+              "Frames": [
+                {
+                  "Keyframe": {
+                    "Time": 1,
+                    "Offset": 20,
+                    "Interpolation": 0,
+                    "Unk1": 0,
+                    "Acceleration": 0,
+                    "Deceleration": 0
+                  },
+                  "Value": 1,
+                  "Padding": [
+                    0,
+                    0
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "StartFrame": 21,
+          "EndFrame": 45,
+          "Offset": 108,
+          "KeygroupCount": 3,
+          "KeyGroups": [
+            {
+              "Usage": 3,
+              "Type": 6,
+              "Offset": 28,
+              "KeyframeCount": 1,
+              "Frames": [
+                {
+                  "Keyframe": {
+                    "Time": 21,
+                    "Offset": 20,
+                    "Interpolation": 1,
+                    "Unk1": 0,
+                    "Acceleration": 0,
+                    "Deceleration": 1
+                  },
+                  "Value": -1,
+                  "Padding": [
+                    0,
+                    0,
+                    0
+                  ]
+                }
+              ]
+            },
+            {
+              "Usage": 4,
+              "Type": 24,
+              "Offset": 36,
+              "KeyframeCount": 1,
+              "Frames": [
+                {
+                  "Keyframe": {
+                    "Time": 21,
+                    "Offset": 28,
+                    "Interpolation": 1,
+                    "Unk1": 0,
+                    "Acceleration": 0,
+                    "Deceleration": 1
+                  },
+                  "MultiplyRed": 100,
+                  "MultiplyGreen": 100,
+                  "MultiplyBlue": 100,
+                  "AddRed": 0,
+                  "AddGreen": 0,
+                  "AddBlue": 0
+                }
+              ]
+            },
+            {
+              "Usage": 5,
+              "Type": 12,
+              "Offset": 28,
+              "KeyframeCount": 1,
+              "Frames": [
+                {
+                  "Keyframe": {
+                    "Time": 21,
+                    "Offset": 20,
+                    "Interpolation": 0,
+                    "Unk1": 0,
+                    "Acceleration": 0,
+                    "Deceleration": 0
+                  },
+                  "Value": 2,
+                  "Padding": [
+                    0,
+                    0
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "StartFrame": 46,
+          "EndFrame": 160,
+          "Offset": 176,
+          "KeygroupCount": 3,
+          "KeyGroups": [
+            {
+              "Usage": 3,
+              "Type": 6,
+              "Offset": 48,
+              "KeyframeCount": 2,
+              "Frames": [
+                {
+                  "Keyframe": {
+                    "Time": 46,
+                    "Offset": 20,
+                    "Interpolation": 1,
+                    "Unk1": 0,
+                    "Acceleration": 0,
+                    "Deceleration": 1
+                  },
+                  "Value": -1,
+                  "Padding": [
+                    0,
+                    0,
+                    0
+                  ]
+                },
+                {
+                  "Keyframe": {
+                    "Time": 51,
+                    "Offset": 20,
+                    "Interpolation": 1,
+                    "Unk1": 0,
+                    "Acceleration": 0,
+                    "Deceleration": 1
+                  },
+                  "Value": -1,
+                  "Padding": [
+                    0,
+                    0,
+                    0
+                  ]
+                }
+              ]
+            },
+            {
+              "Usage": 4,
+              "Type": 24,
+              "Offset": 64,
+              "KeyframeCount": 2,
+              "Frames": [
+                {
+                  "Keyframe": {
+                    "Time": 46,
+                    "Offset": 28,
+                    "Interpolation": 1,
+                    "Unk1": 0,
+                    "Acceleration": 0,
+                    "Deceleration": 1
+                  },
+                  "MultiplyRed": 100,
+                  "MultiplyGreen": 100,
+                  "MultiplyBlue": 100,
+                  "AddRed": 0,
+                  "AddGreen": 0,
+                  "AddBlue": 0
+                },
+                {
+                  "Keyframe": {
+                    "Time": 51,
+                    "Offset": 28,
+                    "Interpolation": 1,
+                    "Unk1": 0,
+                    "Acceleration": 0,
+                    "Deceleration": 1
+                  },
+                  "MultiplyRed": 50,
+                  "MultiplyGreen": 50,
+                  "MultiplyBlue": 50,
+                  "AddRed": 0,
+                  "AddGreen": 0,
+                  "AddBlue": 0
+                }
+              ]
+            },
+            {
+              "Usage": 5,
+              "Type": 12,
+              "Offset": 48,
+              "KeyframeCount": 2,
+              "Frames": [
+                {
+                  "Keyframe": {
+                    "Time": 46,
+                    "Offset": 20,
+                    "Interpolation": 0,
+                    "Unk1": 0,
+                    "Acceleration": 0,
+                    "Deceleration": 0
+                  },
+                  "Value": 2,
+                  "Padding": [
+                    0,
+                    0
+                  ]
+                },
+                {
+                  "Keyframe": {
+                    "Time": 51,
+                    "Offset": 20,
+                    "Interpolation": 0,
+                    "Unk1": 0,
+                    "Acceleration": 0,
+                    "Deceleration": 0
+                  },
+                  "Value": 2,
+                  "Padding": [
+                    0,
+                    0
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "StartFrame": 161,
+          "EndFrame": 175,
+          "Offset": 244,
+          "KeygroupCount": 3,
+          "KeyGroups": [
+            {
+              "Usage": 3,
+              "Type": 6,
+              "Offset": 68,
+              "KeyframeCount": 3,
+              "Frames": [
+                {
+                  "Keyframe": {
+                    "Time": 161,
+                    "Offset": 20,
+                    "Interpolation": 1,
+                    "Unk1": 0,
+                    "Acceleration": 0,
+                    "Deceleration": 1
+                  },
+                  "Value": -1,
+                  "Padding": [
+                    0,
+                    0,
+                    0
+                  ]
+                },
+                {
+                  "Keyframe": {
+                    "Time": 170,
+                    "Offset": 20,
+                    "Interpolation": 1,
+                    "Unk1": 0,
+                    "Acceleration": 0,
+                    "Deceleration": 1
+                  },
+                  "Value": -1,
+                  "Padding": [
+                    0,
+                    0,
+                    0
+                  ]
+                },
+                {
+                  "Keyframe": {
+                    "Time": 175,
+                    "Offset": 20,
+                    "Interpolation": 1,
+                    "Unk1": 0,
+                    "Acceleration": 0,
+                    "Deceleration": 1
+                  },
+                  "Value": 0,
+                  "Padding": [
+                    0,
+                    0,
+                    0
+                  ]
+                }
+              ]
+            },
+            {
+              "Usage": 4,
+              "Type": 24,
+              "Offset": 92,
+              "KeyframeCount": 3,
+              "Frames": [
+                {
+                  "Keyframe": {
+                    "Time": 161,
+                    "Offset": 28,
+                    "Interpolation": 1,
+                    "Unk1": 0,
+                    "Acceleration": 0,
+                    "Deceleration": 1
+                  },
+                  "MultiplyRed": 50,
+                  "MultiplyGreen": 50,
+                  "MultiplyBlue": 50,
+                  "AddRed": 0,
+                  "AddGreen": 0,
+                  "AddBlue": 0
+                },
+                {
+                  "Keyframe": {
+                    "Time": 170,
+                    "Offset": 28,
+                    "Interpolation": 1,
+                    "Unk1": 0,
+                    "Acceleration": 0,
+                    "Deceleration": 1
+                  },
+                  "MultiplyRed": 50,
+                  "MultiplyGreen": 50,
+                  "MultiplyBlue": 50,
+                  "AddRed": 0,
+                  "AddGreen": 0,
+                  "AddBlue": 0
+                },
+                {
+                  "Keyframe": {
+                    "Time": 175,
+                    "Offset": 28,
+                    "Interpolation": 1,
+                    "Unk1": 0,
+                    "Acceleration": 0,
+                    "Deceleration": 1
+                  },
+                  "MultiplyRed": 50,
+                  "MultiplyGreen": 50,
+                  "MultiplyBlue": 50,
+                  "AddRed": 0,
+                  "AddGreen": 0,
+                  "AddBlue": 0
+                }
+              ]
+            },
+            {
+              "Usage": 5,
+              "Type": 12,
+              "Offset": 68,
+              "KeyframeCount": 3,
+              "Frames": [
+                {
+                  "Keyframe": {
+                    "Time": 161,
+                    "Offset": 20,
+                    "Interpolation": 0,
+                    "Unk1": 0,
+                    "Acceleration": 0,
+                    "Deceleration": 0
+                  },
+                  "Value": 2,
+                  "Padding": [
+                    0,
+                    0
+                  ]
+                },
+                {
+                  "Keyframe": {
+                    "Time": 170,
+                    "Offset": 20,
+                    "Interpolation": 0,
+                    "Unk1": 0,
+                    "Acceleration": 0,
+                    "Deceleration": 0
+                  },
+                  "Value": 2,
+                  "Padding": [
+                    0,
+                    0
+                  ]
+                },
+                {
+                  "Keyframe": {
+                    "Time": 175,
+                    "Offset": 20,
+                    "Interpolation": 0,
+                    "Unk1": 0,
+                    "Acceleration": 0,
+                    "Deceleration": 0
+                  },
+                  "Value": 2,
+                  "Padding": [
+                    0,
+                    0
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "SecondHeader": {
+    "Identifier": "atkh",
+    "Version": "0100",
+    "AssetListOffset": 0,
+    "PartListOffset": 0,
+    "ComponentListOffset": 0,
+    "TimelineListOffset": 0,
+    "WidgetOffset": 36,
+    "RewriteDataOffset": 0,
+    "TimelineListSize": 0
+  },
+  "WidgetHeader": {
+    "Identifier": "wdhd",
+    "Version": "0100",
+    "ElementCount": 1,
+    "Unk1": 0
+  },
+  "WidgetData": {
+    "Id": 1,
+    "AlignmentType": 2,
+    "AssetsHaveThemeSupport": false,
+    "X": 0,
+    "Y": 0,
+    "NodeCount": 2,
+    "Offset": 204,
+    "Nodes": [
+      {
+        "NodeId": 1,
+        "ParentId": 0,
+        "NextSiblingId": 0,
+        "PrevSiblingId": 0,
+        "ChildNodeId": 2,
+        "NodeType": 1,
+        "NodeOffset": 88,
+        "TabIndex": 0,
+        "Unk1": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "X": 0,
+        "Y": 0,
+        "W": 160,
+        "H": 26,
+        "Rotation": 0,
+        "ScaleX": 1,
+        "ScaleY": 1,
+        "OriginX": 0,
+        "OriginY": 0,
+        "Priority": 0,
+        "field1": 91,
+        "Visible": false,
+        "Enabled": true,
+        "Clip": false,
+        "Fill": true,
+        "AnchorTop": true,
+        "AnchorBottom": false,
+        "AnchorLeft": true,
+        "AnchorRight": true,
+        "Unk2": 0,
+        "MultiplyRed": 100,
+        "MultiplyGreen": 100,
+        "MultiplyBlue": 100,
+        "AddRed": 0,
+        "AddGreen": 0,
+        "AddBlue": 0,
+        "Alpha": 255,
+        "ClipCount": 0,
+        "TimelineId": 0,
+        "Node": null,
+        "UnknownNodeData": null
+      },
+      {
+        "NodeId": 2,
+        "ParentId": 1,
+        "NextSiblingId": 0,
+        "PrevSiblingId": 0,
+        "ChildNodeId": 0,
+        "NodeType": 1001,
+        "NodeOffset": 100,
+        "TabIndex": 0,
+        "Unk1": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "X": 0,
+        "Y": 0,
+        "W": 160,
+        "H": 26,
+        "Rotation": 0,
+        "ScaleX": 1,
+        "ScaleY": 1,
+        "OriginX": 0,
+        "OriginY": 0,
+        "Priority": 0,
+        "field1": 83,
+        "Visible": false,
+        "Enabled": true,
+        "Clip": false,
+        "Fill": true,
+        "AnchorTop": false,
+        "AnchorBottom": false,
+        "AnchorLeft": true,
+        "AnchorRight": true,
+        "Unk2": 0,
+        "MultiplyRed": 100,
+        "MultiplyGreen": 100,
+        "MultiplyBlue": 100,
+        "AddRed": 0,
+        "AddGreen": 0,
+        "AddBlue": 0,
+        "Alpha": 255,
+        "ClipCount": 0,
+        "TimelineId": 0,
+        "Node": {
+          "Index": 0,
+          "Up": 0,
+          "Down": 0,
+          "Left": 0,
+          "Right": 0,
+          "Cursor": 0,
+          "RepeatUp": false,
+          "RepeatDown": false,
+          "RepeatLeft": false,
+          "RepeatRight": false,
+          "Unk1": 0,
+          "Unk2": 0,
+          "OffsetX": 0,
+          "OffsetY": 0,
+          "ComponentNodeData": null
+        },
+        "UnknownNodeData": null
+      }
+    ]
+  }
+}

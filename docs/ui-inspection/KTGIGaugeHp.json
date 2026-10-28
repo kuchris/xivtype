@@ -1,0 +1,787 @@
+{
+  "CombineHeader": {
+    "Identifier": "uldh",
+    "Version": "0100",
+    "ComponentOffset": 16,
+    "WidgetOffset": 824
+  },
+  "ComponentHeader": {
+    "Identifier": "atkh",
+    "Version": "0100",
+    "AssetListOffset": 36,
+    "PartListOffset": 108,
+    "ComponentListOffset": 232,
+    "TimelineListOffset": 0,
+    "WidgetOffset": 0,
+    "RewriteDataOffset": 0,
+    "TimelineListSize": 0
+  },
+  "AssetList": {
+    "Identifier": "ashd",
+    "Version": "0101",
+    "ElementCount": 1,
+    "Unk1": 0
+  },
+  "AssetData": [
+    {
+      "Id": 1,
+      "Path": "ui/uld/PartyList_GaugeHP.tex\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000",
+      "IconId": 0,
+      "ThemeSupportBitmask": 0
+    }
+  ],
+  "PartList": {
+    "Identifier": "tphd",
+    "Version": "0100",
+    "ElementCount": 1,
+    "Unk1": 0
+  },
+  "Parts": [
+    {
+      "Id": 1,
+      "PartCount": 8,
+      "Offset": 108,
+      "Parts": [
+        {
+          "TextureId": 1,
+          "U": 16,
+          "V": 0,
+          "W": 96,
+          "H": 16
+        },
+        {
+          "TextureId": 1,
+          "U": 0,
+          "V": 0,
+          "W": 16,
+          "H": 48
+        },
+        {
+          "TextureId": 1,
+          "U": 16,
+          "V": 16,
+          "W": 16,
+          "H": 16
+        },
+        {
+          "TextureId": 1,
+          "U": 64,
+          "V": 16,
+          "W": 48,
+          "H": 16
+        },
+        {
+          "TextureId": 1,
+          "U": 32,
+          "V": 16,
+          "W": 16,
+          "H": 16
+        },
+        {
+          "TextureId": 1,
+          "U": 16,
+          "V": 32,
+          "W": 16,
+          "H": 16
+        },
+        {
+          "TextureId": 1,
+          "U": 112,
+          "V": 0,
+          "W": 16,
+          "H": 48
+        },
+        {
+          "TextureId": 1,
+          "U": 48,
+          "V": 16,
+          "W": 16,
+          "H": 16
+        }
+      ]
+    }
+  ],
+  "ComponentList": {
+    "Identifier": "cohd",
+    "Version": "0100",
+    "ElementCount": 1,
+    "Unk1": 0
+  },
+  "Components": [
+    {
+      "Id": 1001,
+      "ShouldIgnoreInput": false,
+      "DragArrow": false,
+      "DropArrow": false,
+      "Type": 5,
+      "NodeCount": 5,
+      "Size": 560,
+      "Offset": 48,
+      "Component": {
+        "Data": [
+          4,
+          5,
+          0,
+          2,
+          3,
+          0
+        ],
+        "VerticalMargin": 0,
+        "HorizontalMargin": 4,
+        "IsVertical": false,
+        "Padding": [
+          0,
+          0,
+          0
+        ]
+      },
+      "Nodes": [
+        {
+          "NodeId": 1,
+          "ParentId": 0,
+          "NextSiblingId": 0,
+          "PrevSiblingId": 0,
+          "ChildNodeId": 5,
+          "NodeType": 1,
+          "NodeOffset": 88,
+          "TabIndex": 0,
+          "Unk1": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "X": 0,
+          "Y": 0,
+          "W": 96,
+          "H": 48,
+          "Rotation": 0,
+          "ScaleX": 1,
+          "ScaleY": 1,
+          "OriginX": 0,
+          "OriginY": 0,
+          "Priority": 0,
+          "field1": 91,
+          "Visible": false,
+          "Enabled": true,
+          "Clip": false,
+          "Fill": true,
+          "AnchorTop": true,
+          "AnchorBottom": false,
+          "AnchorLeft": true,
+          "AnchorRight": true,
+          "Unk2": 0,
+          "MultiplyRed": 100,
+          "MultiplyGreen": 100,
+          "MultiplyBlue": 100,
+          "AddRed": 0,
+          "AddGreen": 0,
+          "AddBlue": 0,
+          "Alpha": 255,
+          "ClipCount": 0,
+          "TimelineId": 0,
+          "Node": null,
+          "UnknownNodeData": null
+        },
+        {
+          "NodeId": 2,
+          "ParentId": 1,
+          "NextSiblingId": 0,
+          "PrevSiblingId": 3,
+          "ChildNodeId": 0,
+          "NodeType": 4,
+          "NodeOffset": 108,
+          "TabIndex": 0,
+          "Unk1": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "X": 0,
+          "Y": 0,
+          "W": 96,
+          "H": 48,
+          "Rotation": 0,
+          "ScaleX": 1,
+          "ScaleY": 1,
+          "OriginX": 5,
+          "OriginY": 0,
+          "Priority": 0,
+          "field1": 83,
+          "Visible": false,
+          "Enabled": true,
+          "Clip": false,
+          "Fill": true,
+          "AnchorTop": false,
+          "AnchorBottom": false,
+          "AnchorLeft": true,
+          "AnchorRight": true,
+          "Unk2": 0,
+          "MultiplyRed": 100,
+          "MultiplyGreen": 100,
+          "MultiplyBlue": 100,
+          "AddRed": 0,
+          "AddGreen": 0,
+          "AddBlue": 0,
+          "Alpha": 255,
+          "ClipCount": 0,
+          "TimelineId": 0,
+          "Node": {
+            "PartListId": 1,
+            "PartId": 1,
+            "GridPartsType": 0,
+            "GridRenderType": 0,
+            "TopOffset": 0,
+            "BottomOffset": 0,
+            "LeftOffset": 6,
+            "RightOffset": 6,
+            "BlendMode": 2,
+            "Unk1": 2,
+            "Unk2": 0
+          },
+          "UnknownNodeData": null
+        },
+        {
+          "NodeId": 3,
+          "ParentId": 1,
+          "NextSiblingId": 2,
+          "PrevSiblingId": 4,
+          "ChildNodeId": 0,
+          "NodeType": 4,
+          "NodeOffset": 108,
+          "TabIndex": 0,
+          "Unk1": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "X": 0,
+          "Y": 0,
+          "W": 96,
+          "H": 48,
+          "Rotation": 0,
+          "ScaleX": 1,
+          "ScaleY": 1,
+          "OriginX": 5,
+          "OriginY": 0,
+          "Priority": 0,
+          "field1": 83,
+          "Visible": false,
+          "Enabled": true,
+          "Clip": false,
+          "Fill": true,
+          "AnchorTop": false,
+          "AnchorBottom": false,
+          "AnchorLeft": true,
+          "AnchorRight": true,
+          "Unk2": 0,
+          "MultiplyRed": 100,
+          "MultiplyGreen": 100,
+          "MultiplyBlue": 100,
+          "AddRed": 0,
+          "AddGreen": 0,
+          "AddBlue": 0,
+          "Alpha": 255,
+          "ClipCount": 0,
+          "TimelineId": 0,
+          "Node": {
+            "PartListId": 1,
+            "PartId": 1,
+            "GridPartsType": 0,
+            "GridRenderType": 0,
+            "TopOffset": 0,
+            "BottomOffset": 0,
+            "LeftOffset": 6,
+            "RightOffset": 6,
+            "BlendMode": 2,
+            "Unk1": 2,
+            "Unk2": 0
+          },
+          "UnknownNodeData": null
+        },
+        {
+          "NodeId": 4,
+          "ParentId": 1,
+          "NextSiblingId": 3,
+          "PrevSiblingId": 5,
+          "ChildNodeId": 0,
+          "NodeType": 4,
+          "NodeOffset": 108,
+          "TabIndex": 0,
+          "Unk1": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "X": 0,
+          "Y": 16,
+          "W": 96,
+          "H": 16,
+          "Rotation": 0,
+          "ScaleX": 1,
+          "ScaleY": 1,
+          "OriginX": 5,
+          "OriginY": 0,
+          "Priority": 0,
+          "field1": 83,
+          "Visible": false,
+          "Enabled": true,
+          "Clip": false,
+          "Fill": true,
+          "AnchorTop": false,
+          "AnchorBottom": false,
+          "AnchorLeft": true,
+          "AnchorRight": true,
+          "Unk2": 0,
+          "MultiplyRed": 100,
+          "MultiplyGreen": 100,
+          "MultiplyBlue": 100,
+          "AddRed": 0,
+          "AddGreen": 0,
+          "AddBlue": 0,
+          "Alpha": 255,
+          "ClipCount": 0,
+          "TimelineId": 0,
+          "Node": {
+            "PartListId": 1,
+            "PartId": 2,
+            "GridPartsType": 0,
+            "GridRenderType": 0,
+            "TopOffset": 0,
+            "BottomOffset": 0,
+            "LeftOffset": 6,
+            "RightOffset": 6,
+            "BlendMode": 0,
+            "Unk1": 0,
+            "Unk2": 0
+          },
+          "UnknownNodeData": null
+        },
+        {
+          "NodeId": 5,
+          "ParentId": 1,
+          "NextSiblingId": 4,
+          "PrevSiblingId": 0,
+          "ChildNodeId": 0,
+          "NodeType": 2,
+          "NodeOffset": 100,
+          "TabIndex": 0,
+          "Unk1": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "X": 0,
+          "Y": 16,
+          "W": 96,
+          "H": 16,
+          "Rotation": 0,
+          "ScaleX": 1,
+          "ScaleY": 1,
+          "OriginX": 6,
+          "OriginY": 0,
+          "Priority": 0,
+          "field1": 211,
+          "Visible": true,
+          "Enabled": true,
+          "Clip": false,
+          "Fill": true,
+          "AnchorTop": false,
+          "AnchorBottom": false,
+          "AnchorLeft": true,
+          "AnchorRight": true,
+          "Unk2": 0,
+          "MultiplyRed": 100,
+          "MultiplyGreen": 100,
+          "MultiplyBlue": 100,
+          "AddRed": 0,
+          "AddGreen": 0,
+          "AddBlue": 0,
+          "Alpha": 255,
+          "ClipCount": 0,
+          "TimelineId": 0,
+          "Node": {
+            "PartListId": 1,
+            "PartId": 0,
+            "FlipH": false,
+            "FlipV": false,
+            "Wrap": 1,
+            "Unk1": 0
+          },
+          "UnknownNodeData": null
+        }
+      ]
+    }
+  ],
+  "TimelineList": {
+    "Identifier": "atkh",
+    "Version": "0100",
+    "ElementCount": 36,
+    "Unk1": 108
+  },
+  "Timelines": [
+    {
+      "Id": 232,
+      "Offset": 0,
+      "NumFrames": 0,
+      "FrameData": []
+    },
+    {
+      "Id": 232,
+      "Offset": 0,
+      "NumFrames": 0,
+      "FrameData": []
+    },
+    {
+      "Id": 232,
+      "Offset": 0,
+      "NumFrames": 0,
+      "FrameData": []
+    },
+    {
+      "Id": 232,
+      "Offset": 0,
+      "NumFrames": 0,
+      "FrameData": []
+    },
+    {
+      "Id": 232,
+      "Offset": 0,
+      "NumFrames": 0,
+      "FrameData": []
+    },
+    {
+      "Id": 232,
+      "Offset": 0,
+      "NumFrames": 0,
+      "FrameData": []
+    },
+    {
+      "Id": 232,
+      "Offset": 0,
+      "NumFrames": 0,
+      "FrameData": []
+    },
+    {
+      "Id": 232,
+      "Offset": 0,
+      "NumFrames": 0,
+      "FrameData": []
+    },
+    {
+      "Id": 232,
+      "Offset": 0,
+      "NumFrames": 0,
+      "FrameData": []
+    },
+    {
+      "Id": 232,
+      "Offset": 0,
+      "NumFrames": 0,
+      "FrameData": []
+    },
+    {
+      "Id": 232,
+      "Offset": 0,
+      "NumFrames": 0,
+      "FrameData": []
+    },
+    {
+      "Id": 232,
+      "Offset": 0,
+      "NumFrames": 0,
+      "FrameData": []
+    },
+    {
+      "Id": 232,
+      "Offset": 0,
+      "NumFrames": 0,
+      "FrameData": []
+    },
+    {
+      "Id": 232,
+      "Offset": 0,
+      "NumFrames": 0,
+      "FrameData": []
+    },
+    {
+      "Id": 232,
+      "Offset": 0,
+      "NumFrames": 0,
+      "FrameData": []
+    },
+    {
+      "Id": 232,
+      "Offset": 0,
+      "NumFrames": 0,
+      "FrameData": []
+    },
+    {
+      "Id": 232,
+      "Offset": 0,
+      "NumFrames": 0,
+      "FrameData": []
+    },
+    {
+      "Id": 232,
+      "Offset": 0,
+      "NumFrames": 0,
+      "FrameData": []
+    },
+    {
+      "Id": 232,
+      "Offset": 0,
+      "NumFrames": 0,
+      "FrameData": []
+    },
+    {
+      "Id": 232,
+      "Offset": 0,
+      "NumFrames": 0,
+      "FrameData": []
+    },
+    {
+      "Id": 232,
+      "Offset": 0,
+      "NumFrames": 0,
+      "FrameData": []
+    },
+    {
+      "Id": 232,
+      "Offset": 0,
+      "NumFrames": 0,
+      "FrameData": []
+    },
+    {
+      "Id": 232,
+      "Offset": 0,
+      "NumFrames": 0,
+      "FrameData": []
+    },
+    {
+      "Id": 232,
+      "Offset": 0,
+      "NumFrames": 0,
+      "FrameData": []
+    },
+    {
+      "Id": 232,
+      "Offset": 0,
+      "NumFrames": 0,
+      "FrameData": []
+    },
+    {
+      "Id": 232,
+      "Offset": 0,
+      "NumFrames": 0,
+      "FrameData": []
+    },
+    {
+      "Id": 232,
+      "Offset": 0,
+      "NumFrames": 0,
+      "FrameData": []
+    },
+    {
+      "Id": 232,
+      "Offset": 0,
+      "NumFrames": 0,
+      "FrameData": []
+    },
+    {
+      "Id": 232,
+      "Offset": 0,
+      "NumFrames": 0,
+      "FrameData": []
+    },
+    {
+      "Id": 232,
+      "Offset": 0,
+      "NumFrames": 0,
+      "FrameData": []
+    },
+    {
+      "Id": 232,
+      "Offset": 0,
+      "NumFrames": 0,
+      "FrameData": []
+    },
+    {
+      "Id": 232,
+      "Offset": 0,
+      "NumFrames": 0,
+      "FrameData": []
+    },
+    {
+      "Id": 232,
+      "Offset": 0,
+      "NumFrames": 0,
+      "FrameData": []
+    },
+    {
+      "Id": 232,
+      "Offset": 0,
+      "NumFrames": 0,
+      "FrameData": []
+    },
+    {
+      "Id": 232,
+      "Offset": 0,
+      "NumFrames": 0,
+      "FrameData": []
+    },
+    {
+      "Id": 232,
+      "Offset": 0,
+      "NumFrames": 0,
+      "FrameData": []
+    }
+  ],
+  "SecondHeader": {
+    "Identifier": "atkh",
+    "Version": "0100",
+    "AssetListOffset": 0,
+    "PartListOffset": 0,
+    "ComponentListOffset": 0,
+    "TimelineListOffset": 0,
+    "WidgetOffset": 36,
+    "RewriteDataOffset": 0,
+    "TimelineListSize": 0
+  },
+  "WidgetHeader": {
+    "Identifier": "wdhd",
+    "Version": "0100",
+    "ElementCount": 1,
+    "Unk1": 0
+  },
+  "WidgetData": {
+    "Id": 1,
+    "AlignmentType": 0,
+    "AssetsHaveThemeSupport": false,
+    "X": 0,
+    "Y": 0,
+    "NodeCount": 2,
+    "Offset": 220,
+    "Nodes": [
+      {
+        "NodeId": 1,
+        "ParentId": 0,
+        "NextSiblingId": 0,
+        "PrevSiblingId": 0,
+        "ChildNodeId": 2,
+        "NodeType": 1,
+        "NodeOffset": 88,
+        "TabIndex": 0,
+        "Unk1": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "X": 0,
+        "Y": 0,
+        "W": 96,
+        "H": 48,
+        "Rotation": 0,
+        "ScaleX": 1,
+        "ScaleY": 1,
+        "OriginX": 0,
+        "OriginY": 0,
+        "Priority": 0,
+        "field1": 91,
+        "Visible": false,
+        "Enabled": true,
+        "Clip": false,
+        "Fill": true,
+        "AnchorTop": true,
+        "AnchorBottom": false,
+        "AnchorLeft": true,
+        "AnchorRight": true,
+        "Unk2": 0,
+        "MultiplyRed": 100,
+        "MultiplyGreen": 100,
+        "MultiplyBlue": 100,
+        "AddRed": 0,
+        "AddGreen": 0,
+        "AddBlue": 0,
+        "Alpha": 255,
+        "ClipCount": 0,
+        "TimelineId": 0,
+        "Node": null,
+        "UnknownNodeData": null
+      },
+      {
+        "NodeId": 2,
+        "ParentId": 1,
+        "NextSiblingId": 0,
+        "PrevSiblingId": 0,
+        "ChildNodeId": 0,
+        "NodeType": 1001,
+        "NodeOffset": 116,
+        "TabIndex": 0,
+        "Unk1": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "X": 0,
+        "Y": 0,
+        "W": 96,
+        "H": 48,
+        "Rotation": 0,
+        "ScaleX": 1,
+        "ScaleY": 1,
+        "OriginX": 0,
+        "OriginY": 0,
+        "Priority": 0,
+        "field1": 83,
+        "Visible": false,
+        "Enabled": true,
+        "Clip": false,
+        "Fill": true,
+        "AnchorTop": false,
+        "AnchorBottom": false,
+        "AnchorLeft": true,
+        "AnchorRight": true,
+        "Unk2": 0,
+        "MultiplyRed": 100,
+        "MultiplyGreen": 100,
+        "MultiplyBlue": 100,
+        "AddRed": 0,
+        "AddGreen": 0,
+        "AddBlue": 0,
+        "Alpha": 255,
+        "ClipCount": 0,
+        "TimelineId": 0,
+        "Node": {
+          "Index": 0,
+          "Up": 0,
+          "Down": 0,
+          "Left": 0,
+          "Right": 0,
+          "Cursor": 0,
+          "RepeatUp": false,
+          "RepeatDown": false,
+          "RepeatLeft": false,
+          "RepeatRight": false,
+          "Unk1": 0,
+          "Unk2": 0,
+          "OffsetX": 0,
+          "OffsetY": 0,
+          "ComponentNodeData": {
+            "Indicator": 0,
+            "Min": 0,
+            "Max": 0,
+            "Value": 0
+          }
+        },
+        "UnknownNodeData": null
+      }
+    ]
+  }
+}

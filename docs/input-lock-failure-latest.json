@@ -1,0 +1,72 @@
+{
+  "Version": "0.1.15.0",
+  "GameForeground": true,
+  "BackgroundTyping": true,
+  "GameInputRoute": "TextInput; ownerMatches=True; callback=True; active=False; enabled=True",
+  "SystemKeyEvents": 0,
+  "InputAllowed": true,
+  "InputLockSeconds": 0,
+  "InputBlockReason": "Ready.",
+  "EnemyJammerActive": false,
+  "EnemyJammerAction": 0,
+  "EditOperations": 745,
+  "SubmitOperations": 101,
+  "PreventAfk": true,
+  "AfkKeysSent": 9,
+  "AfkKeysAcknowledged": 8,
+  "AfkStatus": "Targeted activity key observed by the game; full-duty AFK protection remains unverified.",
+  "LastInputBefore": 0,
+  "LastInputAfter": 0,
+  "InputTimers": {
+    "Available": true,
+    "Territory": 1359,
+    "AfkTimer": 0,
+    "ContentInputTimer": 0,
+    "InputTimer": 0,
+    "InstanceContentAfkTimeLimit": 600
+  },
+  "running": true,
+  "continuous": true,
+  "probe": false,
+  "Status": "Typing \u0027astral remnant\u0027 (8/14).",
+  "target": "astral remnant",
+  "targetNode": 20004,
+  "expected": "astral r",
+  "pending": false,
+  "submitted": false,
+  "clearing": false,
+  "ownsInput": true,
+  "TypingDelayMs": 100,
+  "ClearDelayMs": 0,
+  "KeyHoldMs": 35,
+  "EffectiveKeyHoldMs": 35,
+  "editRetries": 0,
+  "submitRetries": 0,
+  "Input": "astral r",
+  "Words": [
+    {
+      "NodeId": 20004,
+      "Text": "astral remnant",
+      "Masked": true
+    },
+    {
+      "NodeId": 20002,
+      "Text": "chocoking\u0027s cape",
+      "Masked": false
+    },
+    {
+      "NodeId": 20001,
+      "Text": "Varvados bracelet",
+      "Masked": false
+    },
+    {
+      "NodeId": 2,
+      "Text": "yellow megaphone",
+      "Masked": false
+    }
+  ],
+  "Score": 38320,
+  "Ready": true,
+  "accepted": 745,
+  "submissions": 101
+}

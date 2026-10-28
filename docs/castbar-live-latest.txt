@@ -1,0 +1,7 @@
+Addon=KTGEnemyCastBar; Id=131; FocusNode=0; ComponentFocus=0
+value[0] Int: 100
+value[1] Int: 1
+value[2] Int: 1
+value[3] Int: 190
+node 1/2/2/4 type=3 visible=True text=Tankbuster
+

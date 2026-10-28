@@ -1,0 +1,11 @@
+Synthetic layout from shipped KTGEnemyCastBar ULD and the user's screenshot caption; not a live capture.
+Addon=KTGEnemyCastBar;
+node 1 type=1 visible=True text=
+node 1/2 type=1001 visible=True text=
+node 1/2/1 type=1 visible=True text=
+node 1/2/1/2 type=1 visible=True text=
+node 1/2/1/2/4 type=3 visible=True text=Burst
+node 1/20001 type=1001 visible=True text=
+node 1/20001/1 type=1 visible=True text=
+node 1/20001/1/2 type=1 visible=True text=
+node 1/20001/1/2/4 type=3 visible=True text=Dynamic Sensory Jammer

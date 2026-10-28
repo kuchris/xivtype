@@ -1,0 +1,333 @@
+{
+  "Version": "0.1.9.0",
+  "DurationSeconds": 8,
+  "AllSamplesBackground": true,
+  "StartingSubmissions": 22,
+  "EndingSubmissions": 29,
+  "StartingScore": 26370,
+  "EndingScore": 29170,
+  "SystemKeyEvents": 0,
+  "Passed": true,
+  "Samples": [
+    {
+      "Time": "2026-10-28T18:57:33.2369736+09:00",
+      "Foreground": false,
+      "Running": true,
+      "Submissions": 22,
+      "Score": 26770,
+      "SystemKeyEvents": 0
+    },
+    {
+      "Time": "2026-10-28T18:57:33.4466717+09:00",
+      "Foreground": false,
+      "Running": true,
+      "Submissions": 22,
+      "Score": 26770,
+      "SystemKeyEvents": 0
+    },
+    {
+      "Time": "2026-10-28T18:57:33.6480519+09:00",
+      "Foreground": false,
+      "Running": true,
+      "Submissions": 22,
+      "Score": 26770,
+      "SystemKeyEvents": 0
+    },
+    {
+      "Time": "2026-10-28T18:57:33.8490881+09:00",
+      "Foreground": false,
+      "Running": true,
+      "Submissions": 22,
+      "Score": 26770,
+      "SystemKeyEvents": 0
+    },
+    {
+      "Time": "2026-10-28T18:57:34.0496112+09:00",
+      "Foreground": false,
+      "Running": true,
+      "Submissions": 23,
+      "Score": 26770,
+      "SystemKeyEvents": 0
+    },
+    {
+      "Time": "2026-10-28T18:57:34.2633141+09:00",
+      "Foreground": false,
+      "Running": true,
+      "Submissions": 23,
+      "Score": 27170,
+      "SystemKeyEvents": 0
+    },
+    {
+      "Time": "2026-10-28T18:57:34.4634158+09:00",
+      "Foreground": false,
+      "Running": true,
+      "Submissions": 23,
+      "Score": 27170,
+      "SystemKeyEvents": 0
+    },
+    {
+      "Time": "2026-10-28T18:57:34.6638858+09:00",
+      "Foreground": false,
+      "Running": true,
+      "Submissions": 23,
+      "Score": 27170,
+      "SystemKeyEvents": 0
+    },
+    {
+      "Time": "2026-10-28T18:57:34.8649062+09:00",
+      "Foreground": false,
+      "Running": true,
+      "Submissions": 24,
+      "Score": 27170,
+      "SystemKeyEvents": 0
+    },
+    {
+      "Time": "2026-10-28T18:57:35.0652731+09:00",
+      "Foreground": false,
+      "Running": true,
+      "Submissions": 24,
+      "Score": 27570,
+      "SystemKeyEvents": 0
+    },
+    {
+      "Time": "2026-10-28T18:57:35.2783410+09:00",
+      "Foreground": false,
+      "Running": true,
+      "Submissions": 24,
+      "Score": 27570,
+      "SystemKeyEvents": 0
+    },
+    {
+      "Time": "2026-10-28T18:57:35.4791114+09:00",
+      "Foreground": false,
+      "Running": true,
+      "Submissions": 24,
+      "Score": 27570,
+      "SystemKeyEvents": 0
+    },
+    {
+      "Time": "2026-10-28T18:57:35.6796567+09:00",
+      "Foreground": false,
+      "Running": true,
+      "Submissions": 24,
+      "Score": 27570,
+      "SystemKeyEvents": 0
+    },
+    {
+      "Time": "2026-10-28T18:57:35.8807672+09:00",
+      "Foreground": false,
+      "Running": true,
+      "Submissions": 25,
+      "Score": 27970,
+      "SystemKeyEvents": 0
+    },
+    {
+      "Time": "2026-10-28T18:57:36.0811156+09:00",
+      "Foreground": false,
+      "Running": true,
+      "Submissions": 25,
+      "Score": 27970,
+      "SystemKeyEvents": 0
+    },
+    {
+      "Time": "2026-10-28T18:57:36.2950421+09:00",
+      "Foreground": false,
+      "Running": true,
+      "Submissions": 25,
+      "Score": 27970,
+      "SystemKeyEvents": 0
+    },
+    {
+      "Time": "2026-10-28T18:57:36.4958208+09:00",
+      "Foreground": false,
+      "Running": true,
+      "Submissions": 25,
+      "Score": 27970,
+      "SystemKeyEvents": 0
+    },
+    {
+      "Time": "2026-10-28T18:57:36.6964117+09:00",
+      "Foreground": false,
+      "Running": true,
+      "Submissions": 25,
+      "Score": 27970,
+      "SystemKeyEvents": 0
+    },
+    {
+      "Time": "2026-10-28T18:57:36.8967357+09:00",
+      "Foreground": false,
+      "Running": true,
+      "Submissions": 26,
+      "Score": 27970,
+      "SystemKeyEvents": 0
+    },
+    {
+      "Time": "2026-10-28T18:57:37.0981016+09:00",
+      "Foreground": false,
+      "Running": true,
+      "Submissions": 26,
+      "Score": 28370,
+      "SystemKeyEvents": 0
+    },
+    {
+      "Time": "2026-10-28T18:57:37.2988936+09:00",
+      "Foreground": false,
+      "Running": true,
+      "Submissions": 26,
+      "Score": 28370,
+      "SystemKeyEvents": 0
+    },
+    {
+      "Time": "2026-10-28T18:57:37.5134253+09:00",
+      "Foreground": false,
+      "Running": true,
+      "Submissions": 26,
+      "Score": 28370,
+      "SystemKeyEvents": 0
+    },
+    {
+      "Time": "2026-10-28T18:57:37.7136784+09:00",
+      "Foreground": false,
+      "Running": true,
+      "Submissions": 27,
+      "Score": 28370,
+      "SystemKeyEvents": 0
+    },
+    {
+      "Time": "2026-10-28T18:57:37.9145178+09:00",
+      "Foreground": false,
+      "Running": true,
+      "Submissions": 27,
+      "Score": 28770,
+      "SystemKeyEvents": 0
+    },
+    {
+      "Time": "2026-10-28T18:57:38.1152312+09:00",
+      "Foreground": false,
+      "Running": true,
+      "Submissions": 27,
+      "Score": 28770,
+      "SystemKeyEvents": 0
+    },
+    {
+      "Time": "2026-10-28T18:57:38.3156314+09:00",
+      "Foreground": false,
+      "Running": true,
+      "Submissions": 27,
+      "Score": 28770,
+      "SystemKeyEvents": 0
+    },
+    {
+      "Time": "2026-10-28T18:57:38.5288942+09:00",
+      "Foreground": false,
+      "Running": true,
+      "Submissions": 27,
+      "Score": 28770,
+      "SystemKeyEvents": 0
+    },
+    {
+      "Time": "2026-10-28T18:57:38.7295818+09:00",
+      "Foreground": false,
+      "Running": true,
+      "Submissions": 27,
+      "Score": 28770,
+      "SystemKeyEvents": 0
+    },
+    {
+      "Time": "2026-10-28T18:57:38.9303728+09:00",
+      "Foreground": false,
+      "Running": true,
+      "Submissions": 27,
+      "Score": 28770,
+      "SystemKeyEvents": 0
+    },
+    {
+      "Time": "2026-10-28T18:57:39.1304458+09:00",
+      "Foreground": false,
+      "Running": true,
+      "Submissions": 27,
+      "Score": 28770,
+      "SystemKeyEvents": 0
+    },
+    {
+      "Time": "2026-10-28T18:57:39.3306531+09:00",
+      "Foreground": false,
+      "Running": true,
+      "Submissions": 27,
+      "Score": 28770,
+      "SystemKeyEvents": 0
+    },
+    {
+      "Time": "2026-10-28T18:57:39.5439656+09:00",
+      "Foreground": false,
+      "Running": true,
+      "Submissions": 28,
+      "Score": 28770,
+      "SystemKeyEvents": 0
+    },
+    {
+      "Time": "2026-10-28T18:57:39.7445011+09:00",
+      "Foreground": false,
+      "Running": true,
+      "Submissions": 28,
+      "Score": 28770,
+      "SystemKeyEvents": 0
+    },
+    {
+      "Time": "2026-10-28T18:57:39.9447324+09:00",
+      "Foreground": false,
+      "Running": true,
+      "Submissions": 28,
+      "Score": 29170,
+      "SystemKeyEvents": 0
+    },
+    {
+      "Time": "2026-10-28T18:57:40.1449178+09:00",
+      "Foreground": false,
+      "Running": true,
+      "Submissions": 28,
+      "Score": 29170,
+      "SystemKeyEvents": 0
+    },
+    {
+      "Time": "2026-10-28T18:57:40.3455197+09:00",
+      "Foreground": false,
+      "Running": true,
+      "Submissions": 28,
+      "Score": 29170,
+      "SystemKeyEvents": 0
+    },
+    {
+      "Time": "2026-10-28T18:57:40.5596143+09:00",
+      "Foreground": false,
+      "Running": true,
+      "Submissions": 28,
+      "Score": 29170,
+      "SystemKeyEvents": 0
+    },
+    {
+      "Time": "2026-10-28T18:57:40.7604683+09:00",
+      "Foreground": false,
+      "Running": true,
+      "Submissions": 28,
+      "Score": 29170,
+      "SystemKeyEvents": 0
+    },
+    {
+      "Time": "2026-10-28T18:57:40.9610079+09:00",
+      "Foreground": false,
+      "Running": true,
+      "Submissions": 28,
+      "Score": 29170,
+      "SystemKeyEvents": 0
+    },
+    {
+      "Time": "2026-10-28T18:57:41.1622291+09:00",
+      "Foreground": false,
+      "Running": true,
+      "Submissions": 29,
+      "Score": 29170,
+      "SystemKeyEvents": 0
+    }
+  ]
+}

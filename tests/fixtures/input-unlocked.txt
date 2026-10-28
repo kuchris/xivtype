@@ -1,0 +1,9 @@
+Addon=KTGInput; Id=131; FocusNode=0; ComponentFocus=0
+value[0] Int: 6
+value[1] ManagedString: 
+value[2] Bool: 1
+value[3] Bool: 0
+value[4] Int: 0
+node 1/2/7/16 type=3 visible=True text=alexa
+node 1/2/6 type=3 visible=True text=
+

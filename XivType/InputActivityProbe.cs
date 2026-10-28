@@ -1,0 +1,74 @@
+using System.Diagnostics;
+using System.Text.Json;
+using FFXIVClientStructs.FFXIV.Client.UI;
+using FFXIVClientStructs.FFXIV.Client.UI.Misc;
+using FFXIVClientStructs.FFXIV.Client.System.Input;
+
+namespace XivType;
+
+// Explicit, bounded lobby diagnostic. No timer writes and no global SendInput.
+internal sealed unsafe partial class InputActivityProbe(DiagnosticStore diagnostics)
+{
+    private readonly TargetedActivityInput input = new();
+    private readonly List<object> samples = [];
+    private long started;
+    private bool active;
+    private bool held;
+    private nint window;
+    private float before;
+    private bool sawShift;
+    private bool sawReset;
+    private bool allBackground;
+
+    internal void Begin()
+    {
+        if (!Plugin.Client.IsLoggedIn || Plugin.Client.TerritoryType != 1360 || active) return;
+        var timers = InputTimerModule.Instance();
+        if (timers == null || timers->InputTimer < 2) return;
+        window = Process.GetCurrentProcess().MainWindowHandle;
+        if (window == 0) return;
+        samples.Clear();
+        before = timers->InputTimer;
+        started = Environment.TickCount64;
+        sawShift = sawReset = false;
+        allBackground = !NativeInput.IsGameForeground();
+        active = true;
+        held = input.PressShift();
+        Plugin.Log.Information("XivType activity probe started; targeted Shift queued={Queued}; input timer={Before}", held, before);
+    }
+
+    internal void Update(long now)
+    {
+        if (!active) return;
+        var timers = InputTimerModule.Instance();
+        var data = UIInputData.Instance();
+        if (timers != null && data != null)
+        {
+            var shift = data->GetKeyState(0x10);
+            var foreground = NativeInput.IsGameForeground();
+            allBackground &= !foreground;
+            sawShift |= (shift & (KeyStateFlags.Down | KeyStateFlags.Pressed)) != 0;
+            sawReset |= timers->InputTimer < 0.5f;
+            samples.Add(new { ElapsedMs = now - started, Foreground = foreground,
+                InputTimer = timers->InputTimer, ShiftState = shift.ToString(), KeyboardChanged = data->KeyboardInputsChanged });
+        }
+        if (held && now - started >= 250)
+        {
+            input.ReleaseShift();
+            held = false;
+        }
+        if (now - started < 3000) return;
+        active = false;
+        var report = new { BeforeInputTimer = before, SawShift = sawShift, SawNaturalTimerReset = sawReset,
+            AllBackground = allBackground, Passed = sawShift && sawReset && allBackground, Samples = samples };
+        diagnostics.Write("activity-probe.json", JsonSerializer.Serialize(report, new JsonSerializerOptions { WriteIndented = true }));
+        Plugin.Log.Information("XivType activity probe complete: keyboard={Keyboard}, natural reset={Reset}, background={Background}", sawShift, sawReset, allBackground);
+    }
+
+    internal void Dispose()
+    {
+        if (held) input.ReleaseShift();
+        held = active = false;
+    }
+
+}

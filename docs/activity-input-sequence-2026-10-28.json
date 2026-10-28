@@ -1,0 +1,1133 @@
+{
+  "Version": "0.1.14.0",
+  "DurationSeconds": 63.3230405,
+  "Completed": 3,
+  "Requested": 3,
+  "Passed": true,
+  "Pulses": [
+    {
+      "Pulse": 1,
+      "At": "2026-10-28T19:36:12.1959272+09:00",
+      "Result": {
+        "BeforeInputTimer": 37.01072,
+        "SawShift": true,
+        "SawNaturalTimerReset": true,
+        "AllBackground": true,
+        "Passed": true,
+        "Samples": [
+          {
+            "ElapsedMs": 0,
+            "Foreground": false,
+            "InputTimer": 37.01072,
+            "ShiftState": "None",
+            "KeyboardChanged": false
+          },
+          {
+            "ElapsedMs": 47,
+            "Foreground": false,
+            "InputTimer": 37.070564,
+            "ShiftState": "None",
+            "KeyboardChanged": false
+          },
+          {
+            "ElapsedMs": 109,
+            "Foreground": false,
+            "InputTimer": 0,
+            "ShiftState": "Down, Pressed",
+            "KeyboardChanged": true
+          },
+          {
+            "ElapsedMs": 172,
+            "Foreground": false,
+            "InputTimer": 0,
+            "ShiftState": "Down",
+            "KeyboardChanged": false
+          },
+          {
+            "ElapsedMs": 234,
+            "Foreground": false,
+            "InputTimer": 0,
+            "ShiftState": "Down",
+            "KeyboardChanged": false
+          },
+          {
+            "ElapsedMs": 297,
+            "Foreground": false,
+            "InputTimer": 0,
+            "ShiftState": "Down",
+            "KeyboardChanged": false
+          },
+          {
+            "ElapsedMs": 344,
+            "Foreground": false,
+            "InputTimer": 0,
+            "ShiftState": "Down, Held",
+            "KeyboardChanged": false
+          },
+          {
+            "ElapsedMs": 406,
+            "Foreground": false,
+            "InputTimer": 0,
+            "ShiftState": "Released",
+            "KeyboardChanged": false
+          },
+          {
+            "ElapsedMs": 469,
+            "Foreground": false,
+            "InputTimer": 0.0583261,
+            "ShiftState": "None",
+            "KeyboardChanged": false
+          },
+          {
+            "ElapsedMs": 531,
+            "Foreground": false,
+            "InputTimer": 0.115943894,
+            "ShiftState": "None",
+            "KeyboardChanged": false
+          },
+          {
+            "ElapsedMs": 578,
+            "Foreground": false,
+            "InputTimer": 0.17376149,
+            "ShiftState": "None",
+            "KeyboardChanged": false
+          },
+          {
+            "ElapsedMs": 641,
+            "Foreground": false,
+            "InputTimer": 0.23168159,
+            "ShiftState": "None",
+            "KeyboardChanged": false
+          },
+          {
+            "ElapsedMs": 703,
+            "Foreground": false,
+            "InputTimer": 0.2905874,
+            "ShiftState": "None",
+            "KeyboardChanged": false
+          },
+          {
+            "ElapsedMs": 766,
+            "Foreground": false,
+            "InputTimer": 0.3510926,
+            "ShiftState": "None",
+            "KeyboardChanged": false
+          },
+          {
+            "ElapsedMs": 828,
+            "Foreground": false,
+            "InputTimer": 0.4103446,
+            "ShiftState": "None",
+            "KeyboardChanged": false
+          },
+          {
+            "ElapsedMs": 875,
+            "Foreground": false,
+            "InputTimer": 0.4708015,
+            "ShiftState": "None",
+            "KeyboardChanged": false
+          },
+          {
+            "ElapsedMs": 938,
+            "Foreground": false,
+            "InputTimer": 0.5295758,
+            "ShiftState": "None",
+            "KeyboardChanged": false
+          },
+          {
+            "ElapsedMs": 1000,
+            "Foreground": false,
+            "InputTimer": 0.58812934,
+            "ShiftState": "None",
+            "KeyboardChanged": false
+          },
+          {
+            "ElapsedMs": 1063,
+            "Foreground": false,
+            "InputTimer": 0.64687073,
+            "ShiftState": "None",
+            "KeyboardChanged": false
+          },
+          {
+            "ElapsedMs": 1109,
+            "Foreground": false,
+            "InputTimer": 0.7061675,
+            "ShiftState": "None",
+            "KeyboardChanged": false
+          },
+          {
+            "ElapsedMs": 1172,
+            "Foreground": false,
+            "InputTimer": 0.7647298,
+            "ShiftState": "None",
+            "KeyboardChanged": false
+          },
+          {
+            "ElapsedMs": 1234,
+            "Foreground": false,
+            "InputTimer": 0.8240028,
+            "ShiftState": "None",
+            "KeyboardChanged": false
+          },
+          {
+            "ElapsedMs": 1297,
+            "Foreground": false,
+            "InputTimer": 0.8838932,
+            "ShiftState": "None",
+            "KeyboardChanged": false
+          },
+          {
+            "ElapsedMs": 1344,
+            "Foreground": false,
+            "InputTimer": 0.9418249,
+            "ShiftState": "None",
+            "KeyboardChanged": false
+          },
+          {
+            "ElapsedMs": 1406,
+            "Foreground": false,
+            "InputTimer": 1.0000287,
+            "ShiftState": "None",
+            "KeyboardChanged": false
+          },
+          {
+            "ElapsedMs": 1469,
+            "Foreground": false,
+            "InputTimer": 1.0592027,
+            "ShiftState": "None",
+            "KeyboardChanged": false
+          },
+          {
+            "ElapsedMs": 1531,
+            "Foreground": false,
+            "InputTimer": 1.1183755,
+            "ShiftState": "None",
+            "KeyboardChanged": false
+          },
+          {
+            "ElapsedMs": 1594,
+            "Foreground": false,
+            "InputTimer": 1.1788864,
+            "ShiftState": "None",
+            "KeyboardChanged": false
+          },
+          {
+            "ElapsedMs": 1641,
+            "Foreground": false,
+            "InputTimer": 1.2380606,
+            "ShiftState": "None",
+            "KeyboardChanged": false
+          },
+          {
+            "ElapsedMs": 1703,
+            "Foreground": false,
+            "InputTimer": 1.2982262,
+            "ShiftState": "None",
+            "KeyboardChanged": false
+          },
+          {
+            "ElapsedMs": 1766,
+            "Foreground": false,
+            "InputTimer": 1.3580152,
+            "ShiftState": "None",
+            "KeyboardChanged": false
+          },
+          {
+            "ElapsedMs": 1828,
+            "Foreground": false,
+            "InputTimer": 1.4186614,
+            "ShiftState": "None",
+            "KeyboardChanged": false
+          },
+          {
+            "ElapsedMs": 1891,
+            "Foreground": false,
+            "InputTimer": 1.4786873,
+            "ShiftState": "None",
+            "KeyboardChanged": false
+          },
+          {
+            "ElapsedMs": 1953,
+            "Foreground": false,
+            "InputTimer": 1.5377895,
+            "ShiftState": "None",
+            "KeyboardChanged": false
+          },
+          {
+            "ElapsedMs": 2000,
+            "Foreground": false,
+            "InputTimer": 1.5969725,
+            "ShiftState": "None",
+            "KeyboardChanged": false
+          },
+          {
+            "ElapsedMs": 2063,
+            "Foreground": false,
+            "InputTimer": 1.65723,
+            "ShiftState": "None",
+            "KeyboardChanged": false
+          },
+          {
+            "ElapsedMs": 2125,
+            "Foreground": false,
+            "InputTimer": 1.7165089,
+            "ShiftState": "None",
+            "KeyboardChanged": false
+          },
+          {
+            "ElapsedMs": 2188,
+            "Foreground": false,
+            "InputTimer": 1.7762705,
+            "ShiftState": "None",
+            "KeyboardChanged": false
+          },
+          {
+            "ElapsedMs": 2250,
+            "Foreground": false,
+            "InputTimer": 1.8351747,
+            "ShiftState": "None",
+            "KeyboardChanged": false
+          },
+          {
+            "ElapsedMs": 2297,
+            "Foreground": false,
+            "InputTimer": 1.8943518,
+            "ShiftState": "None",
+            "KeyboardChanged": false
+          },
+          {
+            "ElapsedMs": 2359,
+            "Foreground": false,
+            "InputTimer": 1.952759,
+            "ShiftState": "None",
+            "KeyboardChanged": false
+          },
+          {
+            "ElapsedMs": 2422,
+            "Foreground": false,
+            "InputTimer": 2.0120425,
+            "ShiftState": "None",
+            "KeyboardChanged": false
+          },
+          {
+            "ElapsedMs": 2484,
+            "Foreground": false,
+            "InputTimer": 2.0711193,
+            "ShiftState": "None",
+            "KeyboardChanged": false
+          },
+          {
+            "ElapsedMs": 2547,
+            "Foreground": false,
+            "InputTimer": 2.1307926,
+            "ShiftState": "None",
+            "KeyboardChanged": false
+          },
+          {
+            "ElapsedMs": 2594,
+            "Foreground": false,
+            "InputTimer": 2.1914847,
+            "ShiftState": "None",
+            "KeyboardChanged": false
+          },
+          {
+            "ElapsedMs": 2656,
+            "Foreground": false,
+            "InputTimer": 2.2515247,
+            "ShiftState": "None",
+            "KeyboardChanged": false
+          },
+          {
+            "ElapsedMs": 2719,
+            "Foreground": false,
+            "InputTimer": 2.311775,
+            "ShiftState": "None",
+            "KeyboardChanged": false
+          },
+          {
+            "ElapsedMs": 2781,
+            "Foreground": false,
+            "InputTimer": 2.3701491,
+            "ShiftState": "None",
+            "KeyboardChanged": false
+          },
+          {
+            "ElapsedMs": 2844,
+            "Foreground": false,
+            "InputTimer": 2.430314,
+            "ShiftState": "None",
+            "KeyboardChanged": false
+          },
+          {
+            "ElapsedMs": 2906,
+            "Foreground": false,
+            "InputTimer": 2.4920032,
+            "ShiftState": "None",
+            "KeyboardChanged": false
+          },
+          {
+            "ElapsedMs": 2953,
+            "Foreground": false,
+            "InputTimer": 2.551817,
+            "ShiftState": "None",
+            "KeyboardChanged": false
+          },
+          {
+            "ElapsedMs": 3016,
+            "Foreground": false,
+            "InputTimer": 2.6111126,
+            "ShiftState": "None",
+            "KeyboardChanged": false
+          }
+        ]
+      }
+    },
+    {
+      "Pulse": 2,
+      "At": "2026-10-28T19:36:42.3194305+09:00",
+      "Result": {
+        "BeforeInputTimer": 29.661392,
+        "SawShift": true,
+        "SawNaturalTimerReset": true,
+        "AllBackground": true,
+        "Passed": true,
+        "Samples": [
+          {
+            "ElapsedMs": 0,
+            "Foreground": false,
+            "InputTimer": 29.661392,
+            "ShiftState": "None",
+            "KeyboardChanged": false
+          },
+          {
+            "ElapsedMs": 47,
+            "Foreground": false,
+            "InputTimer": 29.721895,
+            "ShiftState": "None",
+            "KeyboardChanged": false
+          },
+          {
+            "ElapsedMs": 110,
+            "Foreground": false,
+            "InputTimer": 0,
+            "ShiftState": "Down, Pressed",
+            "KeyboardChanged": true
+          },
+          {
+            "ElapsedMs": 172,
+            "Foreground": false,
+            "InputTimer": 0,
+            "ShiftState": "Down",
+            "KeyboardChanged": false
+          },
+          {
+            "ElapsedMs": 235,
+            "Foreground": false,
+            "InputTimer": 0,
+            "ShiftState": "Down",
+            "KeyboardChanged": false
+          },
+          {
+            "ElapsedMs": 313,
+            "Foreground": false,
+            "InputTimer": 0,
+            "ShiftState": "Down",
+            "KeyboardChanged": false
+          },
+          {
+            "ElapsedMs": 406,
+            "Foreground": false,
+            "InputTimer": 0,
+            "ShiftState": "Down, Held",
+            "KeyboardChanged": false
+          },
+          {
+            "ElapsedMs": 469,
+            "Foreground": false,
+            "InputTimer": 0,
+            "ShiftState": "Released",
+            "KeyboardChanged": false
+          },
+          {
+            "ElapsedMs": 531,
+            "Foreground": false,
+            "InputTimer": 0.063536,
+            "ShiftState": "None",
+            "KeyboardChanged": false
+          },
+          {
+            "ElapsedMs": 578,
+            "Foreground": false,
+            "InputTimer": 0.12501511,
+            "ShiftState": "None",
+            "KeyboardChanged": false
+          },
+          {
+            "ElapsedMs": 641,
+            "Foreground": false,
+            "InputTimer": 0.18598941,
+            "ShiftState": "None",
+            "KeyboardChanged": false
+          },
+          {
+            "ElapsedMs": 703,
+            "Foreground": false,
+            "InputTimer": 0.24618591,
+            "ShiftState": "None",
+            "KeyboardChanged": false
+          },
+          {
+            "ElapsedMs": 766,
+            "Foreground": false,
+            "InputTimer": 0.3068841,
+            "ShiftState": "None",
+            "KeyboardChanged": false
+          },
+          {
+            "ElapsedMs": 828,
+            "Foreground": false,
+            "InputTimer": 0.36825782,
+            "ShiftState": "None",
+            "KeyboardChanged": false
+          },
+          {
+            "ElapsedMs": 891,
+            "Foreground": false,
+            "InputTimer": 0.42819703,
+            "ShiftState": "None",
+            "KeyboardChanged": false
+          },
+          {
+            "ElapsedMs": 953,
+            "Foreground": false,
+            "InputTimer": 0.48823813,
+            "ShiftState": "None",
+            "KeyboardChanged": false
+          },
+          {
+            "ElapsedMs": 1016,
+            "Foreground": false,
+            "InputTimer": 0.5489555,
+            "ShiftState": "None",
+            "KeyboardChanged": false
+          },
+          {
+            "ElapsedMs": 1063,
+            "Foreground": false,
+            "InputTimer": 0.6094515,
+            "ShiftState": "None",
+            "KeyboardChanged": false
+          },
+          {
+            "ElapsedMs": 1125,
+            "Foreground": false,
+            "InputTimer": 0.6710349,
+            "ShiftState": "None",
+            "KeyboardChanged": false
+          },
+          {
+            "ElapsedMs": 1188,
+            "Foreground": false,
+            "InputTimer": 0.7320689,
+            "ShiftState": "None",
+            "KeyboardChanged": false
+          },
+          {
+            "ElapsedMs": 1250,
+            "Foreground": false,
+            "InputTimer": 0.7929648,
+            "ShiftState": "None",
+            "KeyboardChanged": false
+          },
+          {
+            "ElapsedMs": 1313,
+            "Foreground": false,
+            "InputTimer": 0.8530454,
+            "ShiftState": "None",
+            "KeyboardChanged": false
+          },
+          {
+            "ElapsedMs": 1375,
+            "Foreground": false,
+            "InputTimer": 0.9129247,
+            "ShiftState": "None",
+            "KeyboardChanged": false
+          },
+          {
+            "ElapsedMs": 1438,
+            "Foreground": false,
+            "InputTimer": 0.971636,
+            "ShiftState": "None",
+            "KeyboardChanged": false
+          },
+          {
+            "ElapsedMs": 1485,
+            "Foreground": false,
+            "InputTimer": 1.0307484,
+            "ShiftState": "None",
+            "KeyboardChanged": false
+          },
+          {
+            "ElapsedMs": 1547,
+            "Foreground": false,
+            "InputTimer": 1.0900173,
+            "ShiftState": "None",
+            "KeyboardChanged": false
+          },
+          {
+            "ElapsedMs": 1610,
+            "Foreground": false,
+            "InputTimer": 1.1495476,
+            "ShiftState": "None",
+            "KeyboardChanged": false
+          },
+          {
+            "ElapsedMs": 1672,
+            "Foreground": false,
+            "InputTimer": 1.2089925,
+            "ShiftState": "None",
+            "KeyboardChanged": false
+          },
+          {
+            "ElapsedMs": 1735,
+            "Foreground": false,
+            "InputTimer": 1.2682252,
+            "ShiftState": "None",
+            "KeyboardChanged": false
+          },
+          {
+            "ElapsedMs": 1797,
+            "Foreground": false,
+            "InputTimer": 1.3291732,
+            "ShiftState": "None",
+            "KeyboardChanged": false
+          },
+          {
+            "ElapsedMs": 1844,
+            "Foreground": false,
+            "InputTimer": 1.3909036,
+            "ShiftState": "None",
+            "KeyboardChanged": false
+          },
+          {
+            "ElapsedMs": 1906,
+            "Foreground": false,
+            "InputTimer": 1.4505994,
+            "ShiftState": "None",
+            "KeyboardChanged": false
+          },
+          {
+            "ElapsedMs": 1969,
+            "Foreground": false,
+            "InputTimer": 1.5106859,
+            "ShiftState": "None",
+            "KeyboardChanged": false
+          },
+          {
+            "ElapsedMs": 2031,
+            "Foreground": false,
+            "InputTimer": 1.5702869,
+            "ShiftState": "None",
+            "KeyboardChanged": false
+          },
+          {
+            "ElapsedMs": 2094,
+            "Foreground": false,
+            "InputTimer": 1.6301155,
+            "ShiftState": "None",
+            "KeyboardChanged": false
+          },
+          {
+            "ElapsedMs": 2141,
+            "Foreground": false,
+            "InputTimer": 1.6896546,
+            "ShiftState": "None",
+            "KeyboardChanged": false
+          },
+          {
+            "ElapsedMs": 2203,
+            "Foreground": false,
+            "InputTimer": 1.7489762,
+            "ShiftState": "None",
+            "KeyboardChanged": false
+          },
+          {
+            "ElapsedMs": 2266,
+            "Foreground": false,
+            "InputTimer": 1.8085494,
+            "ShiftState": "None",
+            "KeyboardChanged": false
+          },
+          {
+            "ElapsedMs": 2328,
+            "Foreground": false,
+            "InputTimer": 1.867961,
+            "ShiftState": "None",
+            "KeyboardChanged": false
+          },
+          {
+            "ElapsedMs": 2391,
+            "Foreground": false,
+            "InputTimer": 1.9284904,
+            "ShiftState": "None",
+            "KeyboardChanged": false
+          },
+          {
+            "ElapsedMs": 2453,
+            "Foreground": false,
+            "InputTimer": 1.9880388,
+            "ShiftState": "None",
+            "KeyboardChanged": false
+          },
+          {
+            "ElapsedMs": 2500,
+            "Foreground": false,
+            "InputTimer": 2.0475929,
+            "ShiftState": "None",
+            "KeyboardChanged": false
+          },
+          {
+            "ElapsedMs": 2563,
+            "Foreground": false,
+            "InputTimer": 2.1071773,
+            "ShiftState": "None",
+            "KeyboardChanged": false
+          },
+          {
+            "ElapsedMs": 2625,
+            "Foreground": false,
+            "InputTimer": 2.1662426,
+            "ShiftState": "None",
+            "KeyboardChanged": false
+          },
+          {
+            "ElapsedMs": 2688,
+            "Foreground": false,
+            "InputTimer": 2.2271361,
+            "ShiftState": "None",
+            "KeyboardChanged": false
+          },
+          {
+            "ElapsedMs": 2750,
+            "Foreground": false,
+            "InputTimer": 2.2880278,
+            "ShiftState": "None",
+            "KeyboardChanged": false
+          },
+          {
+            "ElapsedMs": 2813,
+            "Foreground": false,
+            "InputTimer": 2.3482227,
+            "ShiftState": "None",
+            "KeyboardChanged": false
+          },
+          {
+            "ElapsedMs": 2875,
+            "Foreground": false,
+            "InputTimer": 2.4100451,
+            "ShiftState": "None",
+            "KeyboardChanged": false
+          },
+          {
+            "ElapsedMs": 2922,
+            "Foreground": false,
+            "InputTimer": 2.46886,
+            "ShiftState": "None",
+            "KeyboardChanged": false
+          },
+          {
+            "ElapsedMs": 2985,
+            "Foreground": false,
+            "InputTimer": 2.527843,
+            "ShiftState": "None",
+            "KeyboardChanged": false
+          },
+          {
+            "ElapsedMs": 3047,
+            "Foreground": false,
+            "InputTimer": 2.5876083,
+            "ShiftState": "None",
+            "KeyboardChanged": false
+          }
+        ]
+      }
+    },
+    {
+      "Pulse": 3,
+      "At": "2026-10-28T19:37:12.2105414+09:00",
+      "Result": {
+        "BeforeInputTimer": 29.421598,
+        "SawShift": true,
+        "SawNaturalTimerReset": true,
+        "AllBackground": true,
+        "Passed": true,
+        "Samples": [
+          {
+            "ElapsedMs": 0,
+            "Foreground": false,
+            "InputTimer": 29.421598,
+            "ShiftState": "None",
+            "KeyboardChanged": false
+          },
+          {
+            "ElapsedMs": 63,
+            "Foreground": false,
+            "InputTimer": 29.481537,
+            "ShiftState": "None",
+            "KeyboardChanged": false
+          },
+          {
+            "ElapsedMs": 125,
+            "Foreground": false,
+            "InputTimer": 0,
+            "ShiftState": "Down, Pressed",
+            "KeyboardChanged": true
+          },
+          {
+            "ElapsedMs": 188,
+            "Foreground": false,
+            "InputTimer": 0,
+            "ShiftState": "Down",
+            "KeyboardChanged": false
+          },
+          {
+            "ElapsedMs": 235,
+            "Foreground": false,
+            "InputTimer": 0,
+            "ShiftState": "Down",
+            "KeyboardChanged": false
+          },
+          {
+            "ElapsedMs": 297,
+            "Foreground": false,
+            "InputTimer": 0,
+            "ShiftState": "Down",
+            "KeyboardChanged": false
+          },
+          {
+            "ElapsedMs": 360,
+            "Foreground": false,
+            "InputTimer": 0,
+            "ShiftState": "Down, Held",
+            "KeyboardChanged": false
+          },
+          {
+            "ElapsedMs": 422,
+            "Foreground": false,
+            "InputTimer": 0,
+            "ShiftState": "Released",
+            "KeyboardChanged": false
+          },
+          {
+            "ElapsedMs": 469,
+            "Foreground": false,
+            "InputTimer": 0.0583672,
+            "ShiftState": "None",
+            "KeyboardChanged": false
+          },
+          {
+            "ElapsedMs": 531,
+            "Foreground": false,
+            "InputTimer": 0.116064,
+            "ShiftState": "None",
+            "KeyboardChanged": false
+          },
+          {
+            "ElapsedMs": 594,
+            "Foreground": false,
+            "InputTimer": 0.1746029,
+            "ShiftState": "None",
+            "KeyboardChanged": false
+          },
+          {
+            "ElapsedMs": 656,
+            "Foreground": false,
+            "InputTimer": 0.2329708,
+            "ShiftState": "None",
+            "KeyboardChanged": false
+          },
+          {
+            "ElapsedMs": 703,
+            "Foreground": false,
+            "InputTimer": 0.2920032,
+            "ShiftState": "None",
+            "KeyboardChanged": false
+          },
+          {
+            "ElapsedMs": 766,
+            "Foreground": false,
+            "InputTimer": 0.3503608,
+            "ShiftState": "None",
+            "KeyboardChanged": false
+          },
+          {
+            "ElapsedMs": 828,
+            "Foreground": false,
+            "InputTimer": 0.4083873,
+            "ShiftState": "None",
+            "KeyboardChanged": false
+          },
+          {
+            "ElapsedMs": 891,
+            "Foreground": false,
+            "InputTimer": 0.4678532,
+            "ShiftState": "None",
+            "KeyboardChanged": false
+          },
+          {
+            "ElapsedMs": 938,
+            "Foreground": false,
+            "InputTimer": 0.52680886,
+            "ShiftState": "None",
+            "KeyboardChanged": false
+          },
+          {
+            "ElapsedMs": 1000,
+            "Foreground": false,
+            "InputTimer": 0.5862123,
+            "ShiftState": "None",
+            "KeyboardChanged": false
+          },
+          {
+            "ElapsedMs": 1063,
+            "Foreground": false,
+            "InputTimer": 0.644948,
+            "ShiftState": "None",
+            "KeyboardChanged": false
+          },
+          {
+            "ElapsedMs": 1125,
+            "Foreground": false,
+            "InputTimer": 0.7034137,
+            "ShiftState": "None",
+            "KeyboardChanged": false
+          },
+          {
+            "ElapsedMs": 1172,
+            "Foreground": false,
+            "InputTimer": 0.7614439,
+            "ShiftState": "None",
+            "KeyboardChanged": false
+          },
+          {
+            "ElapsedMs": 1235,
+            "Foreground": false,
+            "InputTimer": 0.8206926,
+            "ShiftState": "None",
+            "KeyboardChanged": false
+          },
+          {
+            "ElapsedMs": 1297,
+            "Foreground": false,
+            "InputTimer": 0.8794415,
+            "ShiftState": "None",
+            "KeyboardChanged": false
+          },
+          {
+            "ElapsedMs": 1360,
+            "Foreground": false,
+            "InputTimer": 0.9376765,
+            "ShiftState": "None",
+            "KeyboardChanged": false
+          },
+          {
+            "ElapsedMs": 1406,
+            "Foreground": false,
+            "InputTimer": 0.9960229,
+            "ShiftState": "None",
+            "KeyboardChanged": false
+          },
+          {
+            "ElapsedMs": 1469,
+            "Foreground": false,
+            "InputTimer": 1.0549107,
+            "ShiftState": "None",
+            "KeyboardChanged": false
+          },
+          {
+            "ElapsedMs": 1531,
+            "Foreground": false,
+            "InputTimer": 1.1141919,
+            "ShiftState": "None",
+            "KeyboardChanged": false
+          },
+          {
+            "ElapsedMs": 1594,
+            "Foreground": false,
+            "InputTimer": 1.1724724,
+            "ShiftState": "None",
+            "KeyboardChanged": false
+          },
+          {
+            "ElapsedMs": 1641,
+            "Foreground": false,
+            "InputTimer": 1.2310295,
+            "ShiftState": "None",
+            "KeyboardChanged": false
+          },
+          {
+            "ElapsedMs": 1703,
+            "Foreground": false,
+            "InputTimer": 1.2898216,
+            "ShiftState": "None",
+            "KeyboardChanged": false
+          },
+          {
+            "ElapsedMs": 1766,
+            "Foreground": false,
+            "InputTimer": 1.3490142,
+            "ShiftState": "None",
+            "KeyboardChanged": false
+          },
+          {
+            "ElapsedMs": 1828,
+            "Foreground": false,
+            "InputTimer": 1.4074118,
+            "ShiftState": "None",
+            "KeyboardChanged": false
+          },
+          {
+            "ElapsedMs": 1891,
+            "Foreground": false,
+            "InputTimer": 1.4661113,
+            "ShiftState": "None",
+            "KeyboardChanged": false
+          },
+          {
+            "ElapsedMs": 1938,
+            "Foreground": false,
+            "InputTimer": 1.5255734,
+            "ShiftState": "None",
+            "KeyboardChanged": false
+          },
+          {
+            "ElapsedMs": 2000,
+            "Foreground": false,
+            "InputTimer": 1.5855907,
+            "ShiftState": "None",
+            "KeyboardChanged": false
+          },
+          {
+            "ElapsedMs": 2063,
+            "Foreground": false,
+            "InputTimer": 1.6447687,
+            "ShiftState": "None",
+            "KeyboardChanged": false
+          },
+          {
+            "ElapsedMs": 2125,
+            "Foreground": false,
+            "InputTimer": 1.7040054,
+            "ShiftState": "None",
+            "KeyboardChanged": false
+          },
+          {
+            "ElapsedMs": 2172,
+            "Foreground": false,
+            "InputTimer": 1.7626835,
+            "ShiftState": "None",
+            "KeyboardChanged": false
+          },
+          {
+            "ElapsedMs": 2235,
+            "Foreground": false,
+            "InputTimer": 1.8212866,
+            "ShiftState": "None",
+            "KeyboardChanged": false
+          },
+          {
+            "ElapsedMs": 2297,
+            "Foreground": false,
+            "InputTimer": 1.8801844,
+            "ShiftState": "None",
+            "KeyboardChanged": false
+          },
+          {
+            "ElapsedMs": 2360,
+            "Foreground": false,
+            "InputTimer": 1.9387861,
+            "ShiftState": "None",
+            "KeyboardChanged": false
+          },
+          {
+            "ElapsedMs": 2422,
+            "Foreground": false,
+            "InputTimer": 1.9976666,
+            "ShiftState": "None",
+            "KeyboardChanged": false
+          },
+          {
+            "ElapsedMs": 2469,
+            "Foreground": false,
+            "InputTimer": 2.056566,
+            "ShiftState": "None",
+            "KeyboardChanged": false
+          },
+          {
+            "ElapsedMs": 2531,
+            "Foreground": false,
+            "InputTimer": 2.1149945,
+            "ShiftState": "None",
+            "KeyboardChanged": false
+          },
+          {
+            "ElapsedMs": 2594,
+            "Foreground": false,
+            "InputTimer": 2.1729364,
+            "ShiftState": "None",
+            "KeyboardChanged": false
+          },
+          {
+            "ElapsedMs": 2641,
+            "Foreground": false,
+            "InputTimer": 2.231644,
+            "ShiftState": "None",
+            "KeyboardChanged": false
+          },
+          {
+            "ElapsedMs": 2703,
+            "Foreground": false,
+            "InputTimer": 2.2902024,
+            "ShiftState": "None",
+            "KeyboardChanged": false
+          },
+          {
+            "ElapsedMs": 2766,
+            "Foreground": false,
+            "InputTimer": 2.3494236,
+            "ShiftState": "None",
+            "KeyboardChanged": false
+          },
+          {
+            "ElapsedMs": 2828,
+            "Foreground": false,
+            "InputTimer": 2.4085336,
+            "ShiftState": "None",
+            "KeyboardChanged": false
+          },
+          {
+            "ElapsedMs": 2891,
+            "Foreground": false,
+            "InputTimer": 2.4688044,
+            "ShiftState": "None",
+            "KeyboardChanged": false
+          },
+          {
+            "ElapsedMs": 2953,
+            "Foreground": false,
+            "InputTimer": 2.527741,
+            "ShiftState": "None",
+            "KeyboardChanged": false
+          },
+          {
+            "ElapsedMs": 3000,
+            "Foreground": false,
+            "InputTimer": 2.58914,
+            "ShiftState": "None",
+            "KeyboardChanged": false
+          }
+        ]
+      }
+    }
+  ]
+}

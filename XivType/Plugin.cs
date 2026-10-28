@@ -87,7 +87,7 @@ public sealed class Plugin : IDalamudPlugin
         if (args.Equals("on", StringComparison.OrdinalIgnoreCase)) typing.Request("on");
         else if (args.Equals("once", StringComparison.OrdinalIgnoreCase)) typing.Request("once");
         else if (args.Equals("status", StringComparison.OrdinalIgnoreCase)) Chat.Print($"[XivType] {typing.Status}");
-        else if (args.Equals("record", StringComparison.OrdinalIgnoreCase)) EntryRecorder.Start(180);
+        else if (args.Equals("record", StringComparison.OrdinalIgnoreCase)) EntryRecorder.Start(1800);
         else if (args.Equals("stop", StringComparison.OrdinalIgnoreCase) || args.Equals("off", StringComparison.OrdinalIgnoreCase))
         {
             watch = false;

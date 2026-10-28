@@ -317,7 +317,7 @@ public sealed class Plugin : IDalamudPlugin
                 config.PreventAfk = preventAfk;
                 Interface.SavePluginConfig(config);
             }
-            ImGui.TextWrapped("Sends Shift only to FFXIV every 30 seconds after confirmed typing. Pauses during input prohibition. Full-duty AFK protection is unverified.");
+            ImGui.TextWrapped("Sends Shift only to FFXIV every 5 seconds after confirmed typing. Pauses during input prohibition. Full-duty AFK protection is unverified.");
             var typingDelay = config.TypingDelayMs;
             var clearDelay = config.ClearDelayMs;
             var keyHold = config.KeyHoldMs;

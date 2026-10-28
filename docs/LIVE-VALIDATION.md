@@ -156,3 +156,7 @@ The user asked whether a less intrusive key than Shift could serve the activity 
 The first F13 probe (20:37) reset the idle timer from 12.9 s to 0 about 125 ms after the message, with the game unfocused and `KeyboardInputsChanged` true, but `UIInputData.GetKeyState(0x7C)` never reported F13 down. FFXIV's key-state table evidently does not track F13. Version 0.1.24 therefore also accepts `KeyboardInputsChanged` as the probe's keyboard observation.
 
 The repeated sequence (`activity-input-f13-2026-10-28.json`) gave two clean unfocused passes: 26.0 s -> 0 at 125 ms (20:38:37) and 30.0 s -> 0 at 110 ms (20:39:07). The third pulse is invalid as evidence because the game was in the foreground with a 3.8 s idle timer, meaning the user had just interacted. Together with the first probe, F13 produced three clean natural idle resets. As with Shift, this is lobby evidence only, not duty/server AFK protection. Switching production to F13 would also need the keepalive's acknowledgement to rely on the keyboard-changed flag and idle reset rather than key state.
+
+## Activity pulse interval - version 0.1.25.0
+
+At the user's request the production Shift pulse interval was shortened from 30 s to 5 s (`ActivityKeepAlive.PulseIntervalMs`). The 30 s recency requirement for acknowledged typing, the 250 ms hold and the 1.5 s observation deadline are unchanged. The scheduler replay now also checks that a second pulse follows after 5 s. Not yet observed live at this interval.

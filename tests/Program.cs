@@ -107,6 +107,10 @@ unsafe class Program
         keepAlive.RecordAcknowledgement(2000);
         keepAlive.Update(2000, true, true, true, 1359);
         if (backend.Presses != 1) throw new Exception("Activity key interval was not enforced.");
+        keepAlive.RecordAcknowledgement(6000);
+        keepAlive.Update(6000, true, true, true, 1359);
+        if (backend.Presses != 2) throw new Exception("Activity key did not repeat after its 5-second interval.");
+        keepAlive.Cancel();
         foreach (var scenario in new[]
         {
             (Enabled: false, Running: true, Allowed: true, Territory: (ushort)1359),

@@ -12,6 +12,7 @@ internal interface IActivityInput
 
 internal sealed unsafe class ActivityKeepAlive(IActivityInput input)
 {
+    internal const long PulseIntervalMs = 5000;
     private long lastAcknowledgement;
     private bool hasAcknowledgement;
     private long nextPulse;
@@ -84,7 +85,7 @@ internal sealed unsafe class ActivityKeepAlive(IActivityInput input)
         observed = false;
         releaseAt = now + 250;
         deadline = now + 1500;
-        nextPulse = now + 30000;
+        nextPulse = now + PulseIntervalMs;
         Status = "Waiting for the game to observe a targeted activity key.";
     }
 

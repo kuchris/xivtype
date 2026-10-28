@@ -112,8 +112,8 @@ internal sealed unsafe class TypingController(DiagnosticStore diagnostics, Confi
             // The duty inactivity check ignored acknowledged activity keys on 2026-10-28; log every candidate signal.
             nextIdleLog = now + 5000;
             var timers = InputTimerModule.Instance();
-            Plugin.Log.Information("XivType idle timeline: running={Running}; foreground={Foreground}; minimized={Minimized}; systemIdle={SystemIdle:0.0}s; afk={Afk:0.0}; content={Content:0.0}; input={Input:0.0}; submissions={Submissions}",
-                running, NativeInput.IsGameForeground(), NativeInput.IsGameMinimized(), NativeInput.SystemIdleSeconds(),
+            Plugin.Log.Information("XivType idle timeline: fps={Fps:0}; running={Running}; foreground={Foreground}; minimized={Minimized}; systemIdle={SystemIdle:0.0}s; afk={Afk:0.0}; content={Content:0.0}; input={Input:0.0}; submissions={Submissions}",
+                NativeInput.MeasuredFps, running, NativeInput.IsGameForeground(), NativeInput.IsGameMinimized(), NativeInput.SystemIdleSeconds(),
                 timers != null ? timers->AfkTimer : float.NaN, timers != null ? timers->ContentInputTimer : float.NaN,
                 timers != null ? timers->InputTimer : float.NaN, submissions);
         }
@@ -565,12 +565,21 @@ internal static partial class NativeInput
     }
 
     private static long frame;
+    private static long rateFrame;
+    private static long rateAt;
+    internal static float MeasuredFps { get; private set; }
 
     // Called once per framework frame; a key pressed in frame N is released in frame N+1 at the earliest,
     // so a 0 ms hold means exactly one frame at any frame rate.
     internal static void Update(long now)
     {
         frame++;
+        if (now - rateAt >= 1000)
+        {
+            if (rateAt != 0) MeasuredFps = (frame - rateFrame) * 1000f / (now - rateAt);
+            rateAt = now;
+            rateFrame = frame;
+        }
         if (heldScan != 0 && now >= releaseAt) Release();
     }
 

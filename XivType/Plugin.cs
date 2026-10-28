@@ -293,6 +293,7 @@ public sealed class Plugin : IDalamudPlugin
     private static void DrawFrameRate()
     {
         if (!ImGui.CollapsingHeader("Game frame rate")) return;
+        ImGui.TextUnformatted($"Measured: {NativeInput.MeasuredFps:0} fps (about {(NativeInput.MeasuredFps > 0 ? 1000 / NativeInput.MeasuredFps : 0):0.0} ms per posted character at best)");
         if (ReadSystem(SystemConfigOption.Fps) is { } fps)
         {
             var selected = (int)Math.Min(fps, (uint)FrameRateLabels.Length - 1);

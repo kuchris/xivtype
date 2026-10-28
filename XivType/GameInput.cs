@@ -1,10 +1,13 @@
+using System.Diagnostics;
+using System.Runtime.InteropServices;
 using FFXIVClientStructs.FFXIV.Component.GUI;
 
 namespace XivType;
 
-// Target the activity's own input component on the framework thread. These operations
-// never emit OS keyboard events and are independent of the foreground application.
-internal static unsafe class GameInput
+// Background route: keystroke messages posted to FFXIV's own window, never global SendInput.
+// Writing text straight into the component (0.1.9-0.1.26) was accepted and scored, but every run
+// on that route was expelled for inactivity while physical keystrokes were not (2026-10-28).
+internal static unsafe partial class GameInput
 {
     internal static long EditOperations { get; private set; }
     internal static long SubmitOperations { get; private set; }
@@ -43,31 +46,47 @@ internal static unsafe class GameInput
         }
     }
 
-    internal static bool ChangeText(string previous, string next)
+    // Posted characters reach whatever FFXIV has focused, so require the activity input to be the active field.
+    private static bool Ready(out AtkComponentTextInput* input)
     {
-        if (Plugin.EnemyLock.Blocked || !TryGet(out var addon, out var input) || !InputAvailability.Read(addon, input->Enabled).Allowed) return false;
-        var node = PromptReader.FindNode(&input->UldManager, 16);
-        if (node == null || node->Type != NodeType.Text ||
-            !((AtkTextNode*)node)->NodeText.ToString().Equals(previous, StringComparison.OrdinalIgnoreCase)) return false;
+        input = null;
+        return !Plugin.EnemyLock.Blocked && TryGet(out var addon, out input) && input->IsActive &&
+            InputAvailability.Read(addon, input->Enabled).Allowed;
+    }
+
+    internal static bool TypeCharacter(char value)
+    {
+        if (!Ready(out _) || !NativeInput.VirtualKey(value, out var key, out var scan)) return false;
         EditOperations++;
-        input->SetText(next);
-        input->Callback(addon, InputCallbackType.TextChanged,
-            input->RawString.StringPtr, input->EvaluatedString.StringPtr, input->CallbackEventKind);
-        return true;
+        return Post(key, scan, value);
+    }
+
+    internal static bool Backspace()
+    {
+        if (!Ready(out _)) return false;
+        EditOperations++;
+        return Post(0x08, 0x0E, (char)0x08);
     }
 
     internal static bool Submit(string expected)
     {
-        if (Plugin.EnemyLock.Blocked || !TryGet(out var addon, out var input) || !InputAvailability.Read(addon, input->Enabled).Allowed) return false;
-        if (!input->EvaluatedString.ToString().Equals(expected, StringComparison.OrdinalIgnoreCase)) return false;
+        if (!Ready(out var input) || !input->EvaluatedString.ToString().Equals(expected, StringComparison.OrdinalIgnoreCase)) return false;
         SubmitOperations++;
-        var result = input->Callback(addon, InputCallbackType.Enter,
-            input->RawString.StringPtr, input->EvaluatedString.StringPtr, input->CallbackEventKind);
-        if (result == InputCallbackResult.ClearText)
-        {
-            input->SetText("");
-            input->UpdateCharacterCount(0, 0);
-        }
-        return true;
+        return Post(0x0D, 0x1C, (char)0x0D);
     }
+
+    private static bool Post(ushort key, uint scan, char value)
+    {
+        using var process = Process.GetCurrentProcess();
+        var window = process.MainWindowHandle;
+        if (window == 0) return false;
+        var down = (nint)(1 | scan << 16);
+        var up = unchecked((nint)(0xC0000001u | scan << 16));
+        return PostMessageW(window, 0x100, key, down) && PostMessageW(window, 0x102, value, down) &&
+            PostMessageW(window, 0x101, key, up);
+    }
+
+    [LibraryImport("user32.dll", SetLastError = true)]
+    [return: MarshalAs(UnmanagedType.Bool)]
+    private static partial bool PostMessageW(nint window, uint message, nuint key, nint parameter);
 }

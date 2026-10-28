@@ -215,7 +215,7 @@ internal sealed unsafe class TypingController(DiagnosticStore diagnostics, Confi
                 {
                     adaptiveHoldMs = Math.Min(80, Math.Max(60, NativeInput.KeyHoldMs + 15));
                     NativeInput.KeyHoldMs = adaptiveHoldMs;
-                    var sent = config.BackgroundTyping ? GameInput.ChangeText(state.Input, expected) :
+                    var sent = config.BackgroundTyping ? (clearing ? GameInput.Backspace() : GameInput.TypeCharacter(expected[^1])) :
                         clearing ? NativeInput.Backspace(adaptiveHoldMs) :
                             NativeInput.SendCharacter(Process.GetCurrentProcess().MainWindowHandle, expected[^1]);
                     if (sent)
@@ -280,8 +280,8 @@ internal sealed unsafe class TypingController(DiagnosticStore diagnostics, Confi
             }
             else
             {
-                var next = config.BackgroundTyping ? "" : state.Input[..^1];
-                if (!(config.BackgroundTyping ? GameInput.ChangeText(state.Input, next) : NativeInput.Backspace()))
+                var next = state.Input[..^1];
+                if (!(config.BackgroundTyping ? GameInput.Backspace() : NativeInput.Backspace()))
                 {
                     Stop("Could not clear the expired prompt input.");
                     return;
@@ -325,7 +325,7 @@ internal sealed unsafe class TypingController(DiagnosticStore diagnostics, Confi
         if (state.Input.Length < target.Length)
         {
             var ch = target[state.Input.Length];
-            if (!(config.BackgroundTyping ? GameInput.ChangeText(state.Input, state.Input + ch) : NativeInput.SendCharacter(hwnd, ch)))
+            if (!(config.BackgroundTyping ? GameInput.TypeCharacter(ch) : NativeInput.SendCharacter(hwnd, ch)))
             {
                 Stop(config.BackgroundTyping ? $"Game input route unavailable: {GameInput.Describe()}" :
                     $"Windows rejected character input (error {Marshal.GetLastWin32Error()}).");
@@ -511,6 +511,15 @@ internal static partial class NativeInput
         if (mapped == -1 || (mapped & 0x0600) != 0) return false;
         var scan = MapVirtualKeyExW((uint)(mapped & 0xFF), 4, layout);
         return scan != 0 && Press((ushort)(scan & 0xFF), (scan & 0xFF00) != 0, (mapped & 0x0100) != 0);
+    }
+
+    internal static bool VirtualKey(char value, out ushort key, out uint scan)
+    {
+        var layout = GetKeyboardLayout(0);
+        var mapped = VkKeyScanExW(value, layout);
+        key = (ushort)(mapped & 0xFF);
+        scan = mapped == -1 ? 0 : MapVirtualKeyExW(key, 0, layout) & 0xFF;
+        return mapped != -1 && (mapped & 0x0600) == 0 && scan != 0;
     }
     internal static bool Submit(nint window) => window != 0 && Press(0x1C, false, false);
     internal static bool Backspace(int? holdMs = null) => Press(0x0E, false, false, holdMs ?? 20);

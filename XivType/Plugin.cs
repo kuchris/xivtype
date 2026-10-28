@@ -69,7 +69,10 @@ public sealed class Plugin : IDalamudPlugin
         typing = new TypingController(diagnostics, config);
         loop = new RunLoop(typing);
         typing.UserStopped += () => loop.Stop("Loop stopped with typing.");
-        typing.OtherCommand += command => { if (command.StartsWith("loop", StringComparison.OrdinalIgnoreCase)) OnCommand("/xivtype", command); };
+        typing.OtherCommand += command =>
+        {
+            if (command.StartsWith("loop", StringComparison.OrdinalIgnoreCase)) OnCommand("/xivtype", command);
+        };
         EntryRecorder.Register();
         Commands.AddHandler("/xivtype", new CommandInfo(OnCommand)
         {

@@ -4,7 +4,7 @@
 
 <h1 align="center">XivType</h1>
 
-Dalamud API 15 plugin for automatic English typing in Keybound Brawler. Reads active enemy prompts, picks a matching prompt by the selected target priority, updates the activity's input component and submits through its game callback. Each edit and submission must be acknowledged by the live game before continuing. Background typing is enabled by default.
+Dalamud API 15 plugin for automatic English typing in Keybound Brawler. Reads active enemy prompts, picks a matching prompt by the selected target priority and types it with keystrokes, waiting for the game to acknowledge each character and submission before continuing. Background typing is enabled by default.
 
 ## Install
 
@@ -33,13 +33,11 @@ Enable the repository, then search for **XivType** in `/xlplugins`. If switching
 - `/xivtype status`: print the current status.
 - **Escape while FFXIV is focused**: stop typing immediately. Use the window's X to close it without stopping. Escape in another application does not stop background typing.
 
-**Allow background typing** is enabled by default. Text edits address only `KTGInput`, so typing can continue while another application has focus. The optional activity pulse sends a modifier message only to FFXIV's own window; neither path uses global `SendInput` in background mode. A focused ImGui text field inside FFXIV still pauses typing. A background frame-rate limiter can reduce the update rate.
+**Allow background typing** is enabled by default. Keystrokes are posted only to FFXIV's own window, never as global input, so typing continues while another application has focus. The activity input must be opened with Enter before it accepts letters, so the plugin presses Enter whenever no text field is active; it sends nothing while another FFXIV text field such as chat has focus. Letters are sent without Shift (the game check ignores case) and shifted symbols such as `!` are posted as characters. A focused ImGui text field inside FFXIV pauses typing.
 
 Uncheck **Allow background typing** to use the older physical-keyboard route. That route requires FFXIV in the foreground and pauses while modifier keys are held. Switching routes stops automation; start again afterward. The plugin starts disabled after every load/reload and stops after logout or leaving the supported activity. It waits through transitions and temporarily disabled activity input fields.
 
-**Send activity key during background typing (experimental)** addresses FFXIV's own window with a 250 ms Shift press at most once every 5 seconds, following confirmed plugin typing. It runs only with background typing enabled, the controller running in territory 1359, recent acknowledged input and permission to type. Jammer/prohibition states pause pulses; stopping, unloading or losing permission releases an owned key. It never steals focus or sends a global keyboard event. The game must report the key as down/pressed within 1.5 seconds or automation stops. A pre-existing held Shift is left alone.
-
-The old timer-reset approach **failed live AFK protection** and has been removed. Version 0.1.14's replacement registered three normal keyboard inputs and natural timer resets during a 63-second unfocused lobby test. This establishes the input path, **not successful duty/server AFK protection**. A complete protected duty run remains unverified; the reported approximately 60-second expulsion threshold is also unconfirmed. No inactivity timer fields or time limits are edited.
+Earlier versions wrote text straight into the input component; prompts scored, but every such run was expelled for inactivity. Timer writes and a periodic Shift key also failed and were removed. Typing with real keystrokes completed a full 4-minute activity without expulsion on 2026-10-28.
 
 ## Scope and behavior
 
@@ -49,8 +47,8 @@ The old timer-reset approach **failed live AFK protection** and has been removed
 - The input field may normalize case; acknowledgement comparisons ignore case.
 - Noise-masked prompts remain eligible when their active container and replacement image tiles are visible, even though the label itself is hidden. Hidden labels on inactive containers are excluded.
 - A prohibited-input marker pauses both input routes. While permission is false or the lock countdown is positive, the plugin sends no text edits, clearing, Enter or retries. Existing partial input is preserved and acknowledgement timers pause. It resumes 150 ms after permission returns and the countdown reaches zero.
-- All loaded battle NPCs and all visible `KTGEnemyCastBar` action captions are checked for **Dynamic Sensory Jammer** and **Cursed Gaze**. The UI caption fallback covers casts not reported through actor casting data. Any match pauses all typing, regardless of boss status, current target or which enemy's prompt was selected. The block remains for 750 ms after the cast disappears, then normal permission/settling checks apply. Exact visual-marker timing still needs live verification.
-- If the selected prompt disappears, the plugin clears its own partial input directly in background mode, or using Backspace in keyboard mode, and chooses again. Unmatched input already present when starting is left for the user to clear manually.
+- All loaded battle NPCs and all visible `KTGEnemyCastBar` action captions are checked for **Dynamic Sensory Jammer** and **Cursed Gaze**. The UI caption fallback covers casts not reported through actor casting data. A match pauses all typing once the cast bar is half full, regardless of boss status, current target or which enemy's prompt was selected, and holds for 2 seconds after the cast ends; caption-only casts are timed from first sight. Typing resumes 150 ms after the game's own prohibition icon clears. Exact visual-marker timing still needs live verification.
+- If the selected prompt disappears, the plugin clears its own partial input with Backspace and chooses again. If its own input ends up wrong, it clears it and retypes the prompt, at most twice per prompt. Unmatched input already present when starting is left for the user to clear manually.
 - An unacknowledged key can be retried once with a longer hold only if the input is unchanged and the prompt remains active. A second timeout or an unexpected input change stops automation. Enter has the same bounded, state-checked recovery.
 - Keyboard layout mapping uses the current Windows layout. Unsupported characters stop automation.
 

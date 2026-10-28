@@ -1,5 +1,6 @@
 using FFXIVClientStructs.FFXIV.Client.Game.Control;
 using FFXIVClientStructs.FFXIV.Client.Game.Object;
+using FFXIVClientStructs.FFXIV.Client.Game.UI;
 using FFXIVClientStructs.FFXIV.Component.GUI;
 
 namespace XivType;
@@ -91,18 +92,25 @@ internal sealed unsafe class RunLoop(TypingController typing)
             Begin(Stage.Entering, now, 3000);
             return;
         }
-        if (stage == Stage.Entering && now - stageSince < 60000) return;
+        if (stage == Stage.Entering)
+        {
+            if (now - stageSince < 60000) return;
+            // Someone did not commence and the game put us back in the queue.
+            if (InQueue()) { Begin(Stage.Queued, now, 0); return; }
+        }
         if (Click("KTGEnterDialogue", 0))
         {
             Status = $"Run {Completed + 1}/{Runs}: registered, waiting for Duty Ready.";
             Begin(Stage.Queued, now, 2000);
             return;
         }
+        // Few players may be queueing, so wait as long as the registration lasts; register again if it was dropped.
         if (stage == Stage.Queued)
         {
-            if (now - stageSince < 300000) return;
-            Stop("Duty Ready did not appear within 5 minutes.");
-            return;
+            if (InQueue()) { stageSince = now; Status = $"Run {Completed + 1}/{Runs}: registered, waiting for Duty Ready."; return; }
+            if (now - stageSince < 15000) return;
+            Plugin.Log.Information("XivType loop registration dropped; registering again");
+            Begin(Stage.Talk, now, 0);
         }
         Talk(now);
     }
@@ -135,6 +143,12 @@ internal sealed unsafe class RunLoop(TypingController typing)
     {
         var addon = Plugin.GameGui.GetAddonByName<AtkUnitBase>(name);
         return addon != null && addon->IsVisible;
+    }
+
+    private static bool InQueue()
+    {
+        var finder = FFXIVClientStructs.FFXIV.Client.Game.UI.ContentsFinder.Instance();
+        return finder != null && (int)finder->QueueInfo.QueueState != 0;
     }
 
     // Only accept Duty Ready for this activity.

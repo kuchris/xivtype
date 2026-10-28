@@ -51,6 +51,9 @@ public sealed class Plugin : IDalamudPlugin
     private readonly string output = Path.Combine(Interface.GetPluginConfigDirectory(), "diagnostics");
     private readonly TypingController typing;
     private readonly RunLoop loop;
+    private readonly ChatWindow chatWindow = new();
+    private bool chatOpen;
+    private bool inActivity;
     private int loopRuns = 5;
     private readonly DiagnosticStore diagnostics;
     private readonly Configuration config;
@@ -158,6 +161,10 @@ public sealed class Plugin : IDalamudPlugin
             }
             typing.Update(now);
             loop.Update(now);
+            // The chat mirror opens on entering the activity (which hides the game's chat) and closes on leaving.
+            var activity = Client.TerritoryType == 1359;
+            if (activity != inActivity) chatOpen = activity && config.ChatWindow;
+            inActivity = activity;
             if (config.Diagnostics && Client.TerritoryType == 1359 && now >= nextWordArrayCapture)
             {
                 nextWordArrayCapture = now + 5000;
@@ -376,6 +383,7 @@ public sealed class Plugin : IDalamudPlugin
     private void Draw()
     {
         KeyboardCaptured = ImGui.GetIO().WantCaptureKeyboard;
+        chatWindow.Draw(ref chatOpen);
         if (!visible) return;
         ImGui.SetNextWindowSize(new Vector2(760, 580), ImGuiCond.FirstUseEver);
         if (ImGui.Begin("XivType", ref visible))
@@ -417,6 +425,13 @@ public sealed class Plugin : IDalamudPlugin
                 Interface.SavePluginConfig(config);
             }
             ImGui.TextDisabled("Escape stops typing while the game is focused.");
+            var chat = config.ChatWindow;
+            if (ImGui.Checkbox("Show chat window during the activity", ref chat))
+            {
+                config.ChatWindow = chat;
+                Interface.SavePluginConfig(config);
+                chatOpen = chat && inActivity;
+            }
             DrawFrameRate();
             if (backgroundTyping) ImGui.TextDisabled("Keystrokes are posted only to FFXIV, even when another app has focus.");
             var typingDelay = config.TypingDelayMs;
@@ -474,6 +489,7 @@ public sealed class Plugin : IDalamudPlugin
 
     public void Dispose()
     {
+        chatWindow.Dispose();
         EntryRecorder.Unregister();
         typing.Dispose();
         NativeInput.Release();

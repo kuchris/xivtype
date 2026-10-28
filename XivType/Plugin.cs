@@ -328,7 +328,7 @@ public sealed class Plugin : IDalamudPlugin
         }
     }
 
-    // Small heart in the title bar, left of the close button.
+    // Small heart in the title bar, left of Dalamud's window menu and close buttons.
     private static void DrawKofiButton()
     {
         var cursor = ImGui.GetCursorPos();
@@ -338,7 +338,7 @@ public sealed class Plugin : IDalamudPlugin
         ImGui.PushFont(UiBuilder.IconFont);
         var icon = FontAwesomeIcon.Heart.ToIconString();
         var iconWidth = ImGui.CalcTextSize(icon).X;
-        ImGui.SetCursorPos(new Vector2(ImGui.GetWindowWidth() - titleHeight - iconWidth - ImGui.GetStyle().ItemInnerSpacing.X * 3,
+        ImGui.SetCursorPos(new Vector2(ImGui.GetWindowWidth() - titleHeight * 2 - iconWidth - ImGui.GetStyle().ItemInnerSpacing.X * 4,
             (titleHeight - ImGui.GetFontSize()) / 2));
         ImGui.PushStyleColor(ImGuiCol.Text, new Vector4(1f, 0.45f, 0.6f, 1f));
         ImGui.TextUnformatted(icon);

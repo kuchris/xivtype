@@ -8,7 +8,9 @@ internal sealed record Prompt(uint NodeId, string Text, bool Masked = false,
 
 internal static unsafe class PromptReader
 {
-    internal static Prompt[] ReadWords(AtkUnitBase* addon, Func<nint, bool>? shown = null)
+    // English prompts are label 20; the Japanese client shows a display form (may contain kanji) in 20 and the
+    // hiragana reading to type in 22 (2026-10-29).
+    internal static Prompt[] ReadWords(AtkUnitBase* addon, Func<nint, bool>? shown = null, bool japanese = false)
     {
         shown ??= NativeShown;
         var words = new List<Prompt>();
@@ -21,7 +23,7 @@ internal static unsafe class PromptReader
             if (node == null || (int)node->Type < 1000 || !shown((nint)node)) continue;
             var component = ((AtkComponentNode*)node)->Component;
             if (component == null) continue;
-            var label = FindNode(&component->UldManager, 20);
+            var label = FindNode(&component->UldManager, japanese ? 22u : 20u);
             if (label == null || label->Type != NodeType.Text) continue;
             var labelVisible = shown((nint)label);
             // The noise mechanic hides the normal label while the active prompt container
@@ -30,7 +32,7 @@ internal static unsafe class PromptReader
             var masked = !labelVisible && HasNoiseTiles(&component->UldManager, shown);
             if (!labelVisible && !masked) continue;
             var word = ((AtkTextNode*)label)->NodeText.ToString();
-            if (word.Length is > 0 and <= 160 && word.All(c => c is >= ' ' and <= '~' || char.IsLetter(c)))
+            if (word.Length is > 0 and <= 160 && (japanese ? JapaneseInput.IsKana(word) : word.All(c => c is >= ' ' and <= '~' || char.IsLetter(c))))
                 words.Add(new(node->NodeId, word, masked, node->Depth, node->Depth_2,
                     node->ScreenX + node->Width * node->ScaleX / 2, node->ScreenY, node->ScaleX));
         }

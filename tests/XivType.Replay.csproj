@@ -17,6 +17,7 @@
     <Compile Include="../XivType/JammerCastBarReader.cs" Link="JammerCastBarReader.cs" />
     <Compile Include="../XivType/PromptSelection.cs" Link="PromptSelection.cs" />
     <Compile Include="../XivType/PromptActorMap.cs" Link="PromptActorMap.cs" />
+    <Compile Include="../XivType/JapaneseInput.cs" Link="JapaneseInput.cs" />
     <None Include="fixtures/masked-full.txt" CopyToOutputDirectory="PreserveNewest" />
     <None Include="fixtures/input-jammed.txt" CopyToOutputDirectory="PreserveNewest" />
     <None Include="fixtures/input-unlocked.txt" CopyToOutputDirectory="PreserveNewest" />

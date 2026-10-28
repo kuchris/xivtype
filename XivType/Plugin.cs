@@ -167,6 +167,8 @@ public sealed class Plugin : IDalamudPlugin
             // The chat mirror opens on entering the activity (which hides the game's chat) and closes on leaving.
             var activity = Client.TerritoryType == 1359;
             if (activity != inActivity) chatOpen = activity && config.ChatWindow;
+            // Open the main window on entering too, so players do not forget to start typing.
+            if (activity && !inActivity) visible = true;
             inActivity = activity;
             if (config.Diagnostics && Client.TerritoryType == 1359 && now >= nextWordArrayCapture)
             {
@@ -392,7 +394,7 @@ public sealed class Plugin : IDalamudPlugin
         if (ImGui.Begin("XivType", ref visible))
         {
             DrawKofiButton();
-            ImGui.TextUnformatted("English Keybound Brawler - development build");
+            ImGui.TextUnformatted("Keybound Brawler (English / Japanese) - development build");
             ImGui.TextWrapped(typing.Status);
             ImGui.TextUnformatted($"Acknowledged submissions: {typing.Submissions} | Acknowledged edits: {typing.Accepted}");
             var priority = (int)config.Priority;

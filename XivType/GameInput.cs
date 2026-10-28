@@ -78,6 +78,23 @@ internal static unsafe class GameInput
         return target == null ? "none" : target == &input->AtkTextInputEventInterface ? "activity" : "other";
     }
 
+    // Japanese client: the 0.1.9-0.1.26 direct write, kept for text posted keys cannot produce (kana). It follows posted
+    // romaji keys and precedes a posted Enter, so the duty still sees keyboard activity (see JapaneseInput).
+    internal static bool WriteText(string text)
+    {
+        if (Plugin.EnemyLock.Blocked || !TryGet(out var addon, out var input) || !InputAvailability.Read(addon, input->Enabled).Allowed)
+        {
+            Plugin.Log.Information("XivType direct write '{Text}' refused: input locked", text);
+            return false;
+        }
+        EditOperations++;
+        input->SetText(text);
+        input->Callback(addon, InputCallbackType.TextChanged,
+            input->RawString.StringPtr, input->EvaluatedString.StringPtr, input->CallbackEventKind);
+        Plugin.Log.Information("XivType direct write '{Text}' -> evaluated '{Evaluated}'", text, input->EvaluatedString.ToString());
+        return true;
+    }
+
     internal static void CountEdit() => EditOperations++;
     internal static void CountSubmit() => SubmitOperations++;
 }

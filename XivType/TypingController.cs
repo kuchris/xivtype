@@ -40,6 +40,10 @@ internal sealed unsafe class TypingController(DiagnosticStore diagnostics, Confi
     private uint scoreBefore;
     private int accepted;
     private int submissions;
+    private string romaji = "";
+    private int romajiSent;
+    private int kanaWrites;
+    private readonly Dictionary<string, long> kanaFailedUntil = [];
     public bool Running => running;
     public int Submissions => submissions;
     // Raised when the user stops typing (Stop button, /xivtype off, Escape) so a run loop stops too.
@@ -69,7 +73,7 @@ internal sealed unsafe class TypingController(DiagnosticStore diagnostics, Confi
         pipelined = false;
         inputWasBlocked = false;
         nextAction = Environment.TickCount64 + 500;
-        Status = singleCharacter ? "Testing one character." : "Waiting for a visible English prompt.";
+        Status = singleCharacter ? "Testing one character." : "Waiting for a visible prompt.";
         Plugin.Log.Information("XivType typing started; continuous={Continuous}, probe={Probe}", repeat, singleCharacter);
     }
 
@@ -150,9 +154,9 @@ internal sealed unsafe class TypingController(DiagnosticStore diagnostics, Confi
 
     private void Tick(long now, LiveState state, InputPermission permission)
     {
-        if (Plugin.Client.TerritoryType != 1359 || Plugin.Client.ClientLanguage.ToString() != "English")
+        if (Plugin.Client.TerritoryType != 1359 || !SupportedLanguage)
         {
-            Stop("Stopped outside the supported English activity.");
+            Stop("Stopped outside the supported English or Japanese activity.");
             return;
         }
         if (NativeInput.IsGameForeground() && (NativeInput.GetAsyncKeyState(0x1B) & 0x8000) != 0)
@@ -168,7 +172,7 @@ internal sealed unsafe class TypingController(DiagnosticStore diagnostics, Confi
             submitted = false;
             clearing = false;
             ownsInput = false;
-            Status = "Waiting for the English activity input and prompts.";
+            Status = "Waiting for the activity input and prompts.";
             return;
         }
         // The activity's own prohibition takes precedence over acknowledgements, retries,
@@ -299,6 +303,15 @@ internal sealed unsafe class TypingController(DiagnosticStore diagnostics, Confi
             }
             else if (now - sentAt > 2000)
             {
+                if (Japanese)
+                {
+                    // The kana write was accepted on screen but not scored; try another prompt for a while.
+                    kanaFailedUntil[target] = now + 6000;
+                    Plugin.Log.Information("XivType Japanese submission not acknowledged for {Target}; skipping it for 6 s.", target);
+                    submitted = false;
+                    target = "";
+                    return;
+                }
                 if (submitRetries == 0 && state.Input.Equals(PromptSelection.Typeable(target), StringComparison.OrdinalIgnoreCase) &&
                     state.Words.Any(w => w.NodeId == targetNode && w.Text == target) && NativeInput.Ready(now))
                 {
@@ -339,6 +352,11 @@ internal sealed unsafe class TypingController(DiagnosticStore diagnostics, Confi
                 return;
             }
             activationAttempts = 0;
+        }
+        if (Japanese)
+        {
+            TickJapanese(now, state);
+            return;
         }
         if (clearing)
         {
@@ -429,6 +447,72 @@ internal sealed unsafe class TypingController(DiagnosticStore diagnostics, Confi
         }
     }
 
+    private static bool Japanese => Plugin.Client.ClientLanguage.ToString() == "Japanese";
+    private static bool SupportedLanguage => Japanese || Plugin.Client.ClientLanguage.ToString() == "English";
+
+    // Japanese: post the romaji as letter keys (the keyboard activity the duty requires), then replace whatever they
+    // produced with the kana in one direct write, then submit with a posted Enter. See JapaneseInput.
+    private void TickJapanese(long now, LiveState state)
+    {
+        if (target.Length == 0)
+        {
+            var open = state.Words.Where(w => !kanaFailedUntil.TryGetValue(w.Text, out var until) || until <= now);
+            var choice = PromptSelection.Choose(open, "", config.Priority);
+            if (choice == null)
+            {
+                Status = "Waiting for an enemy prompt.";
+                return;
+            }
+            target = choice.Text;
+            targetNode = choice.NodeId;
+            romaji = JapaneseInput.ToRomaji(target);
+            romajiSent = 0;
+            kanaWrites = 0;
+            Plugin.Log.Information("XivType selected Japanese prompt {Node}: {Target} ({Romaji}); priority={Priority}; distance={Distance}",
+                targetNode, target, romaji, config.Priority, choice.Distance?.ToString("0.0") ?? "unknown");
+        }
+        if (!state.Words.Any(w => w.NodeId == targetNode && w.Text == target))
+        {
+            target = "";
+            Status = "Selected enemy prompt disappeared; checking again.";
+            return;
+        }
+        var hwnd = Process.GetCurrentProcess().MainWindowHandle;
+        if (romajiSent < romaji.Length)
+        {
+            var ch = romaji[romajiSent];
+            if (!NativeInput.ReadyFor(ch, now)) return;
+            if (!NativeInput.SendCharacter(hwnd, ch)) { Stop($"Could not post a keystroke to the game: {GameInput.Describe()}"); return; }
+            romajiSent++;
+            nextAction = now + config.TypingDelayMs;
+            Status = $"Typing '{target}' ({romajiSent}/{romaji.Length}).";
+            return;
+        }
+        if (!state.Input.Equals(target, StringComparison.Ordinal))
+        {
+            // Let the last posted letter land first, or it would be appended after the kana.
+            if (!NativeInput.Ready(now)) return;
+            if (kanaWrites >= 3)
+            {
+                kanaFailedUntil[target] = now + 6000;
+                Plugin.Log.Information("XivType Japanese write did not stick for {Target}; observed '{Input}'.", target, state.Input);
+                target = "";
+                return;
+            }
+            if (kanaWrites == 0 && now < nextAction + 60) return;
+            if (GameInput.WriteText(target)) kanaWrites++;
+            nextAction = now + 60;
+            return;
+        }
+        if (!NativeInput.ReadyForScan(0x1C, now)) return;
+        if (!SendSubmit(target)) { Stop("Input route rejected submission."); return; }
+        submitted = true;
+        sentAt = now;
+        scoreBefore = state.Score;
+        Status = $"Submitted '{target}', waiting for game acknowledgement.";
+        Plugin.Log.Information("XivType Enter sent for {Target}; score={Score}", target, scoreBefore);
+    }
+
     private bool CanPipeline(long now, LiveState state)
     {
         if (!config.BackgroundTyping || clearing || pipelined || probe || target.Length == 0 || config.TypingDelayMs > 0) return false;
@@ -465,7 +549,7 @@ internal sealed unsafe class TypingController(DiagnosticStore diagnostics, Confi
     private static LiveState Read()
     {
         actorScreens = [];
-        if (Plugin.Client.TerritoryType != 1359 || Plugin.Client.ClientLanguage.ToString() != "English")
+        if (Plugin.Client.TerritoryType != 1359 || !SupportedLanguage)
             return new(false, "", [], 0);
         var input = Plugin.GameGui.GetAddonByName<AtkUnitBase>("KTGInput");
         var wordAddon = Plugin.GameGui.GetAddonByName<AtkUnitBase>("KTGEWord");
@@ -476,7 +560,7 @@ internal sealed unsafe class TypingController(DiagnosticStore diagnostics, Confi
         var text = PromptReader.FindNode(&inputComponent->Component->UldManager, 16);
         if (text == null || text->Type != NodeType.Text) return new(false, "", [], 0);
         var entered = ((AtkTextNode*)text)->NodeText.ToString();
-        var words = PromptReader.ReadWords(wordAddon);
+        var words = PromptReader.ReadWords(wordAddon, japanese: Japanese);
         if (Plugin.Objects.LocalPlayer is { } player)
         {
             actorScreens = Plugin.Objects

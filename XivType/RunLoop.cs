@@ -82,7 +82,10 @@ internal sealed unsafe class RunLoop(TypingController typing)
         if (territory != Lobby) { Status = $"Run {Completed + 1}/{Runs}: waiting for the lobby."; return; }
         if (now < nextStepAt) return;
 
-        if (ContentsFinderReady() && Click("ContentsFinderConfirm", 8))
+        // Other clients name the duty differently; there, accept Duty Ready only right after registering here.
+        var dutyReady = ContentsFinderReady() ||
+            (Plugin.Client.ClientLanguage.ToString() != "English" && stage == Stage.Queued && Visible("ContentsFinderConfirm"));
+        if (dutyReady && Click("ContentsFinderConfirm", 8))
         {
             Status = $"Run {Completed + 1}/{Runs}: entering.";
             Begin(Stage.Entering, now, 3000);
@@ -141,7 +144,7 @@ internal sealed unsafe class RunLoop(TypingController typing)
         if (addon == null || !addon->IsVisible || addon->AtkValuesCount < 2) return false;
         var name = addon->AtkValues[1];
         return name.Type is AtkValueType.String or AtkValueType.ManagedString or AtkValueType.ConstString &&
-            name.String.Value != null && name.String.ToString() == "Keybound Brawler";
+            name.String.Value != null && name.String.ToString() is "Keybound Brawler" or "キーバウンド・ブロウラー";
     }
 
     private static bool Click(string addonName, uint param)

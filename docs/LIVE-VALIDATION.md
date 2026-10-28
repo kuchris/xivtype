@@ -176,3 +176,20 @@ Background typing now posts held key-down/key-up messages (and characters for sh
 Live results: 0.1.33 ran 2.5 minutes (70 submissions, no expulsion) until a posted Shift+1 produced `1` for `!`. 0.1.35 completed a whole activity, 21:13:08-21:17:23 (111 submissions, final score 74,100, 114 Enter activations, punctuation such as `I give you my blessing.`, partly unfocused) with no expulsion.
 
 During that run a Dynamic Sensory Jammer pause covering the whole cast was still followed by a 7 s lock, and a Cursed Gaze pause at 21:12 was too. Per the user, typing is safe until the cast bar is half full and the lock follows shortly after the cast, so 0.1.36 pauses from 50% progress (actor cast time, or time since a caption first appeared for caption-only casts) and holds 2 s after the cast. 0.1.36 also clears and retypes its own wrong input instead of stopping. Neither 0.1.36 change has been observed live yet.
+
+## Japanese client (2026-10-29)
+
+Keybound Brawler on the Japanese client shows each prompt twice: a display form in label 20, which can contain kanji (`ギ族`), and the hiragana reading in label 22 (`ぎぞく`). The reading can include marks such as `～`. Manual IME typing shows the composition in input text node 16 wrapped in formatting codes, then plain kana once confirmed.
+
+These input routes were tested live:
+
+| Route | Result |
+| --- | --- |
+| Posted WM_CHAR kana or ASCII | Ignored |
+| Posted WM_IME_CHAR kana | Ignored |
+| IMM composition set and completed in-process | Ignored |
+| Posted letter keys | Arrive as raw letters (`a`); posted keys bypass the IME |
+| Direct write of the kana plus posted Enter | Scores, but the run was expelled for inactivity after about a minute |
+| Posted romaji letter keys, then the direct kana write, then posted Enter | Scores, with no expulsion |
+
+The shipped route is the last one. With it, one full run ended normally on the results screen with 44 submissions, and later runs had 227 acknowledged submissions and no failures or expulsions. A test that posted keys from an external script leaked a few letters into the foreground application. The in-plugin route uses the same NativeInput posting as English mode, and no leaks were reported with it. The loop's Duty Ready step was not tested on the Japanese client.

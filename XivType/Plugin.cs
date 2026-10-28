@@ -1,3 +1,4 @@
+using Dalamud.Game.Config;
 using System.Numerics;
 using System.Text;
 using Dalamud.Bindings.ImGui;
@@ -25,6 +26,7 @@ public sealed class Plugin : IDalamudPlugin
     [PluginService] internal static IGameGui GameGui { get; private set; } = null!;
     [PluginService] internal static IObjectTable Objects { get; private set; } = null!;
     [PluginService] internal static IAddonLifecycle Lifecycle { get; private set; } = null!;
+    [PluginService] internal static IGameConfig GameConfig { get; private set; } = null!;
     internal static bool KeyboardCaptured { get; private set; }
     internal static EnemyInputLock EnemyLock { get; } = new();
     internal static string[] EnemyCastLabels { get; private set; } = [];
@@ -69,6 +71,9 @@ public sealed class Plugin : IDalamudPlugin
         Interface.UiBuilder.OpenMainUi += Open;
         Interface.UiBuilder.OpenConfigUi += Open;
         Log.Information("XivType diagnostics ready. Output: {Output}", output);
+        Log.Information("XivType game frame rate settings: Fps={Fps}, FPSInActive={Inactive}, FPSDownAFK={Afk}",
+            ReadSystem(SystemConfigOption.Fps)?.ToString() ?? "?", ReadSystem(SystemConfigOption.FPSInActive)?.ToString() ?? "?",
+            ReadSystem(SystemConfigOption.FPSDownAFK)?.ToString() ?? "?");
     }
 
     private void Open() => visible = true;
@@ -279,6 +284,41 @@ public sealed class Plugin : IDalamudPlugin
             Walk(child, path, shown, depth + 1, visited, builder, compact);
     }
 
+    private static uint? ReadSystem(SystemConfigOption option) => GameConfig.TryGet(option, out uint value) ? value : null;
+
+    // Game System Configuration values. Fps=2 was confirmed as 60 fps by the user (2026-10-28); the other
+    // labels follow the game's list order and should be checked against System Configuration.
+    private static readonly string[] FrameRateLabels = ["None (unlimited)", "Main display refresh rate", "60 fps", "30 fps", "15 fps"];
+
+    private static void DrawFrameRate()
+    {
+        if (!ImGui.CollapsingHeader("Game frame rate")) return;
+        if (ReadSystem(SystemConfigOption.Fps) is { } fps)
+        {
+            var selected = (int)Math.Min(fps, (uint)FrameRateLabels.Length - 1);
+            if (ImGui.Combo("Frame rate threshold", ref selected, FrameRateLabels, FrameRateLabels.Length))
+            {
+                GameConfig.Set(SystemConfigOption.Fps, (uint)selected);
+                Log.Information("XivType set game Fps {Before} -> {After}", fps, selected);
+            }
+            if (fps >= FrameRateLabels.Length) ImGui.TextDisabled($"Current game value {fps} is outside the known list.");
+        }
+        DrawSystemToggle("Limit frame rate when client is inactive", SystemConfigOption.FPSInActive);
+        DrawSystemToggle("Limit frame rate when AFK", SystemConfigOption.FPSDownAFK);
+        ImGui.TextDisabled("Writes the game's System Configuration. Background typing speed follows the frame rate.");
+    }
+
+    private static void DrawSystemToggle(string label, SystemConfigOption option)
+    {
+        if (ReadSystem(option) is not { } value) return;
+        var enabled = value != 0;
+        if (ImGui.Checkbox(label, ref enabled))
+        {
+            GameConfig.Set(option, enabled ? 1u : 0u);
+            Log.Information("XivType set game {Option} {Before} -> {After}", option, value, enabled ? 1 : 0);
+        }
+    }
+
     private void Draw()
     {
         KeyboardCaptured = ImGui.GetIO().WantCaptureKeyboard;
@@ -315,6 +355,7 @@ public sealed class Plugin : IDalamudPlugin
                 Interface.SavePluginConfig(config);
             }
             ImGui.TextDisabled("Escape stops typing while the game is focused.");
+            DrawFrameRate();
             if (backgroundTyping) ImGui.TextDisabled("Keystrokes are posted only to FFXIV, even when another app has focus.");
             var typingDelay = config.TypingDelayMs;
             var clearDelay = config.ClearDelayMs;

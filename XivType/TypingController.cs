@@ -301,6 +301,8 @@ internal sealed unsafe class TypingController(DiagnosticStore diagnostics, Confi
             }
             else
             {
+                // A direct clear only blanked the display; the activity keeps its own text, so the next
+                // keystroke restored it ('gimme a fol' + 'p', 2026-10-28). Clearing must use Backspace.
                 var next = state.Input[..^1];
                 if (!NativeInput.Backspace())
                 {

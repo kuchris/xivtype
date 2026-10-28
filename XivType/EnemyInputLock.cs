@@ -8,10 +8,10 @@ internal sealed class EnemyInputLock
     public bool Blocked { get; private set; }
     public uint ActionId { get; private set; }
 
-    // User, 2026-10-28: typing is safe until the cast bar is half full; the lock lands up to ~1.2s after
-    // the bar disappears (live captures), so hold 2s after the cast and resume as soon as the icon clears.
+    // User, 2026-10-28: typing is safe until the cast bar is half full. Resuming 2s after the cast was
+    // followed by a lock within 0.3s twice live (21:25, 21:29), so hold 3s and resume once the icon clears.
     internal const float PauseFromProgress = 0.5f;
-    internal const long TailMs = 2000;
+    internal const long TailMs = 3000;
 
     // Typing while Cursed Gaze resolves triggers the 7s lock (user, 2026-10-28); jammer locks regardless.
     internal static bool IsLocking(uint actionId) => actionId is 49532 or 49702 or 49529;

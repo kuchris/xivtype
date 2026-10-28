@@ -1,8 +1,22 @@
-# XivType
+<p align="center">
+  <img src="images/icon.png" width="96" height="96" alt="XivType icon">
+</p>
 
-Dalamud API 15 plugin for automatic English typing in Keybound Brawler. Reads active enemy prompts, picks the shortest matching prompt, updates the activity's input component and submits through its game callback. Each edit and submission must be acknowledged by the live game before continuing. Background typing is enabled by default.
+<h1 align="center">XivType</h1>
 
-## Build and load
+Dalamud API 15 plugin for automatic English typing in Keybound Brawler. Reads active enemy prompts, picks a matching prompt by the selected target priority, updates the activity's input component and submits through its game callback. Each edit and submission must be acknowledged by the live game before continuing. Background typing is enabled by default.
+
+## Install
+
+Add this URL in `/xlsettings` → **Experimental** → **Custom Plugin Repositories**:
+
+```text
+https://raw.githubusercontent.com/kuchris/DalamudPlugins/main/repo.json
+```
+
+Enable the repository, then search for **XivType** in `/xlplugins`. If switching from a dev build, disable that copy first. Manual downloads are available under [Releases](https://github.com/kuchris/xivtype/releases).
+
+## Build and load (development)
 
 1. Run `dotnet build XivType/XivType.csproj -c Debug`.
 2. In Dalamud's developer plugin locations, add the absolute path to `XivType/bin/Debug/XivType.dll`.

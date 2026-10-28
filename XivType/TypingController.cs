@@ -241,7 +241,8 @@ internal sealed unsafe class TypingController(DiagnosticStore diagnostics, Confi
                 submitted = false;
                 ownsInput = false;
                 target = "";
-                nextAction = now + 250;
+                // The posted route reopens the input with Enter before typing, which already spaces prompts.
+                nextAction = now + (config.BackgroundTyping ? 60 : 250);
                 if (!continuous)
                 {
                     Stop($"Prompt submitted and acknowledged. Score: {state.Score}.");

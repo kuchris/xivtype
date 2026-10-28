@@ -327,13 +327,13 @@ public sealed class Plugin : IDalamudPlugin
                 config.ClearDelayMs = clearDelay;
                 Interface.SavePluginConfig(config);
             }
-            if (!backgroundTyping && ImGui.SliderInt("Key hold", ref keyHold, 20, 80, "%d ms"))
+            if (ImGui.SliderInt("Key hold", ref keyHold, 10, 80, "%d ms"))
             {
                 config.KeyHoldMs = keyHold;
                 Interface.SavePluginConfig(config);
             }
             ImGui.TextDisabled("Lower delay is faster. Every edit still waits for game acknowledgement.");
-            if (!backgroundTyping) ImGui.TextDisabled($"Effective key hold: {NativeInput.KeyHoldMs} ms (adapts after a missed key).");
+            ImGui.TextDisabled($"Effective key hold: {NativeInput.KeyHoldMs} ms (adapts after a missed key).");
             if (diagnostics.Error is { } diagnosticError) ImGui.TextWrapped($"Diagnostic file error: {diagnosticError}");
             if (!ImGui.CollapsingHeader("Diagnostics")) { ImGui.End(); return; }
             ImGui.Checkbox("Capture activity prompts and input automatically", ref captureActivity);

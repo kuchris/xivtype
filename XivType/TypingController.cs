@@ -293,8 +293,9 @@ internal sealed unsafe class TypingController(DiagnosticStore diagnostics, Confi
             }
             target = choice.Text;
             targetNode = choice.NodeId;
-            Plugin.Log.Information("XivType selected prompt {Node}: {Target}; masked={Masked}; priority={Priority}; distance={Distance}; existing input '{Input}'",
-                targetNode, target, choice.Masked, config.Priority, choice.Distance?.ToString("0.0") ?? "unknown", state.Input);
+            Plugin.Log.Information("XivType selected prompt {Node}: {Target}; masked={Masked}; priority={Priority}; distance={Distance}; scale={Scale:0.000}; estimated={Estimated}; candidates={Candidates}; existing input '{Input}'",
+                targetNode, target, choice.Masked, config.Priority, choice.Distance?.ToString("0.0") ?? "unknown", choice.Scale,
+                PromptActorMap.EstimateDistance(choice.Scale)?.ToString("0.0") ?? "none", state.Words.Length, state.Input);
         }
         if (!state.Words.Any(w => w.NodeId == targetNode && w.Text == target))
         {

@@ -78,6 +78,21 @@ internal static unsafe class GameInput
         return target == null ? "none" : target == &input->AtkTextInputEventInterface ? "activity" : "other";
     }
 
+    // Clearing is rare, so background mode empties the field in one direct write instead of
+    // one held Backspace per character; typing itself stays on keystrokes.
+    internal static bool ClearText(string previous)
+    {
+        if (Plugin.EnemyLock.Blocked || !TryGet(out var addon, out var input) || !InputAvailability.Read(addon, input->Enabled).Allowed) return false;
+        var node = PromptReader.FindNode(&input->UldManager, 16);
+        if (node == null || node->Type != NodeType.Text ||
+            !((AtkTextNode*)node)->NodeText.ToString().Equals(previous, StringComparison.OrdinalIgnoreCase)) return false;
+        EditOperations++;
+        input->SetText("");
+        input->Callback(addon, InputCallbackType.TextChanged,
+            input->RawString.StringPtr, input->EvaluatedString.StringPtr, input->CallbackEventKind);
+        return true;
+    }
+
     internal static void CountEdit() => EditOperations++;
     internal static void CountSubmit() => SubmitOperations++;
 }

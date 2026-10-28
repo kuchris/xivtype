@@ -213,7 +213,7 @@ internal sealed unsafe class TypingController(DiagnosticStore diagnostics, Confi
                 {
                     adaptiveHoldMs = Math.Min(80, Math.Max(60, NativeInput.KeyHoldMs + 15));
                     NativeInput.KeyHoldMs = adaptiveHoldMs;
-                    var sent = clearing ? NativeInput.Backspace(adaptiveHoldMs) :
+                    var sent = clearing ? (config.BackgroundTyping ? GameInput.ClearText(state.Input) : NativeInput.Backspace(adaptiveHoldMs)) :
                             NativeInput.SendCharacter(Process.GetCurrentProcess().MainWindowHandle, expected[^1]);
                     if (sent)
                     {
@@ -301,8 +301,8 @@ internal sealed unsafe class TypingController(DiagnosticStore diagnostics, Confi
             }
             else
             {
-                var next = state.Input[..^1];
-                if (!NativeInput.Backspace())
+                var next = config.BackgroundTyping ? "" : state.Input[..^1];
+                if (!(config.BackgroundTyping ? GameInput.ClearText(state.Input) : NativeInput.Backspace()))
                 {
                     Stop("Could not clear the expired prompt input.");
                     return;

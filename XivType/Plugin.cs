@@ -49,6 +49,7 @@ public sealed class Plugin : IDalamudPlugin
     private readonly DiagnosticStore diagnostics;
     private readonly Configuration config;
     private long nextActorCapture;
+    private long uiLockSince;
     private long nextWordArrayCapture;
 
     public Plugin()
@@ -111,14 +112,16 @@ public sealed class Plugin : IDalamudPlugin
         {
             var casts = Client.TerritoryType == 1359
                 ? Objects.OfType<IBattleChara>().Where(o => o.ObjectKind == ObjectKind.BattleNpc)
-                    .Select(o => new EnemyCast(o.CastActionId, o.IsCasting)).ToArray()
+                    .Select(o => new EnemyCast(o.CastActionId, o.IsCasting, o.TotalCastTime > 0 ? o.CurrentCastTime / o.TotalCastTime : 1)).ToArray()
                 : [];
             var castAddon = GameGui.GetAddonByName<AtkUnitBase>("KTGEnemyCastBar");
             EnemyCastLabels = Client.TerritoryType == 1359 && castAddon != null && castAddon->IsVisible
                 ? JammerCastBarReader.ReadLabels(castAddon) : [];
             var uiLock = JammerCastBarReader.LockingAction(EnemyCastLabels);
+            // Caption-only casts carry no progress; both locking casts are 5s, so time it from first sight.
+            uiLockSince = uiLock == 0 ? 0 : uiLockSince == 0 ? now : uiLockSince;
             EnemyLock.Observe(now, Client.TerritoryType == 1359,
-                uiLock != 0 ? casts.Append(new EnemyCast(uiLock, true)).ToArray() : casts);
+                uiLock != 0 ? casts.Append(new EnemyCast(uiLock, true, (now - uiLockSince) / 5000f)).ToArray() : casts);
             if (Client.TerritoryType == 1359 && now >= nextActorCapture)
             {
                 nextActorCapture = now + 1000;

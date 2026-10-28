@@ -26,6 +26,7 @@ internal sealed unsafe class TypingController(DiagnosticStore diagnostics, Confi
     private bool ownsInput;
     private string sentFrom = "";
     private int editRetries;
+    private int recoveries;
     private int submitRetries;
     private int adaptiveHoldMs;
     private bool inputWasBlocked;
@@ -60,6 +61,7 @@ internal sealed unsafe class TypingController(DiagnosticStore diagnostics, Confi
         submitRetries = 0;
         activationAttempts = 0;
         nextActivation = 0;
+        recoveries = 0;
         inputWasBlocked = false;
         nextAction = Environment.TickCount64 + 500;
         Status = singleCharacter ? "Testing one character." : "Waiting for a visible English prompt.";
@@ -222,6 +224,8 @@ internal sealed unsafe class TypingController(DiagnosticStore diagnostics, Confi
                         return;
                     }
                 }
+                // A wrong character from our own edit is cleared and the prompt retyped instead of stopping.
+                if (!state.Input.Equals(sentFrom, StringComparison.OrdinalIgnoreCase) && Recover(state.Input, $"expected '{expected}'")) return;
                 Stop($"Input was not acknowledged. Expected '{expected}', observed '{state.Input}'.");
                 return;
             }
@@ -232,6 +236,7 @@ internal sealed unsafe class TypingController(DiagnosticStore diagnostics, Confi
             if (state.Input.Length == 0 && (state.Score > scoreBefore || !state.Words.Any(w => w.NodeId == targetNode && w.Text == target)))
             {
                 submissions++;
+                recoveries = 0;
                 Plugin.Log.Information("XivType submission acknowledged: {Target}; score {Before}->{After}", target, scoreBefore, state.Score);
                 submitted = false;
                 ownsInput = false;
@@ -333,6 +338,7 @@ internal sealed unsafe class TypingController(DiagnosticStore diagnostics, Confi
         }
         if (!target.StartsWith(state.Input, StringComparison.OrdinalIgnoreCase))
         {
+            if (ownsInput && Recover(state.Input, $"target '{target}'")) return;
             Stop("Input changed unexpectedly. Clear the input manually, then restart.");
             return;
         }
@@ -365,6 +371,20 @@ internal sealed unsafe class TypingController(DiagnosticStore diagnostics, Confi
             Status = $"Submitted '{target}', waiting for game acknowledgement.";
             Plugin.Log.Information("XivType Enter sent for {Target}; score={Score}", target, scoreBefore);
         }
+    }
+
+    private bool Recover(string observed, string context)
+    {
+        if (recoveries >= 2) return false;
+        recoveries++;
+        pending = false;
+        submitted = false;
+        target = "";
+        ownsInput = true;
+        clearing = observed.Length > 0;
+        Status = $"Wrong input '{observed}'; clearing it and retyping.";
+        Plugin.Log.Information("XivType recovering from wrong input '{Observed}' ({Context}); attempt {Attempt}.", observed, context, recoveries);
+        return true;
     }
 
     private static bool SendSubmit(string text) => NativeInput.Submit(Process.GetCurrentProcess().MainWindowHandle);

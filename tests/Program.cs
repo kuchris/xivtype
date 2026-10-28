@@ -160,12 +160,19 @@ unsafe class Program
                 throw new Exception("A jammer cast by a non-selected enemy was not blocked.");
             enemyLock.Observe(1500, true, []);
             if (!enemyLock.Blocked) throw new Exception("The jammer settling delay ended too early.");
-            enemyLock.Observe(1800, true, []);
+            enemyLock.Observe(2900, true, []);
+            if (!enemyLock.Blocked) throw new Exception("The 2s post-cast hold ended too early.");
+            enemyLock.Observe(3100, true, []);
             if (enemyLock.Blocked) throw new Exception("The jammer block did not expire.");
-            enemyLock.Observe(2000, true, [new(action, false)]);
+            var early = new EnemyInputLock();
+            early.Observe(1000, true, [new(action, true, 0.3f)]);
+            if (early.Blocked) throw new Exception("Typing paused before the cast bar reached half.");
+            early.Observe(1100, true, [new(action, true, 0.5f)]);
+            if (!early.Blocked) throw new Exception("Typing continued past half the cast bar.");
+            enemyLock.Observe(4000, true, [new(action, false)]);
             if (enemyLock.Blocked) throw new Exception("A stale, non-casting action blocked typing.");
-            enemyLock.Observe(3000, true, [new(action, true)]);
-            enemyLock.Observe(3001, false, [new(action, true)]);
+            enemyLock.Observe(5000, true, [new(action, true)]);
+            enemyLock.Observe(5001, false, [new(action, true)]);
             if (enemyLock.Blocked) throw new Exception("The jammer state leaked outside the activity.");
         }
         var ordinary = new EnemyInputLock();

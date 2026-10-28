@@ -251,7 +251,7 @@ internal sealed unsafe class TypingController(DiagnosticStore diagnostics, Confi
             }
             else if (now - sentAt > 2000)
             {
-                if (submitRetries == 0 && state.Input.Equals(target, StringComparison.OrdinalIgnoreCase) &&
+                if (submitRetries == 0 && state.Input.Equals(PromptSelection.Typeable(target), StringComparison.OrdinalIgnoreCase) &&
                     state.Words.Any(w => w.NodeId == targetNode && w.Text == target) && NativeInput.Ready(now))
                 {
                     adaptiveHoldMs = 80;
@@ -339,16 +339,17 @@ internal sealed unsafe class TypingController(DiagnosticStore diagnostics, Confi
             Status = "Selected enemy prompt disappeared; checking again.";
             return;
         }
-        if (!target.StartsWith(state.Input, StringComparison.OrdinalIgnoreCase))
+        var typed = PromptSelection.Typeable(target);
+        if (!typed.StartsWith(state.Input, StringComparison.OrdinalIgnoreCase))
         {
             if (ownsInput && Recover(state.Input, $"target '{target}'")) return;
             Stop("Input changed unexpectedly. Clear the input manually, then restart.");
             return;
         }
         var hwnd = Process.GetCurrentProcess().MainWindowHandle;
-        if (state.Input.Length < target.Length)
+        if (state.Input.Length < typed.Length)
         {
-            var ch = target[state.Input.Length];
+            var ch = typed[state.Input.Length];
             if (!NativeInput.SendCharacter(hwnd, ch))
             {
                 Stop(config.BackgroundTyping ? $"Could not post a keystroke to the game: {GameInput.Describe()}" :
@@ -360,7 +361,7 @@ internal sealed unsafe class TypingController(DiagnosticStore diagnostics, Confi
             editRetries = 0;
             pending = true;
             sentAt = now;
-            Status = $"Typing '{target}' ({state.Input.Length + 1}/{target.Length}).";
+            Status = $"Typing '{target}' ({state.Input.Length + 1}/{typed.Length}).";
             Plugin.Log.Debug("XivType character sent '{Character}', expecting '{Expected}'", ch, expected);
         }
         else

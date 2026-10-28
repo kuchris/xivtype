@@ -204,6 +204,9 @@ unsafe class Program
         if (located[3].Distance != null) throw new Exception("An actor above the label was bound.");
         if (PromptActorMap.WithDistances([labels[0], labels[0] with { NodeId = 14 }], actors, Vector3.Zero).Any(p => p.Distance != null))
             throw new Exception("One actor carried two prompts.");
+        if (PromptSelection.Typeable("Ätherhängen café") != "Atherhangen cafe" ||
+            PromptSelection.Choose([new(40, "Hölle")], "ho", TargetPriority.ShortestPrompt)?.NodeId != 40)
+            throw new Exception("Accented prompt letters were not typed as their base letters.");
         // Two enemies on one screen column stay unbound; the near label's scale must still win over a bound far enemy.
         Prompt[] stacked = [new(30, "crimsonite crystal", Scale: 1.14f, Distance: 40), new(31, "You should get yourself a reading!", Scale: 1.45f)];
         if (PromptSelection.Choose(stacked, "", TargetPriority.NearestEnemy)?.NodeId != 31)

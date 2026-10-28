@@ -30,7 +30,7 @@ internal static unsafe class PromptReader
             var masked = !labelVisible && HasNoiseTiles(&component->UldManager, shown);
             if (!labelVisible && !masked) continue;
             var word = ((AtkTextNode*)label)->NodeText.ToString();
-            if (word.Length is > 0 and <= 160 && word.All(c => c is >= ' ' and <= '~'))
+            if (word.Length is > 0 and <= 160 && word.All(c => c is >= ' ' and <= '~' || char.IsLetter(c)))
                 words.Add(new(node->NodeId, word, masked, node->Depth, node->Depth_2,
                     node->ScreenX + node->Width * node->ScaleX / 2, node->ScreenY, node->ScaleX));
         }

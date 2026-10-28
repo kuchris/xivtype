@@ -63,6 +63,8 @@ public sealed class Plugin : IDalamudPlugin
             HelpMessage = "Open XivType. /xivtype on | once | off | status | dump <addon name>",
         });
         Framework.Update += Update;
+        // The later activity rounds count as a cutscene, which hid the control window mid-run.
+        Interface.UiBuilder.DisableCutsceneUiHide = true;
         Interface.UiBuilder.Draw += Draw;
         Interface.UiBuilder.OpenMainUi += Open;
         Interface.UiBuilder.OpenConfigUi += Open;

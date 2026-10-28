@@ -6,6 +6,8 @@
 
 Dalamud API 15 plugin for automatic English typing in Keybound Brawler. Reads active enemy prompts, picks a matching prompt by the selected target priority and types it with keystrokes, waiting for the game to acknowledge each character and submission before continuing. Background typing is enabled by default.
 
+If XivType helps you, you can support it on [Ko-fi](https://ko-fi.com/kuchris) (also the heart in the window title bar).
+
 ## Install
 
 Add this URL in `/xlsettings` → **Experimental** → **Custom Plugin Repositories**:

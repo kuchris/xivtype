@@ -7,7 +7,7 @@
     <Description>Reads Keybound Brawler enemy prompts and types them with keystrokes sent only to the game window, with shortest-prompt or nearest-enemy targeting, background typing and pauses for input-locking casts. English client only.</Description>
     <RepoUrl>https://github.com/kuchris/xivtype</RepoUrl>
     <RepositoryUrl>https://github.com/kuchris/xivtype</RepositoryUrl>
-    <IconUrl>https://raw.githubusercontent.com/kuchris/xivtype/0.1.51.0/images/icon.png</IconUrl>
+    <IconUrl>https://raw.githubusercontent.com/kuchris/xivtype/0.1.55.0/images/icon.png</IconUrl>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <Tags>typing;keybound brawler;gold saucer;automation</Tags>
     <ImplicitUsings>enable</ImplicitUsings>

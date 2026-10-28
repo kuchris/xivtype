@@ -31,7 +31,7 @@ for ($index = 0; $index -lt $Pulses; $index++) {
         Pulses = $results
     }
     $summary | ConvertTo-Json -Depth 8 | Set-Content -LiteralPath $OutputPath
-    Write-Output "Pulse $($index + 1)/${Pulses}: passed=$($probe.Passed); background=$($probe.AllBackground); keyboard=$($probe.SawShift); natural reset=$($probe.SawNaturalTimerReset); before=$($probe.BeforeInputTimer)s"
+    Write-Output "Pulse $($index + 1)/${Pulses}: passed=$($probe.Passed); background=$($probe.AllBackground); minimized=$($probe.AllMinimized); keyboard=$($probe.SawShift); natural reset=$($probe.SawNaturalTimerReset); before=$($probe.BeforeInputTimer)s"
     if (!$probe.Passed) { exit 1 }
 }
 Write-Output 'PASS: Repeated game-targeted keyboard activity observed. Duty/server AFK protection is still unverified.'

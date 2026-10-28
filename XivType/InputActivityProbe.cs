@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using System.Runtime.InteropServices;
 using System.Text.Json;
 using FFXIVClientStructs.FFXIV.Client.UI;
 using FFXIVClientStructs.FFXIV.Client.UI.Misc;
@@ -19,6 +20,7 @@ internal sealed unsafe partial class InputActivityProbe(DiagnosticStore diagnost
     private bool sawShift;
     private bool sawReset;
     private bool allBackground;
+    private bool allMinimized;
 
     internal void Begin(string key = "shift")
     {
@@ -33,6 +35,7 @@ internal sealed unsafe partial class InputActivityProbe(DiagnosticStore diagnost
         started = Environment.TickCount64;
         sawShift = sawReset = false;
         allBackground = !NativeInput.IsGameForeground();
+        allMinimized = IsIconic(window);
         active = true;
         held = input.PressKey();
         Plugin.Log.Information("XivType activity probe started; targeted key {Key:X2} queued={Queued}; input timer={Before}", input.VirtualKey, held, before);
@@ -48,10 +51,12 @@ internal sealed unsafe partial class InputActivityProbe(DiagnosticStore diagnost
             var shift = data->GetKeyState(input.VirtualKey);
             var foreground = NativeInput.IsGameForeground();
             allBackground &= !foreground;
+            var minimized = IsIconic(window);
+            allMinimized &= minimized;
             // FFXIV's key-state table does not report F13; its keyboard-changed flag still fires.
             sawShift |= (shift & (KeyStateFlags.Down | KeyStateFlags.Pressed)) != 0 || data->KeyboardInputsChanged;
             sawReset |= timers->InputTimer < 0.5f;
-            samples.Add(new { ElapsedMs = now - started, Foreground = foreground,
+            samples.Add(new { ElapsedMs = now - started, Foreground = foreground, Minimized = minimized,
                 InputTimer = timers->InputTimer, ShiftState = shift.ToString(), KeyboardChanged = data->KeyboardInputsChanged });
         }
         if (held && now - started >= 250)
@@ -62,7 +67,7 @@ internal sealed unsafe partial class InputActivityProbe(DiagnosticStore diagnost
         if (now - started < 3000) return;
         active = false;
         var report = new { Key = input.VirtualKey, BeforeInputTimer = before, SawShift = sawShift, SawNaturalTimerReset = sawReset,
-            AllBackground = allBackground, Passed = sawShift && sawReset && allBackground, Samples = samples };
+            AllBackground = allBackground, AllMinimized = allMinimized, Passed = sawShift && sawReset && allBackground, Samples = samples };
         diagnostics.Write("activity-probe.json", JsonSerializer.Serialize(report, new JsonSerializerOptions { WriteIndented = true }));
         Plugin.Log.Information("XivType activity probe complete: keyboard={Keyboard}, natural reset={Reset}, background={Background}", sawShift, sawReset, allBackground);
     }
@@ -72,5 +77,9 @@ internal sealed unsafe partial class InputActivityProbe(DiagnosticStore diagnost
         if (held) input.ReleaseKey();
         held = active = false;
     }
+
+    [LibraryImport("user32.dll")]
+    [return: MarshalAs(UnmanagedType.Bool)]
+    private static partial bool IsIconic(nint window);
 
 }

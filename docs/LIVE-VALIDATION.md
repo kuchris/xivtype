@@ -160,3 +160,9 @@ The repeated sequence (`activity-input-f13-2026-10-28.json`) gave two clean unfo
 ## Activity pulse interval - version 0.1.25.0
 
 At the user's request the production Shift pulse interval was shortened from 30 s to 5 s (`ActivityKeepAlive.PulseIntervalMs`). The 30 s recency requirement for acknowledged typing, the 250 ms hold and the 1.5 s observation deadline are unchanged. The scheduler replay now also checks that a second pulse follows after 5 s. Not yet observed live at this interval.
+
+## Activity key with the game sent to the desktop - version 0.1.26.0
+
+The user was concerned that the activity key may fail after switching to the desktop. Earlier Shift/F13 evidence covered only an unfocused but visible window. Version 0.1.26 records `IsIconic` in the lobby probe so a truly minimized window can be tested there.
+
+The user pressed Win+D while in the activity (territory 1359), so the lobby probe could not run; production continuous typing was observed instead (20:42:56-20:43:08). Windows reported the FFXIV window as not minimized (`IsIconic` false) throughout, and the game was unfocused until 20:43:04.5. Activity keys were acknowledged at 20:42:57.3, 20:43:02.4 and 20:43:07.3, confirming the 5 s interval live, and typing submissions continued. The run stopped at 20:43:08.3 with `Input changed unexpectedly` shortly after the game regained focus, consistent with manual input. In-activity `InputTimer` read 0.00 s before every pulse, so it cannot show whether a pulse reset idleness there. A window that Windows actually reports as minimized remains untested.

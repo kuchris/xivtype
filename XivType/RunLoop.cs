@@ -5,7 +5,8 @@ using FFXIVClientStructs.FFXIV.Component.GUI;
 namespace XivType;
 
 // Repeats whole Keybound Brawler runs, entering the way recorded live on 2026-10-28: talk to the Keybound
-// Registrar, KTGEnterDialogue Register (ButtonClick param 0), then Duty Ready Commence (ButtonClick param 8).
+// Registrar, KTGEnterDialogue Register (ButtonClick param 0), then Duty Ready Commence (ButtonClick param 8);
+// at the end, KTGResult Exit (ButtonClick param 1) instead of waiting out the results timer.
 // Clicks reuse the button's own registered event, the same object the game handles for a real click.
 internal sealed unsafe class RunLoop(TypingController typing)
 {
@@ -19,6 +20,7 @@ internal sealed unsafe class RunLoop(TypingController typing)
     private long stageSince;
     private int talkAttempts;
     private int typingRestarts;
+    private long resultSeenAt;
     internal bool Active { get; private set; }
     internal int Runs { get; private set; }
     internal int Completed { get; private set; }
@@ -52,6 +54,15 @@ internal sealed unsafe class RunLoop(TypingController typing)
         {
             if (stage != Stage.InRun) { stage = Stage.InRun; stageSince = now; typingRestarts = 0; }
             Status = $"Run {Completed + 1}/{Runs}: playing.";
+            // Leave the results screen after a short look rather than waiting about a minute.
+            if (Visible("KTGResult"))
+            {
+                resultSeenAt = resultSeenAt == 0 ? now : resultSeenAt;
+                if (now - resultSeenAt >= 3000 && now >= nextStepAt && Click("KTGResult", 1)) nextStepAt = now + 3000;
+                Status = $"Run {Completed + 1}/{Runs}: results, exiting.";
+                return;
+            }
+            resultSeenAt = 0;
             // Typing stops on its own errors; restart it a few times per run, but never after the user stopped it.
             if (!typing.Running && now >= nextStepAt && typingRestarts < 5)
             {
@@ -115,6 +126,12 @@ internal sealed unsafe class RunLoop(TypingController typing)
         Status = $"Run {Completed + 1}/{Runs}: talking to the Keybound Registrar.";
         Plugin.Log.Information("XivType loop talking to the Keybound Registrar (attempt {Attempt})", talkAttempts);
         Begin(Stage.Register, now, 2000);
+    }
+
+    private static bool Visible(string name)
+    {
+        var addon = Plugin.GameGui.GetAddonByName<AtkUnitBase>(name);
+        return addon != null && addon->IsVisible;
     }
 
     // Only accept Duty Ready for this activity.

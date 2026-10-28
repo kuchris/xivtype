@@ -66,6 +66,7 @@ public sealed class Plugin : IDalamudPlugin
         diagnostics = new DiagnosticStore(output);
         config = Interface.GetPluginConfig() as Configuration ?? new Configuration();
         config.Sanitize();
+        Loc.Config = config;
         typing = new TypingController(diagnostics, config);
         loop = new RunLoop(typing);
         typing.UserStopped += () => loop.Stop("Loop stopped with typing.");
@@ -318,24 +319,26 @@ public sealed class Plugin : IDalamudPlugin
 
     // Game System Configuration values. Fps=2 was confirmed as 60 fps by the user (2026-10-28); the other
     // labels follow the game's list order and should be checked against System Configuration.
-    private static readonly string[] FrameRateLabels = ["None (unlimited)", "Main display refresh rate", "60 fps", "30 fps", "15 fps"];
+    private static string[] FrameRateLabels =>
+        [Loc.T("None (unlimited)", "制限なし", "不限制"), Loc.T("Main display refresh rate", "メインディスプレイのリフレッシュレート", "主螢幕更新率"), "60 fps", "30 fps", "15 fps"];
 
     private static void DrawFrameRate()
     {
-        if (!ImGui.CollapsingHeader("Game frame rate")) return;
-        ImGui.TextUnformatted($"Measured: {NativeInput.MeasuredFps:0} fps (about {(NativeInput.MeasuredFps > 0 ? 1000 / NativeInput.MeasuredFps : 0):0.0} ms per posted character at best)");
+        if (!ImGui.CollapsingHeader(Loc.T("Game frame rate", "ゲームのフレームレート", "遊戲幀率") + "##fps")) return;
+        var perCharacter = NativeInput.MeasuredFps > 0 ? 1000 / NativeInput.MeasuredFps : 0;
+        ImGui.TextUnformatted(Loc.T($"Measured: {NativeInput.MeasuredFps:0} fps (about {perCharacter:0.0} ms per posted character at best)", $"計測値: {NativeInput.MeasuredFps:0} fps（1文字あたり最短 約{perCharacter:0.0} ms）", $"實測: {NativeInput.MeasuredFps:0} fps（每個字最快約 {perCharacter:0.0} ms）"));
         if (ReadSystem(SystemConfigOption.Fps) is { } fps)
         {
             var selected = (int)Math.Min(fps, (uint)FrameRateLabels.Length - 1);
-            if (ImGui.Combo("Frame rate threshold", ref selected, FrameRateLabels, FrameRateLabels.Length))
+            if (ImGui.Combo(Loc.T("Frame rate threshold", "フレームレート制限", "幀率上限") + "##fpslimit", ref selected, FrameRateLabels, FrameRateLabels.Length))
             {
                 SetFrameRate((uint)selected);
             }
-            if (fps >= FrameRateLabels.Length) ImGui.TextDisabled($"Current game value {fps} is outside the known list.");
+            if (fps >= FrameRateLabels.Length) ImGui.TextDisabled(Loc.T($"Current game value {fps} is outside the known list.", $"現在の設定値 {fps} は一覧にありません。", $"目前遊戲設定值 {fps} 不在清單內。"));
         }
-        DrawSystemToggle("Limit frame rate when client is inactive", SystemConfigOption.FPSInActive);
-        DrawSystemToggle("Limit frame rate when AFK", SystemConfigOption.FPSDownAFK);
-        ImGui.TextDisabled("Writes the game's System Configuration. Background typing speed follows the frame rate.");
+        DrawSystemToggle(Loc.T("Limit frame rate when client is inactive", "非アクティブ時にフレームレートを制限する", "視窗非作用中時限制幀率"), SystemConfigOption.FPSInActive);
+        DrawSystemToggle(Loc.T("Limit frame rate when AFK", "離席時にフレームレートを制限する", "離開時限制幀率"), SystemConfigOption.FPSDownAFK);
+        ImGui.TextDisabled(Loc.T("Writes the game's System Configuration. Background typing speed follows the frame rate.", "ゲームのシステム設定を変更します。バックグラウンド入力の速さはフレームレートに比例します。", "會修改遊戲的系統設定。背景輸入速度跟隨幀率。"));
     }
 
     internal static void SetFrameRate(uint value)
@@ -381,7 +384,7 @@ public sealed class Plugin : IDalamudPlugin
         drawList.PopClipRect();
         if (!hovered) return;
         ImGui.SetMouseCursor(ImGuiMouseCursor.Hand);
-        ImGui.SetTooltip("Support XivType on Ko-fi");
+        ImGui.SetTooltip(Loc.T("Support XivType on Ko-fi", "Ko-fiでXivTypeを支援", "在 Ko-fi 支持 XivType"));
         if (ImGui.IsMouseClicked(ImGuiMouseButton.Left)) Util.OpenLink("https://ko-fi.com/kuchris");
     }
 
@@ -394,71 +397,80 @@ public sealed class Plugin : IDalamudPlugin
         if (ImGui.Begin("XivType", ref visible))
         {
             DrawKofiButton();
-            ImGui.TextUnformatted("Keybound Brawler (English / Japanese) - development build");
+            ImGui.TextUnformatted(Loc.T("Keybound Brawler automatic typing", "キーバウンド・ブロウラー 自動入力", "Keybound Brawler 自動輸入"));
+            var language = config.UiLanguage;
+            ImGui.SameLine();
+            ImGui.SetNextItemWidth(110);
+            if (ImGui.Combo("##language", ref language, Loc.LanguageLabels, Loc.LanguageLabels.Length))
+            {
+                config.UiLanguage = language;
+                Interface.SavePluginConfig(config);
+            }
             ImGui.TextWrapped(typing.Status);
-            ImGui.TextUnformatted($"Acknowledged submissions: {typing.Submissions} | Acknowledged edits: {typing.Accepted}");
+            ImGui.TextUnformatted(Loc.T($"Acknowledged submissions: {typing.Submissions} | Acknowledged edits: {typing.Accepted}", $"送信成功: {typing.Submissions} | 入力成功: {typing.Accepted}", $"成功送出: {typing.Submissions} | 成功輸入: {typing.Accepted}"));
             var priority = (int)config.Priority;
-            if (ImGui.Combo("Target priority", ref priority, new[] { "Shortest prompt", "Nearest enemy" }, 2))
+            if (ImGui.Combo(Loc.T("Target priority", "ターゲット優先", "目標優先") + "##priority", ref priority,
+                    new[] { Loc.T("Shortest prompt", "最短の単語", "最短的字"), Loc.T("Nearest enemy", "最も近い敵", "最近的敵人") }, 2))
             {
                 config.Priority = (TargetPriority)priority;
                 Interface.SavePluginConfig(config);
             }
-            ImGui.TextDisabled("Finishes the current prompt before selecting again. Distance is measured from your character.");
+            ImGui.TextDisabled(Loc.T("Finishes the current prompt before selecting again. Distance is measured from your character.", "今の単語を打ち終えてから次を選びます。距離は自キャラから測ります。", "打完目前的字才會選下一個。距離以你的角色計算。"));
             if (config.Priority == TargetPriority.NearestEnemy)
             {
-                ImGui.TextDisabled($"Enemy distances available: {typing.KnownDistances}/{typing.VisiblePrompts}");
+                ImGui.TextDisabled(Loc.T($"Enemy distances available: {typing.KnownDistances}/{typing.VisiblePrompts}", $"距離が分かる敵: {typing.KnownDistances}/{typing.VisiblePrompts}", $"已知距離的敵人: {typing.KnownDistances}/{typing.VisiblePrompts}"));
                 if (typing.VisiblePrompts > 0 && typing.KnownDistances == 0)
-                    ImGui.TextWrapped("Distance unavailable: using shortest prompt for now.");
+                    ImGui.TextWrapped(Loc.T("Distance unavailable: using shortest prompt for now.", "距離が取得できないため、最短の単語を優先します。", "取得不到距離，暫時優先最短的字。"));
             }
             ImGui.SetNextItemWidth(100);
-            ImGui.InputInt("Runs", ref loopRuns);
+            ImGui.InputInt(Loc.T("Runs", "回数", "次數") + "##runs", ref loopRuns);
             loopRuns = Math.Clamp(loopRuns, 1, 99);
             ImGui.SameLine();
-            if (!loop.Active && ImGui.Button("Start loop")) loop.Start(loopRuns);
-            else if (loop.Active && ImGui.Button("Stop loop")) loop.Stop("Loop stopped.");
-            ImGui.TextDisabled(loop.Active ? loop.Status : $"{loop.Status} Stand next to the Keybound Registrar; it registers, commences and types each run.");
-            if (ImGui.Button("Type one prompt")) typing.Request("once");
+            if (!loop.Active && ImGui.Button(Loc.T("Start loop", "ループ開始", "開始循環") + "##loop")) loop.Start(loopRuns);
+            else if (loop.Active && ImGui.Button(Loc.T("Stop loop", "ループ停止", "停止循環") + "##loop")) loop.Stop("Loop stopped.");
+            ImGui.TextDisabled(loop.Active ? loop.Status : loop.Status + Loc.T(" Stand next to the Keybound Registrar; it registers, commences and types each run.", " 受付NPCの隣に立つと、申し込み・突入・入力を自動で繰り返します。", " 站在報名NPC旁邊，會自動報名、進場並輸入每一場。"));
+            if (ImGui.Button(Loc.T("Type one prompt", "1つだけ入力", "只輸入一個") + "##once")) typing.Request("once");
             ImGui.SameLine();
-            if (ImGui.Button("Start automatic typing")) typing.Request("on");
+            if (ImGui.Button(Loc.T("Start automatic typing", "自動入力開始", "開始自動輸入") + "##on")) typing.Request("on");
             ImGui.SameLine();
-            if (ImGui.Button("Stop")) typing.Request("off");
+            if (ImGui.Button(Loc.T("Stop", "停止", "停止") + "##off")) typing.Request("off");
             var backgroundTyping = config.BackgroundTyping;
-            if (ImGui.Checkbox("Allow background typing", ref backgroundTyping))
+            if (ImGui.Checkbox(Loc.T("Allow background typing", "バックグラウンド入力を許可", "允許背景輸入") + "##background", ref backgroundTyping))
             {
                 typing.Request("off");
                 config.BackgroundTyping = backgroundTyping;
                 Interface.SavePluginConfig(config);
             }
-            ImGui.TextDisabled("Escape stops typing while the game is focused.");
+            ImGui.TextDisabled(Loc.T("Escape stops typing while the game is focused.", "ゲームが前面にある時、Escで入力を停止します。", "遊戲在前景時，按 Esc 停止輸入。"));
             var chat = config.ChatWindow;
-            if (ImGui.Checkbox("Show chat window during the activity", ref chat))
+            if (ImGui.Checkbox(Loc.T("Show chat window during the activity", "コンテンツ中にチャットウィンドウを表示", "活動中顯示聊天視窗") + "##chat", ref chat))
             {
                 config.ChatWindow = chat;
                 Interface.SavePluginConfig(config);
                 chatOpen = chat && inActivity;
             }
             DrawFrameRate();
-            if (backgroundTyping) ImGui.TextDisabled("Keystrokes are posted only to FFXIV, even when another app has focus.");
+            if (backgroundTyping) ImGui.TextDisabled(Loc.T("Keystrokes are posted only to FFXIV, even when another app has focus.", "他のアプリが前面でも、キー入力はFFXIVにだけ送られます。", "即使其他程式在前景，按鍵也只會送到 FFXIV。"));
             var typingDelay = config.TypingDelayMs;
             var clearDelay = config.ClearDelayMs;
             var keyHold = config.KeyHoldMs;
-            if (ImGui.SliderInt("Typing delay", ref typingDelay, 0, 250, "%d ms"))
+            if (ImGui.SliderInt(Loc.T("Typing delay", "入力間隔", "輸入間隔") + "##delay", ref typingDelay, 0, 250, "%d ms"))
             {
                 config.TypingDelayMs = typingDelay;
                 Interface.SavePluginConfig(config);
             }
-            if (ImGui.SliderInt("Clear delay", ref clearDelay, 0, 250, "%d ms"))
+            if (ImGui.SliderInt(Loc.T("Clear delay", "消去間隔", "清除間隔") + "##clear", ref clearDelay, 0, 250, "%d ms"))
             {
                 config.ClearDelayMs = clearDelay;
                 Interface.SavePluginConfig(config);
             }
-            if (ImGui.SliderInt("Key hold", ref keyHold, 0, 80, "%d ms"))
+            if (ImGui.SliderInt(Loc.T("Key hold", "キー押下時間", "按鍵時間") + "##hold", ref keyHold, 0, 80, "%d ms"))
             {
                 config.KeyHoldMs = keyHold;
                 Interface.SavePluginConfig(config);
             }
-            ImGui.TextDisabled("Lower delay is faster. Every edit still waits for game acknowledgement.");
-            ImGui.TextDisabled($"Effective key hold: {NativeInput.KeyHoldMs} ms (adapts after a missed key).");
+            ImGui.TextDisabled(Loc.T("Lower delay is faster. Every edit still waits for game acknowledgement.", "間隔が短いほど速くなります。入力はゲームへの反映を確認しながら進みます。", "間隔越短越快。每次輸入仍會等遊戲確認。"));
+            ImGui.TextDisabled(Loc.T($"Effective key hold: {NativeInput.KeyHoldMs} ms (adapts after a missed key).", $"実際のキー押下時間: {NativeInput.KeyHoldMs} ms（入力漏れの後は自動調整）", $"實際按鍵時間: {NativeInput.KeyHoldMs} ms（漏字後會自動調整）"));
             if (diagnostics.Error is { } diagnosticError) ImGui.TextWrapped($"Diagnostic file error: {diagnosticError}");
             if (!ImGui.CollapsingHeader("Diagnostics")) { ImGui.End(); return; }
             var capture = config.Diagnostics;

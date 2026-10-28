@@ -28,7 +28,7 @@ Enable the repository, then search for **XivType** in `/xlplugins`. Enter the ac
 - Pauses for Dynamic Sensory Jammer and Cursed Gaze from half the cast bar, and for the game's own typing lock.
 - Retries missed keys and retypes wrong input instead of stopping. Accented letters are typed as plain letters.
 - Japanese client: types each enemy's hiragana reading. It sends romaji keystrokes and then writes the kana, because background keys cannot go through the IME.
-- The window opens by itself when you enter the activity.
+- The window opens by itself when you enter the activity. Its language can be English, Japanese or Traditional Chinese (Auto follows the game client).
 - **Game frame rate** section: shows the measured fps and changes the game's frame-rate settings. A higher frame rate makes typing faster, because each character takes about one or two frames on top of the delay (about 33 ms per character at 60 fps, 17 ms at 120 fps).
 - **Loop**: stand next to the Keybound Registrar, set the number of runs and press **Start loop**. It registers, commences Duty Ready, types each run and exits the results screen.
 - **Chat window**: a read-only copy of chat opens during the activity, which hides the game's chat. The game blocks sending chat there.

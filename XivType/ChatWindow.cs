@@ -42,9 +42,9 @@ internal sealed class ChatWindow : IDisposable
         ImGui.SetNextWindowSize(new Vector2(420, 220), ImGuiCond.FirstUseEver);
         if (ImGui.Begin("XivType Chat", ref open))
         {
-            ImGui.Checkbox("Player chat only", ref playerOnly);
+            ImGui.Checkbox(Loc.T("Player chat only", "プレイヤーの発言のみ", "只顯示玩家對話") + "##players", ref playerOnly);
             ImGui.Separator();
-            if (lines.Count == 0) ImGui.TextDisabled("Chat appears here while the activity hides the game's chat.");
+            if (lines.Count == 0) ImGui.TextDisabled(Loc.T("Chat appears here while the activity hides the game's chat.", "コンテンツ中に隠れるチャットをここに表示します。", "活動中遊戲會隱藏聊天，聊天內容會顯示在這裡。"));
             foreach (var (time, channel, sender, text) in lines)
             {
                 if (playerOnly && !PlayerChannels.Contains(channel)) continue;

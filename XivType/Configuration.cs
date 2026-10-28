@@ -14,6 +14,8 @@ internal sealed class Configuration : IPluginConfiguration
     // Automatic captures (UI text history, actors, word arrays, idle timeline) are for development only.
     public bool Diagnostics { get; set; }
     public bool ChatWindow { get; set; } = true;
+    // 0 = follow the game client language, 1 = English, 2 = Japanese, 3 = Traditional Chinese.
+    public int UiLanguage { get; set; }
 
     public void Sanitize()
     {
@@ -21,5 +23,6 @@ internal sealed class Configuration : IPluginConfiguration
         ClearDelayMs = Math.Clamp(ClearDelayMs, 0, 250);
         KeyHoldMs = Math.Clamp(KeyHoldMs, 0, 80);
         if (!Enum.IsDefined(Priority)) Priority = TargetPriority.ShortestPrompt;
+        UiLanguage = Math.Clamp(UiLanguage, 0, 3);
     }
 }
